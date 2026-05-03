@@ -1,0 +1,28 @@
+# Python virtual environment
+.venv/
+
+# Output artifacts (generated per-project, ephemeral)
+output/specs/
+output/blogs/
+
+# Sample data (reference only, contents not tracked)
+samples/*
+!samples/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# OneDrive temp files
+~$*.docx
+~$*.doc
+
+# Port staging (outside repo, but just in case)
+port-staging/
+/port-staging/

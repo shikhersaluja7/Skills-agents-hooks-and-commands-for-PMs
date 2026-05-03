@@ -1,0 +1,19 @@
+{
+  "event": "PostToolUse",
+  "description": "Sync skills and update docs after file edits",
+  "filter": {
+    "toolNames": ["create_file", "replace_string_in_file", "multi_replace_string_in_file"]
+  },
+  "steps": [
+    {
+      "type": "command",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/sync-skills.ps1 -Apply",
+      "timeout": 30
+    },
+    {
+      "type": "command",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-docs.ps1 -Apply",
+      "timeout": 30
+    }
+  ]
+}

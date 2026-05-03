@@ -1,0 +1,45 @@
+#!/bin/sh
+# pre-commit hook: Three-step pipeline before every commit.
+#   1. Sync skills, agents, and instructions between .github/ and .claude/
+#   2. Auto-update skill tables in user guides and README
+#   3. Run humanizer check on all staged .md files (blocks commit on violations)
+
+# Detect PowerShell
+if command -v pwsh >/dev/null 2>&1; then
+    PWSH="pwsh"
+elif command -v powershell >/dev/null 2>&1; then
+    PWSH="powershell"
+else
+    echo "WARNING: PowerShell not found. Skipping pre-commit checks."
+    exit 0
+fi
+
+# Step 1: Sync skills
+echo "[pre-commit] Step 1/3: Syncing skills, agents, instructions..."
+$PWSH -NoProfile -ExecutionPolicy Bypass -File "./scripts/sync-skills.ps1" -Apply -Staged
+
+if [ $? -ne 0 ]; then
+    echo "[pre-commit] Skill sync failed. Commit aborted."
+    exit 1
+fi
+
+# Step 2: Update docs (skill tables in guides and README)
+echo "[pre-commit] Step 2/3: Updating user guides and README..."
+$PWSH -NoProfile -ExecutionPolicy Bypass -File "./scripts/update-docs.ps1" -Apply -Staged
+
+if [ $? -ne 0 ]; then
+    echo "[pre-commit] Doc update failed. Commit aborted."
+    exit 1
+fi
+
+# Step 3: Humanizer check on all staged .md files
+echo "[pre-commit] Step 3/3: Running humanizer check..."
+$PWSH -NoProfile -ExecutionPolicy Bypass -File "./scripts/humanizer-check.ps1"
+
+if [ $? -ne 0 ]; then
+    echo "[pre-commit] Humanizer check FAILED. Fix violations before committing."
+    exit 1
+fi
+
+echo "[pre-commit] All checks passed."
+exit 0
