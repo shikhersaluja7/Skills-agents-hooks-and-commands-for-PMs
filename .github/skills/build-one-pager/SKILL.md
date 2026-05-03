@@ -1,4 +1,4 @@
----
+﻿---
 name: build-one-pager
 description: "Write a one-pager document for leadership and partner teams. Use when: one-pager, one pager, problem statement, solution proposal, feature pitch, strategy doc, capability pitch, executive brief, PM one-pager."
 argument-hint: "Problem or feature name, or path to source material (strategy doc, one-pager, insights, telemetry, transcript, idea doc). When providing a strategy doc, the skill can propose which one-pagers to extract."
@@ -192,7 +192,7 @@ Key principles for one-pagers:
 
 **Include real customer examples when available.**
 - Name the company, give specific timelines, describe the pain.
-- "Summit Airlines spent 4 months on network planning" is stronger than "enterprises struggle."
+- "A large airline customer spent 4 months on network planning" is stronger than "enterprises struggle."
 
 **Diagram the workflow.**
 - Use Mermaid for workflow diagrams that render in markdown.

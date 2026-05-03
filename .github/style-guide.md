@@ -11,10 +11,10 @@ The patterns below are extracted from real team-authored samples. Match them.
 **Voice:** Authoritative product narrator. You are writing on behalf of the team that built the product. Speak directly to the reader about what the product does and why it matters.
 
 **Tone characteristics:**
-- Confident and direct. State capabilities as facts, not possibilities. "The Migration Agent facilitates agentless discovery" not "The Migration Agent can help facilitate discovery."
+- Confident and direct. State capabilities as facts, not possibilities. "[Your Product] facilitates agentless discovery" not "[Your Product] can help facilitate discovery."
 - Product-proud without being promotional. Let capabilities and specifics do the selling. Never use superlatives like "best-in-class" or "industry-leading."
 - Conversational but professional. Use contractions where natural ("you'll", "it's", "don't"). Avoid stiff corporate phrasing.
-- First person plural ("we") for the your company team. Direct "you" for the reader.
+- First person plural ("we") for the product team. Direct "you" for the reader.
 
 **Structure patterns (from samples):**
 - Open with the problem or context in 2-3 sentences. No "In this blog post, we'll explore..." preamble.
@@ -30,7 +30,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 - Ending paragraphs with vague forward-looking statements like "and much more."
 
 **Example sentence patterns from team blogs:**
-- "Within hours, business leaders receive your migration strategy framework recommendations based on real environmental data, enabling confident decisions."
+- "Within hours, business leaders receive actionable recommendations based on real environmental data, enabling confident decisions."
 - "The agent coordinates handoffs between infrastructure, database, application, and security teams, keeping humans involved throughout the process."
 - "These enhancements in your product underscore our commitment to providing comprehensive, user-friendly, and efficient migration solutions."
 
@@ -77,7 +77,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 - Business-oriented. Lead with the problem size, customer impact, and competitive pressure. Numbers and data points carry weight.
 - Direct and structured. Busy stakeholders skim. Put the conclusion first, supporting detail second.
 - Specific about scope. State what is in and what is out. Name phase boundaries, priority labels (P0/P1/P2), and sequencing.
-- Factual claims backed by data. "40% of tenants migrating databases using your company 1P tooling had also discovered their SQL Server instances through your product." Not "many customers use your product for database discovery."
+- Factual claims backed by data. "40% of tenants migrating databases using native tooling had also discovered their SQL Server instances through your product." Not "many customers use your product for database discovery."
 
 **Structure patterns (from samples):**
 - Document history table (date, type, author) and review history.
@@ -97,7 +97,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 
 **Example patterns from team one-pagers:**
 - "Our objective is to cut network planning time by ~50% and increase post-migration satisfaction."
-- "Summit Airlines required ~2 months of requirement gathering and another 2 months of design work to plan their your cloud platform landing zone network."
+- "A large airline customer required ~2 months of requirement gathering and another 2 months of design work to plan their cloud landing zone network."
 - "As a user, I can discover all my on-premises network assets and dependencies in a few clicks."
 
 ---
@@ -141,7 +141,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 **Voice:** Executive narrator presenting to senior leadership. You are making the case for where the product stands, where it is going, and what it will take to get there. The document must answer reviewer questions before they are asked.
 
 **Tone characteristics:**
-- Data-driven and specific. Every claim about customer pain, market position, or adoption cites a number, percentage, or timeline. "89% of churned customers had little or no your cloud platform usage" not "many customers churn."
+- Data-driven and specific. Every claim about customer pain, market position, or adoption cites a number, percentage, or timeline. "89% of churned customers had little or no product usage" not "many customers churn."
 - Narrative-driven. The document tells a story with a clear arc - current position, strategic tension, planned investments, target outcome. Sections advance the arc rather than catalog features.
 - Confident but honest. Acknowledge gaps and competitive disadvantages directly. "AWS leads with single-click orchestration" is stronger than pretending the gap does not exist.
 - Preemptive. Inline Q&A answers questions before reviewers ask them. Customer insights appear before investment descriptions to establish "why." Compete insights appear alongside plans to address "what about the competition?"
@@ -160,13 +160,13 @@ The patterns below are extracted from real team-authored samples. Match them.
 - Unsupported claims. "Customers struggle with migration" needs a P75/P90 metric, a named customer, or a survey data point.
 - Repeating context across pillars. Each pillar is self-contained. If Pillar 2 needs background from Pillar 1, reference it rather than restating it.
 - Starting with market analysis or industry overview. Start with the product's current position and the strategic tension that drives the investments.
-- Aspirational compete positioning. State facts: "AWS provides X. your cloud platform does not yet provide Y. By July'26, we will close this gap."
+- Aspirational compete positioning. State facts: "[Competitor] provides X. [Your Product] does not yet provide Y. By [target date], we will close this gap."
 
 **Example patterns from team strategy docs:**
 - "P75 Time to Migrate from 184 (FY25) to 75 days. The SA and field lead P75 KPI data across strategic accounts show friction clusters in two distinct phases."
-- "**ConnectTel** discovered 23,039 servers (46,078 cores, 92.7% Linux) with rapid SA desk execution (Collect Data 9 days, Prepare Assessment 6 days)."
+- "**A large enterprise customer** discovered 23,000+ servers (92% Linux) with rapid execution (Collect Data 9 days, Prepare Assessment 6 days)."
 - "[-] AWS enables high speed discovery and allows customers to bring their own data (via CMDBs, VMware RV Tools or other 3P tools)."
-- "[+] your cloud platform provides a self-serve ROI/TCO with your migration strategy framework treatment across infrastructure, data, and web apps."
+- "[+] [Your Product] provides a self-serve ROI/TCO calculator across infrastructure, data, and web apps."
 - "The Americas Linux GTM motion generated $1.5M in new Linux revenue and $10M in new Red Hat pipeline from 2,700 US customers."
 
 ---
