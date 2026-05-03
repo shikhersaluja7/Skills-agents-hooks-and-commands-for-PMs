@@ -1,6 +1,6 @@
 # PM Skills
 
-An AI-powered toolkit of skills, agents, and automation for product managers on the your product team. Generate specs, blogs, user guides, competitive analysis, golden datasets, and more - while specialized development agents handle frontend, backend, and testing work.
+An AI-powered toolkit of skills, agents, and automation for product managers. Generate specs, blogs, user guides, competitive analysis, golden datasets, and more - while specialized development agents handle frontend, backend, and testing work.
 
 PMs use skills through natural language in their IDE. Type `/build-spec` or `/build-blog` in GitHub Copilot Chat, Claude Code, or Cowork and follow the guided workflow. Switch to `@frontend-developer-ghcp`, `@backend-developer-ghcp`, or `@tester-ghcp` for development tasks with spec-driven, security-first coding. Every skill and agent works on both platforms with identical behavior.
 
@@ -8,7 +8,7 @@ PMs use skills through natural language in their IDE. Type `/build-spec` or `/bu
 
 ```bash
 # 1. Clone the repo
-git clone <repo-url>
+git clone <your-clone-url>
 cd Skills
 
 # 2. Enable the sync hook (one-time)
@@ -59,7 +59,7 @@ Every skill follows two core principles:
 
 **1. PM-in-the-Loop.** The agent ideates, researches, and drafts. The PM makes all final decisions. Nothing is saved to a file until the PM explicitly approves. Decision points are flagged with `> **PM Decision Required:**` callouts.
 
-**2. Humanized Writing.** All generated content follows a strict writing standard that eliminates AI-sounding patterns. No em dashes, no formulaic paragraph structures, no overused AI words. The full ruleset lives in [.github/copilot-instructions.md](.github/copilot-instructions.md).
+**2. Humanized Writing.** All generated content follows a strict writing standard that removes AI-sounding patterns. No em dashes, no formulaic paragraph structures, no overused AI words. The full ruleset lives in [.github/copilot-instructions.md](.github/copilot-instructions.md).
 
 ### Typical Workflow
 
@@ -71,13 +71,15 @@ Every skill follows two core principles:
 6. PM reviews, requests changes, approves
 7. File is saved to `output/specs/` or `output/blogs/`
 
-### Providing Input
+### Providing Your Own Input
 
 Skills accept source material in three ways:
 
 - **Input folder.** Drop files into `input/<type>/<project-name>/` (e.g., `input/specs/wave-planning/`). The skill scans them automatically. Supports .docx, .xlsx, .csv, .html, .json, and URLs listed in a `sources.md` manifest.
 - **Inline.** Paste content directly into chat or provide file paths.
 - **URLs.** Share web links. The skill fetches and converts them.
+
+The `input/` and `output/` directories are gitignored. You create them locally and populate them with your own data - nothing in those folders is committed to the repo.
 
 Non-markdown files are converted automatically using `scripts/translate-inputs.py`.
 
@@ -138,7 +140,7 @@ Skills/
 |-- .github/
 |   |-- copilot-instructions.md         # Workspace instructions (humanizer + PM contract)
 |   |-- style-guide.md                  # Document tonality rules per type
-|   |-- skills/                         # Copilot skills (16 skills)
+|   |-- skills/                         # Copilot skills (source of truth)
 |   |   |-- build-spec/SKILL.md + references/
 |   |   |-- build-agentic-experience/SKILL.md
 |   |   |-- build-compete/SKILL.md
@@ -167,14 +169,8 @@ Skills/
 |   |-- m365-cowork-onboarding.md
 |   +-- claude-cowork-onboarding.md
 |
-|-- reference-examples/                            # Reference examples and golden datasets
-|   |-- specs/, blogs/, one-pagers/, user-guides/
-|   |-- Golden data set/                # Golden dataset samples (ARIS queries)
-|   |-- agentic-workflow/               # Journey scripts and workflow catalogs
-|   +-- customer-learnings/, field-conversations/
-|
-|-- input/                              # PM source material (gitignored)
-|-- output/                             # Generated artifacts (gitignored)
+|-- input/                              # Your source material (gitignored - create locally)
+|-- output/                             # Generated artifacts (gitignored - created by skills)
 |-- scripts/                            # Automation scripts
 +-- README.md
 ```
@@ -191,7 +187,7 @@ Five specialized agents are available. Three handle development, one handles dee
 | **Backend Developer** | `@backend-developer-ghcp` | APIs (REST/GraphQL), database design, microservices, authentication, cloud services, OWASP security |
 | **Tester** | `@tester-ghcp` | Unit/integration/E2E tests, test strategy, test data generation, coverage analysis, security testing |
 
-### Research & Ideation Agent
+### Research and Ideation Agent
 
 | Agent | Invocation | Specialization |
 |-------|-----------|----------------|
@@ -207,7 +203,7 @@ The ideation agent feeds research into any skill. Every content-generation skill
 
 **Safety guardrails (non-negotiable).** All agents block security vulnerabilities (OWASP Top 10), privacy violations (no PII in logs, GDPR-aware defaults), and dark patterns (confirmshaming, hidden costs, forced continuity). These are not warnings - the agent refuses to write unsafe code.
 
-**Repo initialization.** On first activation, development agents scan the repo, read the spec, invoke ideation for validation, check competitive analysis output, and create a `plan-forward/` folder with clickstop-based delivery plan.
+**Repo initialization.** On first activation, development agents scan the repo, read the spec, invoke ideation for validation, check competitive analysis output, and create a `plan-forward/` folder with a clickstop-based delivery plan.
 
 **Collaborative planning.** Agents break work into clickstops sized to fit within token limits. Each clickstop is a feature slice (frontend + backend + tests). When tokens run out, progress is saved to `plan-forward/status.md` and resumed in the next session.
 
@@ -223,84 +219,7 @@ After any agent completes its work, handoff buttons appear:
 
 ## Contributing
 
-### For PMs using the skills
-
-Read the guide for your tool:
-- [GitHub Copilot guide](docs/ghcp-user-guide.md)
-- [Claude Code guide](docs/claude-user-guide.md)
-- [M365 Copilot onboarding](docs/m365-cowork-onboarding.md)
-- [Claude Cowork onboarding](docs/claude-cowork-onboarding.md)
-
-### Adding a new skill
-
-1. Create `.github/skills/<skill-name>/SKILL.md` with YAML frontmatter:
-   ```yaml
-   ---
-   name: skill-name
-   description: "What it does. Use when: keyword 1, keyword 2."
-   argument-hint: "What the PM provides as input"
-   ---
-   ```
-2. Write instructions following the PM-in-the-Loop workflow (gather inputs, clarify, research, draft, approve, save).
-3. Optionally add `references/` with templates or examples.
-4. Commit. The pre-commit hook automatically:
-   - Syncs the skill to `.claude/skills/`
-   - Updates the skill table in README and all 4 user guides
-   - Runs the humanizer check on staged .md files
-
-You only create the skill once in `.github/skills/`. Everything else is automated.
-
-### Modifying an existing skill
-
-Edit `.github/skills/<skill-name>/SKILL.md` or its references. Commit. The hook syncs to Claude and updates docs.
-
-You can also use the skill-improver agent for research-backed suggestions:
-```
-/improve-skill build-spec
-```
-
-### Adding a new agent
-
-1. Create `.github/agents/<agent-name>.agent.md` with YAML frontmatter:
-   ```yaml
-   ---
-   description: "What the agent does. Use when: keyword 1, keyword 2."
-   tools: [read, search, edit, terminal, web]
-   agents: [other-agent-1, other-agent-2]
-   user-invocable: true
-   argument-hint: "What the user provides"
-   ---
-   ```
-2. Write the agent body with identity, principles, standards, and anti-patterns.
-3. Add the agent to `$agentSkillMap` in `scripts/sync-skills.ps1`.
-4. Commit. The hook syncs to `.claude/agents/` and `.claude/skills/`, and updates doc tables.
-
-### Modifying workspace instructions
-
-Edit `.github/copilot-instructions.md`. Commit. The hook syncs to `CLAUDE.md`.
-
-### Automation pipeline
-
-Every `git commit` triggers a three-step pre-commit pipeline:
-
-| Step | Script | What it does |
-|------|--------|-------------|
-| 1 | `sync-skills.ps1` | Syncs skills, agents, instructions between `.github/` and `.claude/` |
-| 2 | `update-docs.ps1` | Regenerates skill tables in README and all 4 user guides |
-| 3 | `humanizer-check.ps1` | Validates staged .md files. Blocks commit on violations. |
-
-During editing sessions:
-- Copilot PostToolUse hook (`.github/hooks/sync-skills.json`) syncs after file edits
-- Claude Stop hook (`.claude/settings.json`) syncs on session end
-
-### Skill PR checklist
-
-- [ ] SKILL.md has valid frontmatter (`name` matches folder, `description` under 1024 chars)
-- [ ] Follows PM-in-the-Loop workflow (input menu, clarifying questions, draft, approval)
-- [ ] Humanizer check passes (no em dashes, no banned words)
-- [ ] Includes input folder auto-scan logic
-- [ ] Output saves to `output/<type>/<kebab-case>.md`
-- [ ] Templates in `references/` if the skill generates structured content
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add skills, modify agents, run scripts, and the PR checklist.
 
 ## Writing Standard
 
