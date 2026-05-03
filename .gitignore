@@ -1,13 +1,17 @@
 # Python virtual environment
 .venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Input source material (user-provided, never committed)
+input/
 
 # Output artifacts (generated per-project, ephemeral)
-output/specs/
-output/blogs/
+output/
 
-# Sample data (reference only, contents not tracked)
-samples/*
-!samples/.gitkeep
+# Logs
+*.log
 
 # OS files
 .DS_Store
@@ -16,6 +20,7 @@ desktop.ini
 
 # Editor
 .vscode/
+.idea/
 *.swp
 *.swo
 
@@ -23,6 +28,6 @@ desktop.ini
 ~$*.docx
 ~$*.doc
 
-# Port staging (outside repo, but just in case)
+# Port staging (temporary)
 port-staging/
 /port-staging/
