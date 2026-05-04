@@ -1,4 +1,4 @@
----
+﻿---
 name: build-blog
 description: "Draft a blog post for your community blog, your engineering blog, or LinkedIn. Use when: write blog, blog post, draft blog, create blog, blog from spec, blog from one-pager, blog from release notes, announcement blog, feature blog, product blog."
 argument-hint: "Blog topic, or path to source document (spec, one-pager, release notes, customer story, etc.)"

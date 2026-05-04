@@ -73,7 +73,7 @@ After reviewing the input, ask these questions. Skip any the source material alr
 3. **Desired outcome** - What decision should the reader make after reading this? (fund the project, prioritize it, assign engineering resources, partner on execution)
 4. **Customer evidence** - Do you have named customer examples with timelines or metrics? (e.g., "Acme Corp (example) spent 4 months on network planning")
 5. **Data points** - Any telemetry, survey data, or market research numbers to cite?
-6. **Competitive pressure** - Should we position against AWS, GCP, or other competitors? Do you have competitive intel to reference?
+6. **Competitive pressure** - Should we position against [Competitor 1], [Competitor 2], or other competitors? Do you have competitive intel to reference?
 7. **Scope and phasing** - Do you have a sense of what's P0 (MVP) vs P1/P2? Or should we figure that out together?
 8. **Existing work** - Is there prior art, a prototype, or a related feature already in progress?
 9. **Workflow visualization** - Do you have a flow or architecture in mind? Should we diagram it in Mermaid?
@@ -164,7 +164,7 @@ Wait for the PM to confirm or adjust each section before proceeding to the full 
 
 If the PM requests competitive or market research:
 
-- Search the web for competitor approaches (AWS, GCP, third-party tools)
+- Search the web for competitor approaches ([Competitor 1], [Competitor 2], third-party tools)
 - Look for analyst reports, community discussions, industry benchmarks
 - Find customer case studies or migration timelines from public sources
 - Present findings: "Here's what I found about the competitive landscape. You decide what to include."
@@ -244,7 +244,7 @@ These rules apply on top of the workspace Humanized Writing Standard:
 - Avoid contractions in one-pagers (formal document for leadership).
 - State scope boundaries explicitly: what is in P0 and what is not.
 - Back claims with data. "40% of tenants" not "many customers."
-- Name competitors directly when comparing: "AWS provides X, we will provide Y."
+- Name competitors directly when comparing: "[Competitor] provides X, [Your Product] will provide Y."
 - Use the Crawl/Walk/Run or P0/P1/P2 pattern for phasing. Define what ships in each phase.
 
 ### Formatting

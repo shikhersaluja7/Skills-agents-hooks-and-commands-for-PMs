@@ -1,4 +1,4 @@
----
+﻿---
 name: build-user-guide
 description: "Write a customer-facing user guide or product walkthrough. Use when: user guide, product guide, how-to guide, product walkthrough, feature walkthrough, getting started guide, product documentation, customer documentation, usage guide."
 argument-hint: "Feature or product name, or path to source material (docs, spec, blog, one-pager, mockups, transcript)"

@@ -1,4 +1,4 @@
-# Strategy Doc Template
+﻿# Strategy Doc Template
 
 Generate the strategy document using this structure. Fill every section with substantive content. Do not skip or reorder top-level sections (Executive Summary, Pillars, Customer Learnings, Key Results). Pillars themselves can be reordered based on the narrative arc.
 
@@ -41,11 +41,11 @@ Generate the strategy document using this structure. Fill every section with sub
 
 **Compete Insights:**
 
-| AWS | your cloud platform | Insights |
+| [Competitor] | [Your Product] | Insights |
 |-----|-------|----------|
 | <scenario name spanning all columns> |||
-| | | [-] <where your cloud platform trails with specific detail> |
-| | | [+] <where your cloud platform leads with specific detail> |
+| | | [-] <where [Your Product] trails with specific detail> |
+| | | [+] <where [Your Product] leads with specific detail> |
 | | | [=] <where parity exists> |
 
 **Plan:** <Describe the investments with timelines. Use bold lettering for each sub-investment.>
@@ -93,7 +93,7 @@ Generate the strategy document using this structure. Fill every section with sub
 | |
 | 1. **<Learning title>:** <Insight drawn from the experience. Include compete perspective where relevant.> |
 | |
-|    - **Compete perspective:** <How AWS/GCP handles this, and what it means for our strategy.> |
+|    - **Compete perspective:** <How [Competitor 1]/[Competitor 2] handles this, and what it means for our strategy.> |
 | |
 | 2. **<Learning title>:** <Same format.> |
 +---+
@@ -116,7 +116,7 @@ Generate the strategy document using this structure. Fill every section with sub
 
 <Data narrative about adoption, conversion, churn, or pipeline. Structure by topic.>
 
-**a) <Topic>:** <Data-driven narrative with specific numbers. E.g., "$1.5M in new Linux revenue from 2,700 US customers." Include funnel analysis, segment breakdowns, and pipeline impact where available.>
+**a) <Topic>:** <Data-driven narrative with specific numbers. E.g., "$<X>M in new product revenue from <N> customers." Include funnel analysis, segment breakdowns, and pipeline impact where available.>
 
 **b) <Topic>:** <Same format.>
 

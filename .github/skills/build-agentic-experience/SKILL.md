@@ -1,7 +1,7 @@
----
+﻿---
 name: build-agentic-experience
 description: "Build agentic workflow artifacts for conversational AI: scenario catalogs, journey scripts, or evaluation datasets. Use when: agentic workflow, scenario catalog, journey script, happy path journey, eval dataset, evaluation dataset, copilot conversation flows, chat experience spec, prompt-response catalog, AI assistant prompts, test accuracy of agent responses, LLM evaluation."
-argument-hint: "Feature or domain description. For journeys: journey type (lift-and-shift or modernization). For eval: step name and milestone."
+argument-hint: "Feature or domain description. For journeys: journey type (e.g., direct integration or API-native redesign). For eval: step name and milestone."
 ---
 
 # Build Agentic Experience
@@ -37,9 +37,9 @@ Every AI assistant response across all modes follows this structure:
 
 | Placeholder | Meaning |
 |-------------|---------|
-| `<N>` | Count (servers, databases, apps) |
-| `<App1>`, `<App2>` | Application names |
-| `<Region>` | your cloud platform region |
+| `<N>` | Count (transactions, accounts, items) |
+| `<App1>`, `<App2>` | Application or service names |
+| `<Region>` | Your target platform region |
 | `<X>` minutes | Estimated time |
 | `$<X>`/mo | Monthly cost |
 | `<P>%` | Percentage |
@@ -52,7 +52,7 @@ Every AI assistant response across all modes follows this structure:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. Ask the PM: `Want me to run deep research before drafting?` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. Ask the PM: `Want me to run deep research before drafting?` Only invoke if the PM says yes.
 
 ---
 
@@ -64,7 +64,7 @@ These rules apply to every scenario catalog produced by this skill. Violations o
 ### Prompt Design Principles
 
 - **Natural language only.** Prompts must sound like real users typing in a chat box. No formal or robotic phrasing.
-- **Multiple entry points.** For key actions, provide 2-3 variant phrasings users might type (e.g., "Assess my workloads" / "Run an assessment" / "What are my migration options?").
+- **Multiple entry points.** For key actions, provide 2-3 variant phrasings users might type (e.g., "Assess my readiness" / "Run an assessment" / "What are my integration options?").
 - **Contextual intelligence.** Responses must reference the user's current state (scope, parameters, inventory counts, prior decisions) using dynamic placeholders.
 - **Progressive disclosure.** Do not dump all information at once. Lead users through a journey with each response revealing the right amount of detail for that step.
 - **Opinionated but transparent.** The assistant recommends a path but always explains why and provides alternatives.
@@ -83,13 +83,13 @@ All dynamic values in responses must use angle-bracket placeholders. Standard pl
 
 | Placeholder | Represents |
 |---|---|
-| `<N>`, `<M>`, `<L>`, `<K>` | Counts (servers, databases, web apps, applications) |
+| `<N>`, `<M>`, `<L>`, `<K>` | Counts (transactions, accounts, items, applications) |
 | `$<X>`, `$<A>`, `$<B>` | Cost values |
 | `<P>%`, `<P1>%`, `<P2>%` | Percentages |
-| `<App1>`, `<App2>` | Application names |
-| `<server1>`, `<server2>` | Server names |
-| `<Region>` | your cloud platform region |
-| `<SKU>` | your cloud platform SKU or VM size |
+| `<App1>`, `<App2>` | Application or service names |
+| `<item1>`, `<item2>` | Item or entity names |
+| `<Region>` | Your target platform region |
+| `<SKU>` | Your target platform tier or pricing plan |
 | `<name>` | Assessment or resource name |
 | `<description>` | Dynamic description text |
 
@@ -319,7 +319,7 @@ Suggested prompts must form a connected graph. Every suggested prompt in the cat
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 
@@ -347,7 +347,7 @@ Before delivering, verify every item:
 
 # Mode B: Journey Script
 
-You are a journey script writer helping a PM create or extend a happy path journey document for your product's AI assistant (your AI assistant). A journey script is a linear, persona-driven walkthrough that shows the ideal path a user takes through a migration or modernization workflow in your AI assistant. It is used for demo scripting, feature alignment, and conversation design.
+You are a journey script writer helping a PM create or extend a happy path journey document for your product's AI assistant (your AI assistant). A journey script is a linear, persona-driven walkthrough that shows the ideal path a user takes through an adoption workflow in your AI assistant. It is used for demo scripting, feature alignment, and conversation design.
 
 Follow the **PM-in-the-Loop Contract** and **Humanized Writing Standard** defined in the workspace instructions. Every draft must be shown in chat for PM approval before saving.
 
@@ -367,34 +367,36 @@ Journey scripts are stored in `reference-examples/agentic-workflow/` and named u
 
 ## Canonical Journey Steps
 
-### Lift-and-Shift Journey Steps
+### Direct Integration Journey Steps
+
+These journey steps illustrate a generic adoption flow (here shown for a payment-gateway-style integration). Substitute the domain terms with your own product's lifecycle phases.
 
 | # | Step | Description |
 |---|---|---|
-| 1 | Journey Overview | your AI assistant explains migration strategies and confirms lift-and-shift preference |
-| 2 | Discovery | User discovers workloads via your inventory collection tool, appliance, or collector |
-| 3 | Application Grouping | your product auto-discovers applications; user reviews and edits properties |
-| 4 | ROI Analysis | your AI assistant generates business case, summarizes savings, and compares lift-and-shift vs modernization ROI |
-| 5 | Cloud Readiness Assessment | your AI assistant triggers assessment, summarizes results, and surfaces top insights |
-| 6 | Platform Landing Zone | your AI assistant guides landing zone configuration and template generation |
-| 7 | Wave Planning | your AI assistant creates migration wave, surfaces workloads with your cloud platform targets for confirmation |
-| 8 | Migration Execution | your AI assistant guides execution and tracks migration job status |
+| 1 | Journey Overview | your AI assistant explains adoption strategies and confirms direct-integration preference |
+| 2 | Discovery | User catalogs flows via your inventory tool, API explorer, or collector |
+| 3 | Item Grouping | your product auto-discovers entities; user reviews and edits properties |
+| 4 | ROI Analysis | your AI assistant generates business case, summarizes savings, and compares direct integration vs full redesign ROI |
+| 5 | Readiness Assessment | your AI assistant triggers assessment, summarizes results, and surfaces top insights |
+| 6 | Environment Setup | your AI assistant guides target environment configuration and template generation |
+| 7 | Rollout Planning | your AI assistant creates rollout phase, surfaces items with target tier for confirmation |
+| 8 | Cutover Execution | your AI assistant guides execution and tracks rollout job status |
 
-### Modernization Journey Steps
+### Full Redesign Journey Steps
 
 | # | Step | Description |
 |---|---|---|
-| 1 | Journey Overview | your AI assistant explains modernization paths and confirms modernization preference |
-| 2 | Discovery | User deploys appliance or uploads collector inventory |
-| 3 | Application Grouping | your product auto-discovers applications; user reviews and edits properties |
-| 4 | ROI Analysis | your AI assistant summarizes modernization savings from business case and compares lift-and-shift vs modernization ROI |
-| 5 | Cloud Readiness Assessment | your AI assistant triggers assessment with PaaS preferred strategy and surfaces top insights |
-| 6 | Code Scan Enhancement | your AI assistant guides adding your code analysis tool code scan results to assessment |
-| 7 | Platform Landing Zone | your AI assistant guides landing zone configuration and template generation |
-| 8 | Wave Planning | your AI assistant creates migration wave, surfaces workloads with your cloud platform targets for confirmation |
-| 9 | Migration Execution | your AI assistant points to PaaS replatforming tools |
+| 1 | Journey Overview | your AI assistant explains redesign paths and confirms redesign preference |
+| 2 | Discovery | User deploys collector or uploads inventory |
+| 3 | Item Grouping | your product auto-discovers entities; user reviews and edits properties |
+| 4 | ROI Analysis | your AI assistant summarizes redesign savings from business case and compares direct integration vs full redesign ROI |
+| 5 | Readiness Assessment | your AI assistant triggers assessment with native-architecture preferred strategy and surfaces top insights |
+| 6 | Code Scan Enhancement | your AI assistant guides adding code analysis tool scan results to assessment |
+| 7 | Environment Setup | your AI assistant guides target environment configuration and template generation |
+| 8 | Rollout Planning | your AI assistant creates rollout phase, surfaces items with target tier for confirmation |
+| 9 | Cutover Execution | your AI assistant points to native-architecture rollout tools |
 
-> **Note:** Application Grouping (Step 3) is positioned after Discovery and before ROI in both journey types. When adding or modifying this step, draw from the your AI assistant responses in `input/User Prompts and your AI assistant Responses.md`.
+> **Note:** Item Grouping (Step 3) is positioned after Discovery and before ROI in both journey types. When adding or modifying this step, draw from the your AI assistant responses in `input/User Prompts and your AI assistant Responses.md`.
 
 ---
 
@@ -425,7 +427,7 @@ Then read the extracted `.md` to pull verbatim or lightly adapted prompt-respons
 
 Ask the PM for the following in a single batch. Skip any already provided:
 
-1. **Journey type** - Lift-and-shift or modernization?
+1. **Journey type** - Direct integration, full redesign, or another adoption pattern relevant to your product?
 2. **Steps to include** - Show the canonical step list for their journey type and ask which steps to keep, skip, add, or modify. Use step numbers for reference.
 3. **New or modified steps** - For each step being added or changed:
    - What is the step name and where in the sequence does it belong?
@@ -433,7 +435,7 @@ Ask the PM for the following in a single batch. Skip any already provided:
    - What should the AI response cover? (Key facts, data shown, recommendation given)
    - What are the 3 suggested follow-up prompts for this step?
    - Is there a source document with sample prompts and responses for this step? (e.g., a .docx, .md, or notes file in `input/` or `reference-examples/`) If yes, provide the file name or path and the skill will extract and adapt content from it.
-4. **Persona details** - Name, role, company, environment (e.g., VMware on-prem, Hyper-V), your cloud platform region, migration goal
+4. **Persona details** - Name, role, company, current environment (e.g., legacy system, on-premises stack), target platform region, adoption goal
 5. **Milestone label** - What milestone does this journey represent? (e.g., PublicPreview, GA, InternalDemo)
 
 If the PM says "use defaults" or "same as existing", carry over persona and milestone from the most recently read journey sample.
@@ -442,11 +444,11 @@ If the PM says "use defaults" or "same as existing", carry over persona and mile
 
 For each step in the journey (including unmodified ones), confirm:
 
-- **Workload counts** - How many VMs, databases, web apps should appear in the journey? Use realistic numbers from the existing samples if PM does not specify.
-- **Application names** - What application names appear in the journey? Default to names used in the your AI assistant responses doc (e.g., Airsonic, Acme CRM (example)) unless PM provides alternatives.
+- **Item counts** - How many transactions, accounts, applications, or other entities should appear in the journey? Use realistic numbers from the existing samples if PM does not specify.
+- **Application names** - What application or service names appear in the journey? Default to names used in the your AI assistant responses doc (e.g., Airsonic, Acme CRM (example)) unless PM provides alternatives.
 - **Cost figures** - What ROI / cost numbers appear? Use `$<X>` placeholders unless PM provides specific values.
-- **your cloud platform region** - Which region is the target? Default to East US unless PM specifies.
-- **Discovery method** - For the Discovery step: your inventory collection tool (lift-and-shift quick path) or appliance-based (full path)?
+- **Target platform region** - Which region is the target? Default to East US unless PM specifies.
+- **Discovery method** - For the Discovery step: inventory tool (direct integration quick path) or collector-based (full path)?
 
 ### Step 4: Generate the Draft
 
@@ -457,7 +459,7 @@ Write each step as a row in the journey table. Maintain strict adherence to the 
 ```
 # Journey Script - <Journey Type> (<Milestone>)
 
-<Persona intro paragraph: 3-5 sentences. Establish name, role, company, on-prem environment, your cloud platform region, and migration goal.>
+<Persona intro paragraph: 3-5 sentences. Establish name, role, company, current environment, target platform region, and adoption goal.>
 
 ---
 
@@ -488,38 +490,38 @@ Each AI response in the table must follow this structure:
 - Do not use em dashes anywhere. Use a comma, semicolon, or parentheses instead
 - Keep response text inside cells dense but not verbose. Match the length and depth of the existing journey samples
 
-#### Application Grouping Step Rules
+#### Item Grouping Step Rules
 
-When including the Application Grouping step, source content directly from `input/User Prompts and your AI assistant Responses.md`. Use the prompts and responses from the **[Review Apps]** and **[Edit Apps]** sections for the happy path. The happy path for this step is:
+When including the Item Grouping step, source content directly from `input/User Prompts and your AI assistant Responses.md`. Use the prompts and responses from the **[Review Items]** and **[Edit Items]** sections for the happy path. The happy path for this step is:
 
-1. your AI assistant reports auto-discovered applications with counts and confidence scores
-2. User asks for all applications and their details
-3. User edits properties (criticality, complexity, or tags) for one or more applications
+1. your AI assistant reports auto-discovered items with counts and confidence scores
+2. User asks for all items and their details
+3. User edits properties (criticality, complexity, or tags) for one or more items
 4. your AI assistant confirms updates and recommends proceeding to ROI analysis
 
-Do not include the Create, Delete, or CMDB import flows in the happy path unless the PM explicitly requests them.
+Do not include the Create, Delete, or external-import flows in the happy path unless the PM explicitly requests them.
 
 #### ROI Analysis Step Rules
 
 The ROI Analysis step must include at least two prompt-response rows:
 
-1. **Summary row** - User asks for the ROI summary. your AI assistant responds with the savings estimate, key drivers, business case link, and PPT download.
-2. **Comparison row** - User asks to compare lift-and-shift ROI vs modernization ROI. your AI assistant responds with a side-by-side table showing on-premises cost, projected your cloud platform cost, TCO savings, and the key trade-off (speed vs long-term cost efficiency) for each strategy. your AI assistant recommends the path that aligns with the user's stated goal.
+1. **Summary row** - User asks for the ROI summary. your AI assistant responds with the savings estimate, key drivers, business case link, and slide-deck download.
+2. **Comparison row** - User asks to compare direct integration ROI vs full redesign ROI. your AI assistant responds with a side-by-side table showing current cost, projected target platform cost, TCO savings, and the key trade-off (speed vs long-term cost efficiency) for each strategy. your AI assistant recommends the path that aligns with the user's stated goal.
 
-#### Cloud Readiness Assessment Step Rules
+#### Readiness Assessment Step Rules
 
-The Cloud Readiness Assessment step must include at least two prompt-response rows:
+The Readiness Assessment step must include at least two prompt-response rows:
 
 1. **Trigger row** - User requests the assessment. your AI assistant confirms it is running and provides a tracking link.
-2. **Results row** - User opens the assessment complete notification. your AI assistant summarizes total workloads assessed, readiness percentage, and estimated monthly cost.
-3. **Top insights row** - User asks for top insights or key findings from the assessment. your AI assistant surfaces the 3-5 most actionable findings: the most common readiness blocker, the highest-cost workload, the workload with the best savings opportunity, and any workloads flagged as Not Ready with a remediation suggestion.
+2. **Results row** - User opens the assessment-complete notification. your AI assistant summarizes total items assessed, readiness percentage, and estimated monthly cost.
+3. **Top insights row** - User asks for top insights or key findings from the assessment. your AI assistant surfaces the 3-5 most actionable findings: the most common readiness blocker, the highest-cost item, the item with the best savings opportunity, and any items flagged as Not Ready with a remediation suggestion.
 
-#### Wave Planning Step Rules
+#### Rollout Planning Step Rules
 
-The Wave Planning step sits immediately before Migration Execution in both journey types. It must include at least two prompt-response rows:
+The Rollout Planning step sits immediately before Cutover Execution in both journey types. It must include at least two prompt-response rows:
 
-1. **Create wave row** - User asks your AI assistant to create a migration wave. your AI assistant auto-groups workloads from the assessment by application and readiness status, and presents a table with workload name, application, OS, readiness status, and recommended your cloud platform target SKU.
-2. **Configure targets row** - User asks to configure or confirm your cloud platform targets. your AI assistant presents the target configuration table with on-premises specs, recommended SKU, and estimated monthly cost per workload. User accepts targets and your AI assistant confirms the wave is ready for execution.
+1. **Create rollout row** - User asks your AI assistant to create a rollout phase. your AI assistant auto-groups items from the assessment by application and readiness status, and presents a table with item name, application, type, readiness status, and recommended target tier.
+2. **Configure targets row** - User asks to configure or confirm target platform tiers. your AI assistant presents the target configuration table with current specs, recommended tier, and estimated monthly cost per item. User accepts targets and your AI assistant confirms the rollout phase is ready for execution.
 
 #### Self-Review Before Delivering
 
@@ -527,11 +529,11 @@ The Wave Planning step sits immediately before Migration Execution in both journ
 - [ ] Prompt 1 always advances, Prompt 2 always explains deeper, Prompt 3 always skips ahead
 - [ ] No em dashes anywhere in the document
 - [ ] All dynamic values use `` `<placeholder>` `` syntax
-- [ ] Application grouping step (if present) uses content sourced from the your AI assistant responses doc
-- [ ] ROI Analysis step includes both a summary row and a lift-and-shift vs modernization comparison row
-- [ ] Cloud Readiness Assessment step includes a trigger row, a results row, and a top insights row
-- [ ] Wave Planning step is present immediately before Migration Execution and includes a create wave row and a configure targets row
-- [ ] Platform Landing Zone step is present in both lift-and-shift and modernization journeys
+- [ ] Item grouping step (if present) uses content sourced from the your AI assistant responses doc
+- [ ] ROI Analysis step includes both a summary row and a direct integration vs full redesign comparison row
+- [ ] Readiness Assessment step includes a trigger row, a results row, and a top insights row
+- [ ] Rollout Planning step is present immediately before Cutover Execution and includes a create rollout row and a configure targets row
+- [ ] Environment Setup step is present in both direct integration and full redesign journeys
 - [ ] Persona name appears consistently in the intro paragraph and all prompt rows
 - [ ] File naming follows the pattern: `Journey_<JourneyType>_<Milestone>.md`
 
@@ -568,14 +570,14 @@ Report to the PM:
 
 | Placeholder | Represents |
 |---|---|
-| `<N>`, `<M>`, `<L>`, `<K>` | Workload counts (VMs, databases, web apps, applications) |
+| `<N>`, `<M>`, `<L>`, `<K>` | Item counts (transactions, accounts, web apps, applications) |
 | `$<X>`, `$<A>`, `$<B>` | Cost and savings values |
 | `<P>%`, `<P1>%`, `<P2>%` | Percentages |
-| `<App1>`, `<App2>` | Application names |
-| `<server1>`, `<server2>` | Server names |
-| `<Region>` | your cloud platform target region |
-| `<SKU>` | your cloud platform VM or service tier |
-| `<name>` | Assessment, wave, or resource name |
+| `<App1>`, `<App2>` | Application or service names |
+| `<item1>`, `<item2>` | Item or entity names |
+| `<Region>` | Your target platform region |
+| `<SKU>` | Your target platform tier or pricing plan |
+| `<name>` | Assessment, rollout, or resource name |
 | `<date>` | Dynamic date in exported file names |
 | `<description>` | Application or resource description text |
 | `<deep link>` | Portal deep link URL |
@@ -602,7 +604,7 @@ Then insert the step at the correct position in the table.
 
 If the PM says:
 
-> "In the ROI step, I want the response to show a side-by-side comparison of lift-and-shift vs modernization savings."
+> "In the ROI step, I want the response to show a side-by-side comparison of direct integration vs full redesign savings."
 
 Update only the response content for the ROI step row. Keep the prompt, recommendation line, and suggested prompts consistent with the journey flow. Do not rewrite surrounding steps unless the PM asks.
 
@@ -611,7 +613,7 @@ Update only the response content for the ROI step row. Keep the prompt, recommen
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 
@@ -653,16 +655,16 @@ The dataset must have enough test cases per task to catch regressions. A task wi
 
 ---
 
-## Task Taxonomy for Each Migration Step
+## Task Taxonomy for Each Journey Step
 
-Every migration step contains multiple **tasks**. Each task must be independently covered in the dataset. Standard task types per step:
+Every journey step contains multiple **tasks**. Each task must be independently covered in the dataset. Standard task types per step:
 
 | Task Type | Description |
 |---|---|
 | **List / Review** | User asks to see existing data (list applications, show assessment results) |
-| **Create** | User initiates creation of a new entity (create application, start assessment, create wave) |
+| **Create** | User initiates creation of a new entity (create application, start assessment, create rollout) |
 | **Update** | User edits a property of an existing entity (change criticality, rename, update tags) |
-| **Delete** | User removes an entity (delete application, remove wave) |
+| **Delete** | User removes an entity (delete application, remove rollout) |
 | **At-Scale** | User operates on multiple entities at once, typically via CSV export/import |
 | **Auto-Generate** | User asks your AI assistant to automatically derive groupings, recommendations, or plans |
 | **Explain / Educate** | User asks why, what does this mean, or how did your AI assistant decide something |
@@ -711,15 +713,15 @@ Each test case row uses these columns:
 
 Use these standard codes when generating Test IDs:
 
-| Migration Step | Step Code |
+| Journey Step | Step Code |
 |---|---|
-| Application Grouping | `AG` |
+| Item Grouping | `AG` |
 | Discovery | `DIS` |
 | ROI / Business Case | `ROI` |
 | Assessment | `ASS` |
-| Platform Landing Zone | `PLZ` |
-| Wave Planning | `WAV` |
-| Migration Execution | `EXE` |
+| Environment Setup | `PLZ` |
+| Rollout Planning | `WAV` |
+| Cutover Execution | `EXE` |
 | Code Scan Enhancement | `CSE` |
 
 Task codes: `CRE` (Create), `UPD` (Update), `DEL` (Delete), `LST` (List/Review), `SCL` (At-Scale), `AUT` (Auto-Generate), `EXP` (Explain), `HND` (Handoff)
@@ -737,7 +739,7 @@ Use precise, testable criteria in the Must Include and Must Not Include columns.
 - `recommended next step sentence`
 - `3 suggested follow-up prompts`
 - `portal deep link or navigation path`
-- `warning about downstream impact on assessments or waves`
+- `warning about downstream impact on assessments or rollouts`
 - `confirmation requires user action`
 
 **Must Not Include (good):**
@@ -761,14 +763,14 @@ Use precise, testable criteria in the Must Include and Must Not Include columns.
 Before gathering inputs, load the following:
 
 1. **Source prompt-response document** - The PM-provided document with sample prompts and responses for the step being covered. This is the ground truth for expected responses. If in `.docx` format, run: `scripts/extract-doc-text.ps1 -InputDir "<folder>"` first.
-2. **your AI assistant responses source** - Read `input/User Prompts and your AI assistant Responses.md` as the canonical reference for application grouping tasks.
-3. **Agentic workflow skill** - Skim `.github/skills/build-agentic-workflow/SKILL.md` to align on the three-part response structure all your AI assistant responses must follow.
+2. **your AI assistant responses source** - Read `input/User Prompts and your AI assistant Responses.md` as the canonical reference for item grouping tasks.
+3. **Agentic experience skill** - Skim `.github/skills/build-agentic-experience/SKILL.md` to align on the three-part response structure all your AI assistant responses must follow.
 
 ### Step 2: Gather Parameters
 
 Ask the PM in a single batch. Skip any already provided:
 
-1. **Step name** - Which migration step is this dataset for? (e.g., Application Grouping, Assessment, Wave Planning)
+1. **Step name** - Which journey step is this dataset for? (e.g., Item Grouping, Assessment, Rollout Planning)
 2. **Tasks to cover** - Which task types apply to this step? Show the taxonomy table and ask which to include. Default: all task types found in the source document.
 3. **Source document** - Path to the document with sample prompts and responses. If already open or provided as an attachment, extract tasks from it directly.
 4. **Milestone label** - What milestone does this dataset cover? (e.g., MVP, PublicPreview, GA)
@@ -797,7 +799,7 @@ For each task and each variant type, write one test case row following the schem
 # Evaluation Dataset - <Step Name> (<Milestone>)
 
 **Generated:** <date>
-**Migration Step:** <Step Name>
+**Journey Step:** <Step Name>
 **Step Code:** <XX>
 **Tasks Covered:** <list>
 **Total Test Cases:** <N>
@@ -963,9 +965,9 @@ Report to the PM:
 
 ---
 
-## Example: Application Grouping Dataset Snippet
+## Example: Item Grouping Dataset Snippet
 
-For the **Create - Group by Naming Pattern** task under Application Grouping:
+For the **Create - Group by Naming Pattern** task under Item Grouping:
 
 | Test ID | Task | Variant | Turn | Input Prompt | Prior Turn Summary | Context Preconditions | Must Include | Must Not Include | Sample Response | Placeholder Values | Pass / Fail Notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -981,7 +983,7 @@ For the **Create - Group by Naming Pattern** task under Application Grouping:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 

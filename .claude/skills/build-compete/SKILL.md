@@ -1,4 +1,4 @@
----
+﻿---
 name: build-compete
 description: "Generate competitive analysis or scorecard comparing your product against competitors. Use when: compete analysis, competitive analysis, competitor comparison, market comparison, feature comparison, compete report, competitive landscape, battle card, compete brief, compete scorecard, product comparison, competitive benchmark, head-to-head comparison, scorecard."
 argument-hint: "Product area or competitor names, or path to source material"
@@ -38,7 +38,7 @@ Follow the **PM-in-the-Loop Contract** and **Humanized Writing Standard** define
 
 ## Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a topic name (e.g., "your cloud platform-migrate-vs-aws"), check for `input/compete-analysis/your cloud platform-migrate-vs-aws/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a topic name (e.g., "your-product-vs-competitor-1"), check for `input/compete-analysis/your-product-vs-competitor-1/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` to convert them first.
 
 If no input folder exists, create one and tell the PM:
 
@@ -68,7 +68,7 @@ Read any provided documents, files, or URLs. For non-markdown files, convert the
 After reviewing the input, ask these questions. Skip any the source material already answers:
 
 1. **Your product**  - What is your product and which capabilities are in scope for this comparison?
-2. **Competitors**  - Which competitors should be included? (e.g., AWS Migration Hub, Google Cloud Migrate, third-party tools)
+2. **Competitors**  - Which competitors should be included? (e.g., [Competitor 1 tool], [Competitor 2 tool], third-party tools)
 3. **Audience**  - Who will read this? (engineering leadership, field sellers, product team, executives)
 4. **Analysis type**  - What format do you need?
    - **Pillar-based analysis** (organized by strategic themes with scenario-level comparisons, with 4-column comparison tables)
@@ -77,10 +77,10 @@ After reviewing the input, ask these questions. Skip any the source material alr
    - **Executive brief** (high-level strategic positioning summary)
 5. **Comparison pillars and rows**  - If pillar-based, what strategic themes should organize the analysis? For each pillar, what specific scenarios or rows should be compared? (e.g., Pillar: "AI-powered planning" with rows: "Discovery & Inventory", "Business Case & ROI", "Migration Planning")
 6. **Data sources**  - Which official sources should be used for each competitor? Provide specific documentation URLs, blog URLs, and product pages per competitor. The analysis will only cite data found in these sources.
-7. **Key events to prioritize**  - Are there recent launch events, conferences, or announcements to prioritize? (e.g., "Ignite 2024 and 2025 announcements", "re:Invent 2024 and 2025", "Google Cloud Next 2024 and 2025")
+7. **Key events to prioritize**  - Are there recent launch events, conferences, or announcements to prioritize? (e.g., "[Your Company event] 2024 and 2025 announcements", "[Competitor 1 event] 2024 and 2025", "[Competitor 2 event] 2024 and 2025")
 8. **Time horizon**  - Point-in-time snapshot, or include roadmap projections for where things are heading?
 9. **Sensitivity**  - Any information that must stay internal-only and not reference public sources?
-10. **Key questions to answer**  - What specific competitive questions does your team need answered? (e.g., "Where does AWS beat us on container migration?", "How does GCP pricing compare for large portfolios?")
+10. **Key questions to answer**  - What specific competitive questions does your team need answered? (e.g., "Where does [Competitor 1] beat us on a key capability?", "How does [Competitor 2] pricing compare for large portfolios?")
 11. **Output format**  - Markdown file only, or also generate a .docx? If .docx, landscape or portrait?
 
 ## Step 3: Build a Research Plan and Execute All Searches Before Writing
@@ -92,7 +92,7 @@ Competitive analysis requires thorough web research. This is the most critical s
 Based on the PM's answers in Step 2, construct a numbered research plan. Each item in the plan is a specific search query targeting a specific source domain. The plan must cover:
 
 - Each competitor's official documentation site for the capabilities in scope
-- Recent launch event announcements for each competitor (e.g., Ignite, re:Invent, Google Cloud Next)
+- Recent launch event announcements for each competitor (e.g., [Your Company event], [Competitor 1 event], [Competitor 2 event])
 - Product release notes and "what's new" pages for each competitor
 - Each specific pillar/row topic for each competitor
 
@@ -198,8 +198,8 @@ Column rules:
 
 Each cell must contain a **full narrative paragraph**, not a single word, not a bullet list:
 
-1. **Name specific products and tools.** Write "your database migration service", "AWS Transform for VMware", "GCP Migrate to Containers" instead of "migration tool" or "their service."
-2. **Name specific announcements and dates.** Write "announced at Ignite 2025", "GA May 2025", "re:Invent 2024 Preview" instead of "recently announced" or "coming soon."
+1. **Name specific products and tools.** Write "[Your product name]", "[Competitor 1 product]", "[Competitor 2 product]" instead of "migration tool" or "their service."
+2. **Name specific announcements and dates.** Write "announced at [Your Company event] 2025", "GA May 2025", "[Competitor event] 2024 preview" instead of "recently announced" or "coming soon."
 3. **Quantify where possible.** Write "4-5x faster", "up to 70% operating cost reduction", ">500,000 lines of code upgraded" instead of "significantly faster" or "large cost savings."
 4. **Describe the customer value.** Explain why a capability matters to the customer, not just that it exists.
 5. **Cover in each cell:** products/services involved, announced features with status (GA/Preview/Roadmap), field programs, and any relevant pricing or incentives.
@@ -221,7 +221,7 @@ Place the Executive Summary Table **before** the pillar sections, immediately af
 
 | Capability Area | Your Product | Competitor 1 | Competitor 2 | Verdict |
 |:----------------|:-------------|:-------------|:-------------|:--------|
-| **<Area>** | [+]/[=]/[-] â— | â—• | â—‘ | <1-2 sentence verdict explaining the positioning> |
+| **<Area>** | [+]/[=]/[-] Ã¢â€”Â | Ã¢â€”â€¢ | Ã¢â€”â€˜ | <1-2 sentence verdict explaining the positioning> |
 
 One row per major capability area. Use [+]/[=]/[-] markers with rating dots in your product's column. The **Verdict** column provides a brief explanation of the competitive positioning.
 
@@ -239,13 +239,13 @@ Use Harvey ball characters in all comparison tables and summary tables to provid
 
 | Symbol | Meaning |
 |:-------|:--------|
-| â— | Best-in-class / comprehensive |
-| â—• | Strong / minor gaps |
-| â—‘ | Moderate / notable gaps |
-| â—” | Basic / significant gaps |
-| â—‹ | Absent or not applicable |
+| Ã¢â€”Â | Best-in-class / comprehensive |
+| Ã¢â€”â€¢ | Strong / minor gaps |
+| Ã¢â€”â€˜ | Moderate / notable gaps |
+| Ã¢â€”â€ | Basic / significant gaps |
+| Ã¢â€”â€¹ | Absent or not applicable |
 
-Place Harvey balls in the same cell as the [+]/[=]/[-] marker for your product's column (e.g., `[+] â—`). Competitor columns start with Harvey balls followed by the narrative.
+Place Harvey balls in the same cell as the [+]/[=]/[-] marker for your product's column (e.g., `[+] Ã¢â€”Â`). Competitor columns start with Harvey balls followed by the narrative.
 
 Include the Harvey Ball Legend in Document Control.
 
@@ -309,16 +309,16 @@ These rules apply on top of the workspace Humanized Writing Standard:
 ### Evidence Standards (Strict)
 - Every competitive claim must cite a source that was actually fetched during research. No fabricated URLs.
 - If information was not found in official documentation, say so explicitly: "Information not found in official documentation." Do not infer or guess.
-- Distinguish facts from opinions: "AWS supports X (per their documentation, [N])" vs "Practitioners on Reddit report that AWS X is difficult to configure at scale."
-- Quantify where possible. "GCP generates cost estimates in under 2 minutes" not "GCP is fast at cost estimation." Look for: speed benchmarks, cost savings percentages, scale limits, workload counts.
+- Distinguish facts from opinions: "[Competitor] supports X (per their documentation, [N])" vs "Practitioners on Reddit report that [Competitor] X is difficult to configure at scale."
+- Quantify where possible. "[Competitor] generates cost estimates in under 2 minutes" not "[Competitor] is fast at cost estimation." Look for: speed benchmarks, cost savings percentages, scale limits, workload counts.
 - Date-stamp comparisons. Note the comparison date in the document header. Competitive positions change quickly.
 - Each footnote citation must link to a URL that was fetched and returned data. Format: `[^id]: Title, full-url`
 - **Include licensing and economic narrative**, not just tool features. Licensing strategies (BYOL, license elimination, open-source migration) are competitive dimensions that influence deal outcomes.
 
 ### Narrative Quality (Strict)
 - **Full paragraphs in every table cell.** No single-word answers, no bullet lists inside cells. Minimum 4-6 sentences per cell.
-- **Name specific products.** Write "your database migration service", "AWS Transform for VMware", "GCP Migration Center" not "their tool" or "the service."
-- **Name specific announcements with dates.** Write "announced at Ignite 2025 (November 2025)" not "recently announced."
+- **Name specific products.** Write "[Your product name]", "[Competitor 1 product]", "[Competitor 2 product]" not "their tool" or "the service."
+- **Name specific announcements with dates.** Write "announced at [Your Company event] 2025 (November 2025)" not "recently announced."
 - **Cover five dimensions in each cell:** (1) products/services involved, (2) announced features with GA/Preview/Roadmap status, (3) unique differentiators, (4) field programs or partner ecosystem, (5) customer value impact.
 - **Business strategy paragraphs** at the start of each pillar must be 3-5 sentences in prose (no bullets), comparing the strategic philosophy of each competitor for that theme.
 
@@ -360,8 +360,8 @@ If a competitor publishes quantitative claims and your product has no comparable
 
 ### Formatting
 - Tables for all structured comparisons (the core output format)
-- [+]/[-]/[=] markers only in your product's column, at the start of the cell text, followed by a Harvey ball (e.g., `[+] â—`)
-- Harvey balls in competitor columns at the start of the cell (e.g., `â—•`)
+- [+]/[-]/[=] markers only in your product's column, at the start of the cell text, followed by a Harvey ball (e.g., `[+] Ã¢â€”Â`)
+- Harvey balls in competitor columns at the start of the cell (e.g., `Ã¢â€”â€¢`)
 - Bold for product names and key capability names
 - `> **Strategy:**` blockquotes for forward-looking investment notes
 - `> **Field Insight:**` blockquotes for information sourced from customer or sales conversations
@@ -416,7 +416,7 @@ Collect five categories of input from the PM. Ask each category as a distinct qu
 > **Which competing products should this scorecard cover?**
 >
 > List the products (and their vendors) you want compared head-to-head. Include:
-> - Product name and vendor (e.g., "AWS Migration Hub by Amazon", "Datadog by Datadog Inc.")
+> - Product name and vendor (e.g., "[Competitor product] by [Competitor]", "Datadog by Datadog Inc.")
 > - Any specific SKUs, tiers, or editions to focus on (e.g., "Enterprise tier only", "Free vs. paid")
 > - Products to explicitly exclude, if any
 >
@@ -463,7 +463,7 @@ If the PM gives broad guidance ("use their official docs"), ask for the specific
 
 > **Are there specific events, conferences, or announcements I should prioritize?**
 >
-> Examples: "AWS re:Invent 2025", "Google Cloud Next 2025", "your company Ignite 2025", "KubeCon EU 2025"
+> Examples: "[Competitor 1] event 2025", "[Competitor 2] event 2025", "[Your Company] event 2025", "industry conference 2025"
 >
 > For each event, tell me:
 > - Event name and date/year
@@ -622,11 +622,11 @@ Use Harvey ball characters in all comparison tables:
 
 | Symbol | Meaning |
 |:-------|:--------|
-| Ã¢ - Â | Best-in-class / comprehensive |
-| Ã¢ - â€¢ | Strong / minor gaps |
-| Ã¢ - â€˜ | Moderate / notable gaps |
-| Ã¢ - â€ | Basic / significant gaps |
-| Ã¢ - â€¹ | Absent or not applicable |
+| ÃƒÂ¢ - Ã‚Â | Best-in-class / comprehensive |
+| ÃƒÂ¢ - Ã¢â‚¬Â¢ | Strong / minor gaps |
+| ÃƒÂ¢ - Ã¢â‚¬Ëœ | Moderate / notable gaps |
+| ÃƒÂ¢ - Ã¢â‚¬Â | Basic / significant gaps |
+| ÃƒÂ¢ - Ã¢â‚¬Â¹ | Absent or not applicable |
 
 ### Table Format Requirements
 
@@ -644,8 +644,8 @@ Column rules:
 
 Each cell must contain a **full narrative paragraph**, not a single word, not a bullet list:
 
-1. **Name specific products and tools.** Write "AWS Migration Hub", "GCP Migration Center" not "their tool."
-2. **Name specific announcements and dates.** Write "announced at re:Invent 2025 (December 2025)" not "recently announced."
+1. **Name specific products and tools.** Write "[Competitor 1 product]", "[Competitor 2 product]" not "their tool."
+2. **Name specific announcements and dates.** Write "announced at [Competitor event] 2025 (December 2025)" not "recently announced."
 3. **Quantify where possible.** Write "supports up to 10,000 servers", "4-5x faster" not "supports many servers" or "significantly faster."
 4. **Describe customer value.** Explain why a capability matters, not just that it exists.
 5. **Cover in each cell:** products/services involved, features with GA/Preview/Roadmap status, differentiators, and customer value impact.
@@ -665,7 +665,7 @@ Place before the pillar sections, immediately after the Executive Summary paragr
 
 | Capability Area | Your Product | Competitor 1 | Competitor 2 | Verdict |
 |:----------------|:-------------|:-------------|:-------------|:--------|
-| **<Area>** | [+]/[=]/[-] Ã¢ - Â | Ã¢ - â€¢ | Ã¢ - â€˜ | <1-2 sentence verdict> |
+| **<Area>** | [+]/[=]/[-] ÃƒÂ¢ - Ã‚Â | ÃƒÂ¢ - Ã¢â‚¬Â¢ | ÃƒÂ¢ - Ã¢â‚¬Ëœ | <1-2 sentence verdict> |
 
 After the table, include a **Summary Tally**:
 
@@ -740,7 +740,7 @@ These rules apply on top of the workspace Humanized Writing Standard:
 ### Evidence Standards (Strict)
 - Every competitive claim must cite a source that was actually fetched during research. No fabricated URLs.
 - If information was not found, say so: "Information not found in official documentation." Do not infer or guess.
-- Distinguish facts from opinions: "AWS supports X (per documentation [N])" vs "Practitioners report that AWS X is difficult to configure."
+- Distinguish facts from opinions: "[Competitor] supports X (per documentation [N])" vs "Practitioners report that [Competitor] X is difficult to configure."
 - Quantify where possible. Look for: speed benchmarks, cost savings percentages, scale limits, workload counts, SLA guarantees.
 - Date-stamp comparisons. Note the comparison date in the document header.
 - Each footnote must link to a URL that was fetched and returned data.

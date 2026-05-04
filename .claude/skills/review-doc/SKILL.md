@@ -1,4 +1,4 @@
----
+﻿---
 name: review-doc
 description: "Review any document for completeness, critical gaps, and alternative approaches. Use when: review doc, review document, review strategy, review one-pager, review architecture, review user guide, review customer story, review compete analysis, review scorecard, critique doc, document feedback, review comments, doc review."
 argument-hint: "Path to the document to review, and optionally the source document it was built from"
@@ -135,9 +135,9 @@ Present the critical evaluation:
 
 Search the web for relevant context that the document should account for:
 
-- **Competitor approaches** - how do AWS, GCP, or other competitors handle the same problem? Any recent announcements the document missed?
+- **Competitor approaches** - how do [Competitor 1], [Competitor 2], or other competitors handle the same problem? Any recent announcements the document missed?
 - **Community perspectives** - what are practitioners saying on Reddit, Substack, Hacker News, Stack Overflow, or tech blogs about this topic?
-- **Industry documentation** - any your cloud platform docs, architecture guides, well-architected framework guidance, or GitHub repos that contradict or support the document's approach?
+- **Industry documentation** - any product docs, architecture guides, well-architected framework guidance, or GitHub repos that contradict or support the document's approach?
 - **Best practices** - any published design patterns, architecture frameworks, or engineering blogs that offer a better or different approach?
 
 Present findings:
@@ -169,7 +169,7 @@ Model comments after the review patterns in `reference-examples/review-comments/
 - **Scenario-driven challenges**: "What happens when the customer has X constraint? The document recommends Y, but in that scenario Z would be the right choice." (See CTD review: SQL Server with NetApp shares, DR budget constraints, app count thresholds)
 - **Decision tree gaps**: "This section recommends a single path. A decision tree based on [factor] would serve customers better." (See CTD review: app count threshold table for App Service vs AKS)
 - **Missing boundary conditions**: "The doc assumes [condition]. What about customers where [different condition]?" (See CTD review: PLZ-aware vs PLZ-unaware cost models)
-- **Compete gaps**: "AWS handles this via [approach]. The document doesn't address why our approach is better or how it differs." (See Wave Planning: compete analysis with AWS MGN and GCP Migration Manager)
+- **Compete gaps**: "[Competitor] handles this via [approach]. The document doesn't address why our approach is better or how it differs." (e.g., compete analysis with [Competitor 1] migration service and [Competitor 2] migration service)
 - **Specificity pushes**: "This claim needs a number. How many customers? What percentage? What timeline?" (See PostgreSQL review: market data backing claims)
 
 ### Comment Format

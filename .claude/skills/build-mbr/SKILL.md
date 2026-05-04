@@ -1,4 +1,4 @@
----
+﻿---
 name: build-mbr
 description: "Write a monthly business review document with hypothesis-driven analysis. Use when: MBR, monthly business review, business review, monthly review, KR review, OKR review, business metrics, telemetry analysis, customer spotlight, highlight lowlight."
 argument-hint: "Month/period for the MBR, or path to input folder with data analysis, transcripts, compete data"
@@ -119,7 +119,7 @@ Data tables referenced in the analysis go in the Appendix. Format them with:
 
 ## Step 4: Assemble the MBR
 
-Generate the MBR using the template structure from `reference-examples/mbr/your cloud platformCoreMBR_Template.md`. The template has these required sections:
+Generate the MBR using the template structure from `reference-examples/mbr/CoreMBR_Template.md`. The template has these required sections:
 
 ### Section Structure
 

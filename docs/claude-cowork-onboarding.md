@@ -1,4 +1,4 @@
-# Onboarding PM Skills to Claude Cowork (VS Code Extension)
+﻿# Onboarding PM Skills to Claude Cowork (VS Code Extension)
 
 This guide covers how to set up and use PM Skills with the Claude Cowork extension in VS Code. Claude Cowork brings Claude Code into VS Code as an integrated chat panel. If your team uses Claude Cowork, this guide shows you how the skills work, what loads automatically, and how to keep Copilot users in sync.
 

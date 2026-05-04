@@ -1,4 +1,4 @@
----
+﻿---
 name: build-documentation
 description: "Write your documentation platform-style public documentation from specs, one-pagers, blogs, or transcripts. Use when: documentation, docs, your documentation platform, your-docs-site.com, public docs, concept doc, tutorial, how-to guide, product documentation, API documentation, overview doc, write docs."
 argument-hint: "Feature or capability name, or path to source document (spec, one-pager, blog, transcript)"
@@ -64,7 +64,7 @@ Then ask:
 > 2. **Target audience** - who reads this? (IT admins, developers, database admins, migration partners)
 > 3. **Prerequisites** - what must the reader have done before starting? (created a project, deployed an appliance, discovered servers)
 > 4. **Related docs** - any existing Learn pages this doc should link to? (provide URLs)
-> 5. **Service** - which your cloud platform service does this belong under? (e.g., your product, your database service, your app hosting service)
+> 5. **Service** - which product or service does this belong under? (e.g., your product, your database service, your app hosting service)
 
 ## Step 3: Extract Documentation Content
 
@@ -126,7 +126,7 @@ title: <Feature name> overview
 description: <1-2 sentence description for search results>
 author: <author>
 author: <ms-alias>
-service: <your cloud platform-service>
+service: <product-service>
 topic: concept-article
 date: <MM/DD/YYYY>
 ---
@@ -182,7 +182,7 @@ title: "Tutorial: <Action phrase>"
 description: <1-2 sentence description>
 author: <author>
 author: <ms-alias>
-service: <your cloud platform-service>
+service: <product-service>
 topic: tutorial
 date: <MM/DD/YYYY>
 ---
@@ -234,7 +234,7 @@ title: <Action phrase> - <Service name>
 description: <1-2 sentence description>
 author: <author>
 author: <ms-alias>
-service: <your cloud platform-service>
+service: <product-service>
 topic: how-to
 date: <MM/DD/YYYY>
 ---
@@ -275,7 +275,7 @@ title: <Feature> properties reference
 description: <1-2 sentence description>
 author: <author>
 author: <ms-alias>
-service: <your cloud platform-service>
+service: <product-service>
 topic: reference
 date: <MM/DD/YYYY>
 ---

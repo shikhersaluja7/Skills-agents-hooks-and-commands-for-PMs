@@ -1,4 +1,4 @@
----
+﻿---
 name: ideation-claude
 description: "Deep research and ideation partner for PMs. Use when: brainstorming, ideation, research, market analysis, competitive intelligence, trend analysis, concept validation, creative exploration, problem framing, solution discovery, feature ideation, strategy exploration, deep dive, market research. (Claude)"
 tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch

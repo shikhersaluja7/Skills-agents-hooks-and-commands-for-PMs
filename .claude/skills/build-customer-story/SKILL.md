@@ -1,4 +1,4 @@
----
+﻿---
 name: build-customer-story
 description: "Write a customer story from meeting transcripts and PM inputs. Use when: customer story, case study, customer win, reference story, customer success story, customer testimonial, transcript to customer story, customer learnings, field learnings, customer engagement summary."
 argument-hint: "Customer name, or path to transcript folder (e.g., input/customer-stories/acme-corp/)"
@@ -40,7 +40,7 @@ After reading the transcripts, ask the PM which format to produce:
 > **Which format should this customer story use?**
 >
 > 1. **Internal customer learnings** (default) - Issues, learnings, action items with owners and ETAs. Used in strategy reviews and leadership presentations. *(Matches the Global Motors, Apex Consulting, TelcoNet format in `reference-examples/customer-stories/`.)*
-> 2. **Public case study** - Challenge, solution, results with customer quotes. For your company.com, your cloud platform blog, or partner channels.
+> 2. **Public case study** - Challenge, solution, results with customer quotes. For your company blog, your product blog, or partner channels.
 
 If the PM does not specify, default to **Format A (internal customer learnings)**.
 
@@ -55,7 +55,7 @@ Read through all transcript content and extract:
 - **Direct quotes**: Capture verbatim quotes with speaker attribution
 - **Products and tools mentioned**: your product, competitor tools, third-party tools, internal tools
 - **Outcomes and metrics**: What worked, what improved, measurable results
-- **Competitive context**: Any mentions of AWS, GCP, or third-party alternatives
+- **Competitive context**: Any mentions of [Competitor 1], [Competitor 2], or third-party alternatives
 - **Action items discussed**: What follow-ups were agreed on, with owners and timelines if mentioned
 - **Customer sentiment**: Positive feedback, concerns, feature requests
 
@@ -119,7 +119,7 @@ After presenting extracted facts, ask follow-up questions. Skip any the transcri
 6. **Hero metric** - What's the single most impressive number from this engagement?
 7. **Headline quote** - Which customer quote should be the pull-quote?
 8. **Products to feature** - Which your company products and features should be named?
-9. **Publication target** - Where will this be published? (your company.com, your cloud platform blog, LinkedIn, partner channel)
+9. **Publication target** - Where will this be published? (your company blog, your product blog, LinkedIn, partner channel)
 
 ## Step 5: Generate the Draft
 

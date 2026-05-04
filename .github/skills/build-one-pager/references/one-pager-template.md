@@ -24,7 +24,7 @@
 
 1. **<Pain point title>:** <Description with data evidence. Reference customer feedback, survey results, or telemetry. Explain what happens today and why it fails.>
 
-2. **<Pain point title>:** <Description with data. Include competitive context where relevant - "your cloud platform scored lower than AWS/GCP on ease of X in a recent survey.">
+2. **<Pain point title>:** <Description with data. Include competitive context where relevant - "[Your Product] scored lower than [Competitor 1]/[Competitor 2] on ease of X in a recent survey.">
 
 3. **<Pain point title>:** <Description with data. Connect to business impact - time lost, cost overruns, customer churn risk.>
 
@@ -39,7 +39,7 @@
 
 <Brief paragraph connecting the solution to the product strategy. Explain why this approach was chosen over alternatives.>
 
-1. **<Principle/capability title>:** <What it does and why it matters. Reference which pain points it addresses. Include competitive positioning if relevant - "This matches or exceeds what AWS provides with X.">
+1. **<Principle/capability title>:** <What it does and why it matters. Reference which pain points it addresses. Include competitive positioning if relevant - "This matches or exceeds what [Competitor] provides with X.">
 
 2. **<Principle/capability title>:** <Same format. Each principle should map to at least one pain point above.>
 
@@ -89,7 +89,7 @@ graph LR
 
 ### Competition Analysis
 
-| Capability | your cloud platform (Proposed) | AWS | GCP |
+| Capability | [Your Product] | [Competitor 1] | [Competitor 2] |
 |-----------|-----------------|-----|-----|
 | <capability> | <what we will do> | <what they do> | <what they do> |
 | <capability> | <proposed> | <current> | <current> |

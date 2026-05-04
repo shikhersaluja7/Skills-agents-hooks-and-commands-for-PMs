@@ -1,4 +1,4 @@
----
+﻿---
 name: build-user-guide
 description: "Write a customer-facing user guide or product walkthrough. Use when: user guide, product guide, how-to guide, product walkthrough, feature walkthrough, getting started guide, product documentation, customer documentation, usage guide."
 argument-hint: "Feature or product name, or path to source material (docs, spec, blog, one-pager, mockups, transcript)"
@@ -152,7 +152,7 @@ These rules apply on top of the workspace Humanized Writing Standard:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 
@@ -174,7 +174,7 @@ Before presenting the draft, verify:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 

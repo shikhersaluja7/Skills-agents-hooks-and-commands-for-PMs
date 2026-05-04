@@ -1,4 +1,4 @@
-# PM Skills for Claude Code: A Guide for your product PMs
+﻿# PM Skills for Claude Code: A Guide for your product PMs
 
 This guide walks PMs on the your product team through using PM Skills in Claude Code and Cowork. You'll learn how to generate specs, blogs, and user guides, how to update skills, and what automations run behind the scenes to keep everything in sync.
 

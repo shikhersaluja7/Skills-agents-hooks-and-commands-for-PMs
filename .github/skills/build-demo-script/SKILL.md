@@ -1,6 +1,6 @@
----
+﻿---
 name: build-demo-script
-description: "Write a demo script for product walkthroughs, conference talks, leadership reviews, or feature deep dives. Use when: demo script, demo, product demo, conference demo, Ignite demo, feature demo, LT demo, leadership demo, your executive reviewer demo, your CEO demo, YouTube script, product walkthrough, talk track, demo walkthrough, create demo script."
+description: "Write a demo script for product walkthroughs, conference talks, leadership reviews, or feature deep dives. Use when: demo script, demo, product demo, conference demo, feature demo, LT demo, leadership demo, your executive reviewer demo, your CEO demo, YouTube script, product walkthrough, talk track, demo walkthrough, create demo script."
 argument-hint: "Demo topic or feature name, or path to source document (spec, one-pager, docs, transcript)"
 ---
 
@@ -53,7 +53,7 @@ Ask the PM which demo type to produce:
 > 1. **End-to-end product demo** (external) - Full product walkthrough for customers, partners, or YouTube. Covers the complete journey from problem to solution. Shows multiple capabilities connected. Typically 10-20 minutes.
 > 2. **Feature deep dive** (external) - Focused walkthrough of a single feature or capability. Shows setup, usage, and outcomes in detail. Aimed at practitioners who want to learn how to use it. Typically 5-10 minutes.
 > 3. **Leadership demo** (internal) - Demo for your executive reviewer, your CEO, CVP, or similar leadership review. Multiple presenters with handoffs. Emphasizes strategic customer impact, competitive wins, and business metrics. Tight, polished, no filler. Typically 5-15 minutes.
-> 4. **Conference demo** (external) - For Ignite, Build, or similar conference sessions. Conversational narrative from a customer persona's point of view. Tells a story with the product as the tool that solves the problem. Typically 10-20 minutes.
+> 4. **Conference demo** (external) - For industry or vendor conference sessions. Conversational narrative from a customer persona's point of view. Tells a story with the product as the tool that solves the problem. Typically 10-20 minutes.
 
 Then ask:
 
@@ -61,7 +61,7 @@ Then ask:
 > 1. **Duration target** - How long should the demo run? (minutes)
 > 2. **Audience** - Who specifically is watching? (customers, developers, IT pros, leadership, field sellers, partners)
 > 3. **Key message** - What is the single most important thing the audience should take away?
-> 4. **Customer scenario** - Is there a specific customer name or proxy scenario to use? (e.g., "Acme Corp (example) datacenter exit", "Example Corp VMware renewal")
+> 4. **Customer scenario** - Is there a specific customer name or proxy scenario to use? (e.g., "Acme Corp (example) platform refresh", "Example Corp legacy system replacement")
 > 5. **Multi-presenter?** - Is this a single presenter or are there handoffs between speakers?
 > 6. **Live or recorded?** - Will this be performed live on stage, recorded as a video, or both?
 > 7. **Environment** - What demo environment exists? (portal, CLI, agent chat, pre-configured tenant)
@@ -121,20 +121,20 @@ Structure (from your executive reviewer and your CEO demo samples):
 - **Portal URLs or links** inline for the presenter to click during the demo
 - **Screenshot images** embedded between talk track lines showing exactly what's on screen
 - **Presenter handoff markers** - `Now let me handover to my colleague <Name> to present...`
-- **Customer proof points** woven into the talk track - "Case in point, Northwind Corp has used your product to migrate over 15K machines..."
+- **Customer proof points** woven into the talk track - "Case in point, [Customer A] has used your product to process over 15K transactions..."
 - **PPT transition markers** - `[PPT]` indicating when to switch to slides
 
-Voice: Polished executive narrative. Every word counts. Lead with customer impact and competitive positioning. Show the product working, not how it works. "your product has been used by several strategic customers such as DataHealth Inc, Northwind Corp...", "This helps sellers make a strong case for your cloud platform."
+Voice: Polished executive narrative. Every word counts. Lead with customer impact and competitive positioning. Show the product working, not how it works. "your product has been used by several strategic customers such as [Customer A], [Customer B]...", "This helps sellers make a strong case for [Your Product]."
 
-#### Conference Demo (Ignite / Build)
+#### Conference Demo (Industry / Vendor Event)
 
-Structure (from your AI assistant VMware Rehost Ignite sample):
-- **Customer persona narrative** - the entire script is told from the customer's perspective. "I am a cloud architect at Example Corp. VMware license is up for renewal..."
+Structure (from a product launch demo sample):
+- **Customer persona narrative** - the entire script is told from the customer's perspective. "I am a payments lead at Example Corp. Our legacy payment processor is approaching end-of-life..."
 - **Conversational turns** between the persona and the product (especially for agentic/copilot demos): persona states intent, product responds with recommendation, persona confirms or adjusts
 - **Short paragraphs** - each beat is 1-3 sentences
 - **Transition markers** for moving between product surfaces - `<Transition to portal>`
 - **No screenshots** - just narrative flow (visuals are handled by the live demo or recorded screen)
-- **Closing statement** tying the journey together - "Thanks to your cloud platform Copilot Migration agent, I quickly created and executed a reliable plan..."
+- **Closing statement** tying the journey together - "Thanks to [Your Product] AI agent, I quickly created and executed a reliable plan..."
 
 Voice: Storyteller narrating a customer journey. Present tense. The audience should feel like they're watching the customer solve their problem in real time. "I want to move my servers...", "The agent has analyzed...", "I got a successful buy-in..."
 
@@ -147,7 +147,7 @@ Voice: Storyteller narrating a customer journey. Present tense. The audience sho
 - **Time the script.** Estimate ~150 words per minute for spoken delivery. Flag if the script exceeds the target duration.
 - **Mark all transition points.** Portal-to-slides, presenter handoffs, and surface switches must be explicitly marked.
 - **Screenshot/screen placeholders.** Use `[Screenshot: <description>]` or `[Screen: <portal blade / CLI output / agent chat>]` to mark where visuals go. For leadership demos, include portal URLs if available.
-- **No marketing superlatives.** Let the product speak. "Discovers 263 servers across VMware, Hyper-V, and bare metal" beats "provides industry-leading discovery capabilities."
+- **No marketing superlatives.** Let the product speak. "Processes 263 transaction types across [environment 1], [environment 2], and [environment 3]" beats "provides industry-leading processing capabilities."
 
 ### Appendix Section (Optional)
 

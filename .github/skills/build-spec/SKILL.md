@@ -1,4 +1,4 @@
----
+﻿---
 name: build-spec
 description: "Build, refine, or review product specifications. Use when: create spec, write spec, feature spec, product specification, spec from one-pager, refine spec, update spec, iterate spec, change spec, modify spec, add feature to spec, review spec, check spec, audit spec, spec quality, spec completeness, validate spec."
 argument-hint: "Feature description or path to source document. For refine: path to existing spec + change request. For review: path to spec to review."
@@ -177,7 +177,7 @@ After reviewing the input material, ask clarifying questions in a single batch s
 If the PM requests competitive or market research:
 
 - Search the web for competitor features, industry benchmarks, community discussions (Reddit, Stack Overflow, YouTube, blogs).
-- Search for relevant your cloud platform documentation or best practices.
+- Search for relevant product documentation or best practices.
 - Present findings in a summary: "Here is what I found. You decide what to include."
 
 The PM decides which research findings make it into the spec. Never auto-include competitive data without PM confirmation.

@@ -1,4 +1,4 @@
----
+﻿---
 name: build-announcement-email
 description: "Draft an announcement email for product launches, previews, breaking changes, product updates, or stakeholder enablement. Use when: announcement email, email announcement, feature launch email, GA email, preview email, deprecation email, breaking change email, product update email, newsletter email, field enablement email, partner email, stakeholder email."
 argument-hint: "Email topic, audience, or path to source document (spec, one-pager, release notes, etc.)"
@@ -60,7 +60,7 @@ If the PM provides material:
 
 After reading source material, confirm product names before proceeding:
 
-> **Please confirm the exact product names** for any your cloud platform services, features, or tools mentioned in this email. Product names change (e.g., your NoSQL service for MongoDB was renamed to your document database), and I want to use the current names throughout.
+> **Please confirm the exact product names** for any products, services, features, or tools mentioned in this email. Product names change (e.g., a product may be rebranded after launch), and I want to use the current names throughout.
 
 If the PM says they don't have material, proceed to Step 3 and gather context through questions. Still ask the product name confirmation question at the start of Step 3.
 
@@ -174,7 +174,7 @@ Before presenting, run through the writing rules below and fix any violations.
 - Include the product name and action type. "your product: PostgreSQL Assessment now generally available" not "Exciting news from the team!"
 - Under 60 characters if possible. Under 80 maximum.
 - No ALL CAPS words (exception: `[ANNOUNCEMENT]` tag is acceptable). No exclamation marks in the subject line.
-- **Emoji in subject lines:** Allowed for internal team and cross-team emails (ðŸ“¢, ðŸŽ‰, ðŸš€ are common on this team). Avoid emoji in customer-facing or formal leadership-to-board emails.
+- **Emoji in subject lines:** Allowed for internal team and cross-team emails (Ã°Å¸â€œÂ¢, Ã°Å¸Å½â€°, Ã°Å¸Å¡â‚¬ are common on this team). Avoid emoji in customer-facing or formal leadership-to-board emails.
 
 ### Structure
 - **5-8 paragraphs** with clear visual breaks. No walls of text.
@@ -202,7 +202,7 @@ Before presenting, run through the writing rules below and fix any violations.
 - No em dashes. Use commas, periods, or parentheses.
 - No colored text or excessive formatting (emails render differently across clients).
 - Links should be descriptive. "[View the PostgreSQL assessment documentation](url)" not "[click here](url)."
-- Emoji section headers (ðŸ’¡, ðŸ“£, ðŸ™) are acceptable in internal team emails to break up long announcements.
+- Emoji section headers (Ã°Å¸â€™Â¡, Ã°Å¸â€œÂ£, Ã°Å¸â„¢Â) are acceptable in internal team emails to break up long announcements.
 
 For claims, positioning, dates, or distribution decisions that require PM judgment, mark them:
 

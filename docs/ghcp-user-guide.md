@@ -1,4 +1,4 @@
-# PM Skills for GitHub Copilot: A Guide for your product PMs
+﻿# PM Skills for GitHub Copilot: A Guide for your product PMs
 
 This guide walks PMs on the your product team through using PM Skills in GitHub Copilot. You'll learn how to generate specs, blogs, and user guides from your source material, and how to update and extend the skills yourself.
 

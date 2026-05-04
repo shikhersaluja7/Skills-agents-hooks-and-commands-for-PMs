@@ -1,4 +1,4 @@
----
+﻿---
 name: build-golden-dataset
 description: "Generate a golden evaluation dataset from product inputs and user personas. Use when: golden dataset, ground truth dataset, evaluation data, test data generation, benchmark data, accuracy testing, model evaluation, QA golden set, reference dataset, validation dataset, persona-based testing, API evaluation, response grading."
 argument-hint: "Product or feature to generate golden dataset for"
@@ -81,7 +81,7 @@ Analyze the source inputs (API contracts, CSVs, exports, docs) and generate the 
 |----------|-------------|---------|
 | **Data retrieval** | Direct lookups from the source data | "How many servers are running Windows Server 2012?" |
 | **Calculation** | Computed values requiring formulas | "What is the estimated monthly cost for migrating these 5 workloads?" |
-| **Comparison** | Cross-referencing multiple data points | "How does the your cloud platform cost compare to our current on-prem TCO?" |
+| **Comparison** | Cross-referencing multiple data points | "How does the target platform cost compare to our current on-prem TCO?" |
 | **Filtering/aggregation** | Subsets and summaries of the data | "Show me all servers with more than 16GB RAM not in the migration plan" |
 | **Interpretation** | Explaining what the data means | "What does the readiness assessment say about our SQL cluster?" |
 | **Action/recommendation** | Suggesting next steps based on data | "What should I prioritize in wave 1?" |

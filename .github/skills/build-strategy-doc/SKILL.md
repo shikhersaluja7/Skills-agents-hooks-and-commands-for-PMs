@@ -1,4 +1,4 @@
----
+﻿---
 name: build-strategy-doc
 description: "Write an exec-ready strategy document for leadership and cross-org reviews. Use when: strategy doc, strategy document, exec strategy, executive strategy, product strategy, strategic narrative, vision doc, your executive reviewer review, business review doc, strategy pitch, strategy update, H1/H2 strategy, FY strategy, strategy refresh."
 argument-hint: "Product area or feature domain, or path to source materials (telemetry, customer stories, one-pagers, compete analysis, business reviews)"
@@ -42,7 +42,7 @@ Preemption patterns to use throughout the document:
 - **Customer evidence blocks** after strategic claims: When you state a direction, immediately back it with a named customer example showing why.
 - **Compete insight blocks** after investment descriptions: When you describe what you are building, immediately show how competitors handle the same problem and where you lead or trail.
 - **"Why this approach?"** inline rationale: When the chosen direction has alternatives, briefly state why this path was selected. Do not force the reader to ask.
-- **Data-backed claims**: Every claim about customer pain, market position, or adoption must cite a specific number, percentage, or timeline. "Many customers struggle" is not acceptable. "89% of churned customers had little or no your cloud platform usage" is.
+- **Data-backed claims**: Every claim about customer pain, market position, or adoption must cite a specific number, percentage, or timeline. "Many customers struggle" is not acceptable. "89% of churned customers had little or no product usage" is.
 - **Scope boundaries**: When describing investments, state what is in scope for this period and what is deferred. Readers will ask "what about X?" - answer it preemptively with "X is deferred to H2 because Y."
 
 ### Section Ownership
@@ -64,7 +64,7 @@ Each section has a distinct job. Do not let sections drift:
 - Use **pipe tables** for compete comparisons, action plans, KR tables, and customer story summaries.
 - Use **bold** for company names in customer stories, for KPI numbers, and for section emphasis.
 - Use numbered sections and sub-sections (1, 1.1, 1.2, etc.) within pillars.
-- Use `[+]` for your cloud platform leads, `[-]` for your cloud platform trails, `[=]` for parity in compete insight tables.
+- Use `[+]` for your product leads, `[-]` for your product trails, `[=]` for parity in compete insight tables.
 - Customer stories use the three-part structure: **Issue/Pain** then **What did you learn?** then **What will you do? (Action Plan)**.
 
 ---
@@ -115,7 +115,7 @@ After reviewing the input material, ask these questions in a single batch. Skip 
 7. **Anticipated reviewer questions** - What will leadership ask? What concerns do they have? (This drives the inline Q&A preemption.)
 8. **Strategic pillars** - Do you have a sense of 3-5 strategic pillars, or should we derive them from the inputs?
 9. **Customer evidence** - Which named customers are strongest for the narrative? Any recent escalations or wins to call out?
-10. **Compete focus** - Which competitors matter most? (AWS, GCP, third-party tools) Any recent competitive losses or wins?
+10. **Compete focus** - Which competitors matter most? ([Competitor 1], [Competitor 2], third-party tools) Any recent competitive losses or wins?
 11. **Cross-org dependencies** - Any asks for other teams? ("Request from LT" items)
 12. **KPI targets** - What key results or KPIs should this strategy doc commit to?
 
@@ -174,7 +174,7 @@ Show which inputs map to which sections:
 | # | Likely Question | Where Answered | Evidence/Data |
 |---|----------------|---------------|---------------|
 | 1 | "Why not do X instead?" | Pillar 1, inline rationale | <data backing the choice> |
-| 2 | "How does this compare to AWS?" | Compete insight blocks | <specific compete data> |
+| 2 | "How does this compare to [Competitor]?" | Compete insight blocks | <specific compete data> |
 | 3 | "What's the customer impact?" | Customer Learnings | <named customer examples> |
 
 > **PM Decision Required:** What other questions should we preempt? Any known leadership concerns?
@@ -221,12 +221,12 @@ Key principles for strategy docs:
 
 **Back every claim with data.**
 - "P75 Time to Migrate dropped from 184 to 75 days" not "we reduced migration time."
-- "$1.5M in new Linux revenue from 2,700 US customers" not "strong Linux adoption."
+- "$<X>M in new product revenue from <N> customers" not "strong adoption."
 - "93% of discovered SQL customers running out-of-support or extended support versions" not "many SQL customers need to upgrade."
 
 **Compete insights use comparison tables.**
-- Three-column format (AWS | your cloud platform | Insights) or inline `[+]`/`[-]`/`[=]` indicators.
-- State facts, not opinions. "AWS enables single-click orchestration" not "AWS has a better experience."
+- Three-column format ([Competitor] | [Your Product] | Insights) or inline `[+]`/`[-]`/`[=]` indicators.
+- State facts, not opinions. "[Competitor] enables single-click orchestration" not "[Competitor] has a better experience."
 
 **Explicitly state requests for leadership.**
 - Use the "Request from LT" format when asking for cross-org sponsorship, funding, or alignment.
@@ -322,7 +322,7 @@ Investments with timelines. Organized by sub-capability. Each investment has:
 #### 2.x.5 Inline Q&A
 Woven throughout the pillar (not a separate section). Anticipated questions from reviewers are answered where they would naturally arise. Common patterns:
 - "Why this approach over X?" answered when describing the chosen direction
-- "What about AWS?" answered in compete insight blocks
+- "What about [Competitor]?" answered in compete insight blocks
 - "Do customers need this?" answered by customer insight blocks placed before the plan
 
 ### 3. Customer Learnings

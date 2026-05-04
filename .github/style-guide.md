@@ -97,7 +97,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 
 **Example patterns from team one-pagers:**
 - "Our objective is to cut network planning time by ~50% and increase post-migration satisfaction."
-- "A large airline customer required ~2 months of requirement gathering and another 2 months of design work to plan their cloud landing zone network."
+- "A large airline customer required ~2 months of requirement gathering and another 2 months of design work to plan their target platform integration."
 - "As a user, I can discover all my on-premises network assets and dependencies in a few clicks."
 
 ---
@@ -143,7 +143,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 **Tone characteristics:**
 - Data-driven and specific. Every claim about customer pain, market position, or adoption cites a number, percentage, or timeline. "89% of churned customers had little or no product usage" not "many customers churn."
 - Narrative-driven. The document tells a story with a clear arc - current position, strategic tension, planned investments, target outcome. Sections advance the arc rather than catalog features.
-- Confident but honest. Acknowledge gaps and competitive disadvantages directly. "AWS leads with single-click orchestration" is stronger than pretending the gap does not exist.
+- Confident but honest. Acknowledge gaps and competitive disadvantages directly. "[Competitor] leads with single-click orchestration" is stronger than pretending the gap does not exist.
 - Preemptive. Inline Q&A answers questions before reviewers ask them. Customer insights appear before investment descriptions to establish "why." Compete insights appear alongside plans to address "what about the competition?"
 
 **Structure patterns (from samples):**
@@ -165,9 +165,9 @@ The patterns below are extracted from real team-authored samples. Match them.
 **Example patterns from team strategy docs:**
 - "P75 Time to Migrate from 184 (FY25) to 75 days. The SA and field lead P75 KPI data across strategic accounts show friction clusters in two distinct phases."
 - "**A large enterprise customer** discovered 23,000+ servers (92% Linux) with rapid execution (Collect Data 9 days, Prepare Assessment 6 days)."
-- "[-] AWS enables high speed discovery and allows customers to bring their own data (via CMDBs, VMware RV Tools or other 3P tools)."
+- "[-] [Competitor] enables high speed discovery and allows customers to bring their own data (via CMDBs, third-party tools)."
 - "[+] [Your Product] provides a self-serve ROI/TCO calculator across infrastructure, data, and web apps."
-- "The Americas Linux GTM motion generated $1.5M in new Linux revenue and $10M in new Red Hat pipeline from 2,700 US customers."
+- "The [Region] [Product] GTM motion generated $<X> in new [product] revenue from <N> customers."
 
 ---
 

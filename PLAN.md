@@ -1,4 +1,4 @@
-# PM Skills - Plan and Inventory
+﻿# PM Skills - Plan and Inventory
 
 This document tracks every skill, agent, command, hook, and script in the repo, along with its current status. It's auto-updated by `scripts/update-docs.ps1` on every commit.
 

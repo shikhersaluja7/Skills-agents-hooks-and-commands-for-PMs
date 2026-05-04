@@ -1,4 +1,4 @@
----
+﻿---
 name: build-architecture
 description: "Create an architecture document (HLD or LLD) from strategy docs, one-pagers, specs, or meeting transcripts. Use when: architecture doc, design doc, system design, high-level design, low-level design, HLD, LLD, technical architecture, component design, service design, data model design, architecture from strategy, architecture from spec."
 argument-hint: "Feature or system name, or path to source document (strategy doc, one-pager, spec, transcript)"

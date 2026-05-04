@@ -1,4 +1,4 @@
-# Customer Story Template
+﻿# Customer Story Template
 
 This template defines two output formats. The PM picks the format per run.
 
@@ -37,7 +37,7 @@ Derived from the team's standard customer story format (Global Motors, Apex Cons
 
    <Detail paragraph. Tie the learning to product gaps, strengths, or customer behavior patterns.>
 
-   - **Compete perspective:** <How AWS/GCP/third-party handles the same scenario. Use factual comparisons, not marketing claims.>
+   - **Compete perspective:** <How [Competitor 1]/[Competitor 2]/third-party handles the same scenario. Use factual comparisons, not marketing claims.>
 
 2. **<Learning title>**
 
@@ -79,9 +79,9 @@ Derived from the team's standard customer story format (Global Motors, Apex Cons
 
 ---
 
-## Format B - Public your company Case Study
+## Format B - Public Case Study
 
-For external publication on your company.com, your cloud platform blog, or partner channels. Tells the customer's story for a broader audience.
+For external publication on your company blog, your product blog, or partner channels. Tells the customer's story for a broader audience.
 
 ```markdown
 # <Customer Name> <action verb> <outcome> with <your company Product>
@@ -94,7 +94,7 @@ For external publication on your company.com, your cloud platform blog, or partn
 | **Industry** | <Industry> |
 | **Size** | <Employee count, revenue, or scale metric> |
 | **Country/Region** | <Location> |
-| **Products Used** | <your product, your cloud platform, etc.> |
+| **Products Used** | <your product, your other product, etc.> |
 
 ## The Challenge
 

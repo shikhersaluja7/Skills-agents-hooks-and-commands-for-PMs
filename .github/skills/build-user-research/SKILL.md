@@ -1,4 +1,4 @@
----
+﻿---
 <!-- Ownership: AzM Team -->
 name: build-user-research
 description: "Build a customer validation research kit: hypotheses, survey, and interview guide. Use when: user research, customer validation, hypothesis, survey, interview guide, research plan, customer discovery, validation hypotheses, unmoderated survey, moderated interview, research kit."
@@ -74,7 +74,7 @@ Read any provided documents, files, or URLs. For non-markdown files, convert the
 - Inform survey questions that reference real product features by name
 - Build interview scenarios around documented workflows
 
-**Competitive research (built-in).** When the PM identifies a product area, search the web for equivalent competitor services based on the product category. For example, if the product is your product, search for AWS Application Migration Service, AWS Migration Hub, Google Cloud Migrate for Compute Engine, and other migration tools. Fetch their public documentation landing pages and extract: key capabilities, supported platforms, pricing model, and differentiating features. Present the competitive findings to the PM:
+**Competitive research (built-in).** When the PM identifies a product area, search the web for equivalent competitor services based on the product category. For example, search for the leading competitor products in the same category, including any third-party tools the PM mentions. Fetch their public documentation landing pages and extract: key capabilities, supported platforms, pricing model, and differentiating features. Present the competitive findings to the PM:
 
 > "I found these competitor equivalents for [product]. Here's a summary of their capabilities. Which competitors should I include in the hypothesis framing? You decide what's relevant."
 

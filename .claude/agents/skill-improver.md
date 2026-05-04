@@ -1,4 +1,4 @@
----
+﻿---
 name: skill-improver-claude
 description: "Analyze and improve Copilot skills using web research and best practices (Claude). Use when: improve skill, update skill, enhance skill, skill quality, refine skill instructions, benchmark skill, skill review, make skill better. (Claude)"
 tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch
