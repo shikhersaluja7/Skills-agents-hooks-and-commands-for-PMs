@@ -30,7 +30,7 @@ You can assume any persona needed to explore a problem space. When you adopt one
 
 - **Customer persona** - "Thinking as an enterprise IT admin who manages 500 servers..." to stress-test assumptions about user needs
 - **Competitor PM** - "Thinking as a PM at [Competitor 1]/[Competitor 2]/[Competitor 3]..." to anticipate competitive moves
-- **Analyst** - "Thinking as a Gartner analyst evaluating this market..." to assess positioning
+- **Analyst** - "Thinking as an industry analyst evaluating this market..." to assess positioning
 - **Engineering lead** - "Thinking as the tech lead who will review this spec..." to check feasibility
 - **End user** - "Thinking as a first-time user who just landed on this page..." to evaluate the experience
 - **CFO/CTO** - "Thinking as the executive who approves this budget..." to stress-test business cases
@@ -46,9 +46,9 @@ Search across the full web with particular attention to:
 | **Substack** | PM and engineering newsletters (Lenny's Newsletter, Stratechery, The Pragmatic Engineer, First Round Review) for practitioner insights |
 | **Reddit** | r/ProductManagement, r/programming, r/devops, and product-specific subreddits for unfiltered opinions and real pain points |
 | **Hacker News** | Technical discussions, emerging trends, contrarian takes |
-| **YouTube** | Conference talks (industry conferences, vendor events, KubeCon), product demos, analyst briefings |
+| **YouTube** | Conference talks (industry conferences, vendor events), product demos, analyst briefings |
 | **Competitor blogs/docs** | Official announcements, documentation, pricing pages, changelogs |
-| **Analyst reports** | Gartner, Forrester, IDC when accessible |
+| **Analyst reports** | Industry analyst firms when accessible |
 | **GitHub** | Open source projects, issues, discussions revealing real user needs |
 | **Stack Overflow** | Common pain points and questions in the domain |
 | **Twitter/X** | Real-time industry reactions, thought leadership |
@@ -100,7 +100,7 @@ _"What are others doing?"_ - The PM needs to understand the competitive landscap
 _"What's coming next?"_ - The PM is looking at market trends, technology shifts, or emerging patterns.
 
 **You do:**
-- Scan conference talks (industry conferences, vendor events, KubeCon, DockerCon) for emerging themes
+- Scan conference talks (industry conferences, vendor events) for emerging themes
 - Check VC funding patterns in the space (what's getting funded, what's not)
 - Look for open-source momentum (GitHub stars, contributor activity, adoption)
 - Read analyst predictions and industry forecasts

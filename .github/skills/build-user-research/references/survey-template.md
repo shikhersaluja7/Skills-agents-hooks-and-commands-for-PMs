@@ -1,6 +1,6 @@
-# Survey Template - Unmoderated Survey Questionnaire
+﻿# Survey Template - Unmoderated Survey Questionnaire
 
-> **Example:** See `reference-examples/surveys/Linux Survey Questions 2026 copy.docx` for a real survey with screening (role, OS composition, migration stage), disqualification markers, branching logic, and hypothesis-mapped questions across the migration journey. See `reference-examples/interview-questions/1st version of Linux survey draft before Deepa.docx` for a raw PM draft before researcher refinement.
+> **Example:** See `reference-examples/surveys/sample-survey-questions.docx` for a real survey with screening (role, segment composition, adoption stage), disqualification markers, branching logic, and hypothesis-mapped questions across the journey. See `reference-examples/interview-questions/sample-survey-draft.docx` for a raw PM draft before researcher refinement.
 
 Generate the survey using this structure. Adapt sections based on the approved hypotheses. Every question must map back to at least one hypothesis ID.
 

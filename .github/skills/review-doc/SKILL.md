@@ -166,7 +166,7 @@ Generate specific, located comments on the document. Each comment targets a spec
 
 Model comments after the review patterns in `reference-examples/review-comments/`:
 
-- **Scenario-driven challenges**: "What happens when the customer has X constraint? The document recommends Y, but in that scenario Z would be the right choice." (See CTD review: SQL Server with NetApp shares, DR budget constraints, app count thresholds)
+- **Scenario-driven challenges**: "What happens when the customer has X constraint? The document recommends Y, but in that scenario Z would be the right choice." (See review example: storage-bound system with shared volumes, DR budget constraints, count thresholds)
 - **Decision tree gaps**: "This section recommends a single path. A decision tree based on [factor] would serve customers better." (See CTD review: app count threshold table for App Service vs AKS)
 - **Missing boundary conditions**: "The doc assumes [condition]. What about customers where [different condition]?" (See CTD review: PLZ-aware vs PLZ-unaware cost models)
 - **Compete gaps**: "[Competitor] handles this via [approach]. The document doesn't address why our approach is better or how it differs." (e.g., compete analysis with [Competitor 1] migration service and [Competitor 2] migration service)

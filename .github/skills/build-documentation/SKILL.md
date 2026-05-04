@@ -125,7 +125,7 @@ Generate documentation following your documentation platform conventions. Refere
 title: <Feature name> overview
 description: <1-2 sentence description for search results>
 author: <author>
-author: <ms-alias>
+author: <author-id>
 service: <product-service>
 topic: concept-article
 date: <MM/DD/YYYY>
@@ -181,7 +181,7 @@ date: <MM/DD/YYYY>
 title: "Tutorial: <Action phrase>"
 description: <1-2 sentence description>
 author: <author>
-author: <ms-alias>
+author: <author-id>
 service: <product-service>
 topic: tutorial
 date: <MM/DD/YYYY>
@@ -233,7 +233,7 @@ In this tutorial, you learn how to:
 title: <Action phrase> - <Service name>
 description: <1-2 sentence description>
 author: <author>
-author: <ms-alias>
+author: <author-id>
 service: <product-service>
 topic: how-to
 date: <MM/DD/YYYY>
@@ -274,7 +274,7 @@ date: <MM/DD/YYYY>
 title: <Feature> properties reference
 description: <1-2 sentence description>
 author: <author>
-author: <ms-alias>
+author: <author-id>
 service: <product-service>
 topic: reference
 date: <MM/DD/YYYY>

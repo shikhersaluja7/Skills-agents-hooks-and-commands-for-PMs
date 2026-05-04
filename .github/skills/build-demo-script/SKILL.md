@@ -142,7 +142,7 @@ Voice: Storyteller narrating a customer journey. Present tense. The audience sho
 
 - **Show the product working.** Every section must describe what's on screen. Never talk about a capability without showing it.
 - **Lead with the "so what".** Before showing a feature, state why it matters. "To build confidence before committing resources..." then show the business case.
-- **Use real-sounding numbers.** "$92,000 savings over 3 years", "45 workloads", "119 SQL Server instances" - never vague quantities.
+- **Use real-sounding numbers.** "$92,000 savings over 3 years", "45 line items", "119 source systems" - never vague quantities.
 - **Competitive context where natural.** "Without the need for deploying any agent" (vs. competitor approaches). Don't call out competitors by name in external demos unless the PM approves.
 - **Time the script.** Estimate ~150 words per minute for spoken delivery. Flag if the script exceeds the target duration.
 - **Mark all transition points.** Portal-to-slides, presenter handoffs, and surface switches must be explicitly marked.

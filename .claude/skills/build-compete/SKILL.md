@@ -53,7 +53,7 @@ Then ask what they're providing:
 > 3. Field conversation notes or sales feedback
 > 4. Customer interview transcripts mentioning competitors
 > 5. Existing competitive analysis or battle cards to update
-> 6. Analyst reports (Gartner, Forrester, IDC)
+> 6. Analyst reports (industry analyst firms)
 > 7. Competitor blog posts or announcements
 > 8. URLs to fetch (competitor docs, pricing pages, feature pages)
 > 9. Your product's roadmap or upcoming features
@@ -445,11 +445,11 @@ If the PM provides only pillars, propose categories and parameters for each pill
 >
 > The scorecard will only cite information found in sources you approve. Provide URLs or source types per competitor. Common source types:
 >
-> 1. Official product documentation sites (e.g., docs.aws.amazon.com, your-docs-site.com)
+> 1. Official product documentation sites (e.g., your-docs-site.com)
 > 2. Official product blogs or engineering blogs
 > 3. Pricing pages
 > 4. Release notes or "What's New" pages
-> 5. Analyst reports (Gartner, Forrester, IDC) - specify which ones
+> 5. Analyst reports (industry analyst firms) - specify which ones
 > 6. Case studies or customer testimonial pages
 > 7. GitHub repos or open-source project pages
 > 8. Third-party review sites (G2, TrustRadius, PeerSpot)
@@ -749,7 +749,7 @@ These rules apply on top of the workspace Humanized Writing Standard:
 ### Narrative Quality (Strict)
 - **Full paragraphs in every table cell.** No single-word answers, no bullet lists inside cells. Minimum 4-6 sentences per cell.
 - **Name specific products.** Write the actual product name, not "their tool" or "the service."
-- **Name specific announcements with dates.** Write "announced at KubeCon EU 2025 (April 2025)" not "recently announced."
+- **Name specific announcements with dates.** Write "announced at [Industry conference] 2025 (April 2025)" not "recently announced."
 - **Cover five dimensions in each cell:** (1) products/services involved, (2) features with GA/Preview/Roadmap status, (3) differentiators, (4) ecosystem or partner programs, (5) customer value impact.
 - **Business strategy paragraphs** at the start of each pillar must be 3-5 sentences in prose (no bullets).
 

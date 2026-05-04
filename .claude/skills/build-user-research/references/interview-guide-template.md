@@ -1,6 +1,6 @@
-# Interview Guide Template - Moderated User Interview Script
+﻿# Interview Guide Template - Moderated User Interview Script
 
-> **Example:** See `reference-examples/interview-questions/Linux Moderated Interview Questions_2026.docx` for a real interview guide with timed sections (Introduction, Warm-up, Discovery, Plan & Assess, Execute, Wrap-up), moderator aids, laddering techniques, and listen-fors. See `reference-examples/interviews/` for actual conversation transcripts showing probing dynamics and participant responses.
+> **Example:** See `reference-examples/interview-questions/sample-moderated-interview-questions.docx` for a real interview guide with timed sections (Introduction, Warm-up, Discovery, Plan & Assess, Execute, Wrap-up), moderator aids, laddering techniques, and listen-fors. See `reference-examples/interviews/` for actual conversation transcripts showing probing dynamics and participant responses.
 
 Generate the interview guide using this structure. Ground all questions in the approved hypotheses and approved survey. The interview digs deeper where the survey provides breadth.
 

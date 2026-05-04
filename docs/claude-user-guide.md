@@ -134,7 +134,7 @@ Nothing is saved without your explicit go-ahead.
 2. Pick your source material from the menu: one-pager, user guide, telemetry data, business insights, interview transcripts, user study, competitor analysis, existing spec, or freeform description.
 3. Paste your material directly into chat, or reference a file path.
 4. Answer clarifying questions about the problem, scope, integrations, constraints, success criteria, risks, and phasing.
-5. Optionally ask for competitive research. Say "research what AWS Migration Hub does for wave planning" to get targeted results.
+5. Optionally ask for competitive research. Say "research what [Competitor product] does for [feature]" to get targeted results.
 
 ### What you get
 
@@ -203,7 +203,7 @@ The `/build-user-research` skill generates up to three connected artifacts: a cu
 1. Drop your source material into `input/user-research/<project-name>/`. One-pagers, specs, telemetry exports, field notes, survey analysis reports, and product documentation URLs all work.
 2. Type `/build-user-research` in Claude Code or Cowork:
    ```
-   /build-user-research Linux migration customer validation
+   /build-user-research [Your product] customer validation
    ```
 3. Answer 9 clarifying questions covering product scope, target personas, riskiest assumptions, known signals, business context, research maturity, customer access, and constraints.
 4. The last question asks which artifacts you want. Pick one of five options:
@@ -251,7 +251,7 @@ Three specialized development agents handle coding tasks. Each is a senior engin
 In Claude Code, invoke agents by name:
 
 ```
-/frontend-developer Build the migration dashboard component from the spec in input/specs/dashboard/
+/frontend-developer Build the dashboard component from the spec in input/specs/dashboard/
 ```
 
 Or use the agent directly:
@@ -380,7 +380,7 @@ The sync keeps their body content (the actual instructions, workflow, and constr
 
 **Chain skills for a full workflow.** Write a spec with `/build-spec`, catch gaps with `/build-spec` in Review mode, fix them with `/build-spec` in Refine mode, then turn the finished spec into a blog using `/build-blog`. Each skill reads the previous output.
 
-**Give research requests a direction.** Instead of "yes, research competitors", try "research how AWS Database Migration Service handles assessment reports." Specific angles produce better results.
+**Give research requests a direction.** Instead of "yes, research competitors", try "research how [Competitor product] handles assessment reports." Specific angles produce better results.
 
 **Edit skills on one side.** Update `.claude/skills/` and the pre-commit hook handles `.github/skills/`. No manual copying needed.
 

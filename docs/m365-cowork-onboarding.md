@@ -1,6 +1,6 @@
 ﻿# Onboarding PM Skills to M365 Copilot (Cowork)
 
-This guide covers how to set up and use PM Skills with your company 365 Copilot in VS Code. If you're using M365 Copilot as your coding agent (instead of or alongside GitHub Copilot), the skills in this repo work out of the box. This guide explains the setup, what to expect, and how to maintain skill parity with Claude users on your team.
+This guide covers how to set up and use PM Skills with M365 Copilot in VS Code. If you're using M365 Copilot as your coding agent (instead of or alongside GitHub Copilot), the skills in this repo work out of the box. This guide explains the setup, what to expect, and how to maintain skill parity with Claude users on your team.
 
 ---
 

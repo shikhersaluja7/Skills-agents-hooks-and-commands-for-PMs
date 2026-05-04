@@ -129,7 +129,7 @@ Nothing is saved until you explicitly approve. You're always in control.
 2. The skill presents a menu of source material options. Pick what you have: one-pager, user guide, telemetry data, business insights, interview transcripts, user study, competitor analysis, existing spec, or just a freeform description.
 3. Provide your material. Paste content directly into chat, or point to a file path in the workspace.
 4. Answer the clarifying questions (problem, scope, integrations, constraints, success criteria, risks, phasing).
-5. If you want competitive context, tell the skill. Say something like "research what AWS Migration Hub does for wave planning" and it'll search the web.
+5. If you want competitive context, tell the skill. Say something like "research what [Competitor product] does for [feature]" and it'll search the web.
 
 ### What you get
 
@@ -219,7 +219,7 @@ The `/build-user-research` skill generates up to three connected artifacts: a cu
 1. Drop your source material into `input/user-research/<project-name>/`. One-pagers, specs, telemetry exports, field notes, survey analysis reports, and product documentation URLs all work.
 2. Type `/build-user-research` in Copilot Chat:
    ```
-   /build-user-research Linux migration customer validation
+   /build-user-research [Your product] customer validation
    ```
 3. Answer 9 clarifying questions covering product scope, target personas, riskiest assumptions, known signals, business context, research maturity, customer access, and constraints.
 4. The last question asks which artifacts you want. Pick one of five options:
@@ -274,7 +274,7 @@ Select the agent from the agent picker dropdown in Copilot Chat:
 ### Giving them a spec
 
 ```
-@frontend-developer-ghcp Build the migration dashboard component from the spec in input/specs/dashboard/
+@frontend-developer-ghcp Build the dashboard component from the spec in input/specs/dashboard/
 ```
 
 The agent reads the spec, flags unclear requirements with **Spec Question** callouts, and proceeds with implementation. You can also provide design mocks, API contracts, user guides, or screenshots.
@@ -419,7 +419,7 @@ On the Copilot side, skill-improver is an agent (`.github/agents/skill-improver.
 
 **Chain skills together.** A productive sequence: write a spec with `/build-spec`, review it with `/build-spec` in Review mode, fix the flagged issues with `/build-spec` in Refine mode, then generate a blog from the finished spec using `/build-blog`. Each skill reads the previous output.
 
-**Be specific with research requests.** When the skill offers web research, give it a direction. "Research how AWS Migration Hub handles wave planning" gets better results than just "yes, do research."
+**Be specific with research requests.** When the skill offers web research, give it a direction. "Research how [Competitor product] handles [feature]" gets better results than just "yes, do research."
 
 **Edit one side only.** When modifying skills, just edit `.github/skills/`. The pre-commit hook handles `.claude/skills/`. Don't manually duplicate changes.
 

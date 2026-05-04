@@ -79,7 +79,7 @@ Analyze the source inputs (API contracts, CSVs, exports, docs) and generate the 
 
 | Category | Description | Example |
 |----------|-------------|---------|
-| **Data retrieval** | Direct lookups from the source data | "How many servers are running Windows Server 2012?" |
+| **Data retrieval** | Direct lookups from the source data | "How many records belong to product line A?" |
 | **Calculation** | Computed values requiring formulas | "What is the estimated monthly cost for migrating these 5 workloads?" |
 | **Comparison** | Cross-referencing multiple data points | "How does the target platform cost compare to our current on-prem TCO?" |
 | **Filtering/aggregation** | Subsets and summaries of the data | "Show me all servers with more than 16GB RAM not in the migration plan" |
@@ -104,7 +104,7 @@ For each question, derive the exact expected response from the source data. The 
 |-------|-----------------|
 | **Expected Response** | The exact, correct answer derived from the source data. Include specific numbers, values, lists, or text. This is what the system should output. |
 | **Eval (Exact Value)** | The ground truth extracted or computed from the input. For counts: the number. For sums: the total. For lists: the exact items. For text: the verbatim passage or synthesized fact. |
-| **Eval Formula** | How the exact value was derived. The computation or extraction path. Examples: `COUNT rows WHERE OS='Windows Server 2012' in inventory.csv`, `SUM(column E, rows 2-48)`, `$.results.totalMonthlyCost from assessment-api-response.json`, `FILTER WHERE RAM > 16 AND migration_wave IS NULL` |
+| **Eval Formula** | How the exact value was derived. The computation or extraction path. Examples: `COUNT rows WHERE category='A' in inventory.csv`, `SUM(column E, rows 2-48)`, `$.results.totalMonthlyCost from assessment-api-response.json`, `FILTER WHERE RAM > 16 AND migration_wave IS NULL` |
 | **Source Reference** | Which input file, row, column, field, or API path the answer comes from |
 
 **Derivation rules by question category:**

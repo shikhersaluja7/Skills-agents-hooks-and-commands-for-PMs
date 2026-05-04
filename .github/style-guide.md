@@ -77,7 +77,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 - Business-oriented. Lead with the problem size, customer impact, and competitive pressure. Numbers and data points carry weight.
 - Direct and structured. Busy stakeholders skim. Put the conclusion first, supporting detail second.
 - Specific about scope. State what is in and what is out. Name phase boundaries, priority labels (P0/P1/P2), and sequencing.
-- Factual claims backed by data. "40% of tenants migrating databases using native tooling had also discovered their SQL Server instances through your product." Not "many customers use your product for database discovery."
+- Factual claims backed by data. "40% of tenants adopting [your product] for database workflows had also discovered their source instances through your product." Not "many customers use your product for database discovery."
 
 **Structure patterns (from samples):**
 - Document history table (date, type, author) and review history.
@@ -131,7 +131,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 
 **Example patterns from team user guides:**
 - "Tap the green **Take** button on a dose card. The card turns green with a checkmark, and one unit is automatically deducted from your stock count."
-- "Tap **Sign In** - a secure browser window opens where you can log in with your email and password, or with your Google account."
+- "Tap **Sign In** - a secure browser window opens where you can log in with your email and password, or with your single sign-on account."
 - "If the scan fails: 'Could not connect' - check your internet connection and try again."
 
 ---
@@ -164,7 +164,7 @@ The patterns below are extracted from real team-authored samples. Match them.
 
 **Example patterns from team strategy docs:**
 - "P75 Time to Migrate from 184 (FY25) to 75 days. The SA and field lead P75 KPI data across strategic accounts show friction clusters in two distinct phases."
-- "**A large enterprise customer** discovered 23,000+ servers (92% Linux) with rapid execution (Collect Data 9 days, Prepare Assessment 6 days)."
+- "**A large enterprise customer** discovered 23,000+ items with rapid execution (Collect Data 9 days, Prepare Assessment 6 days)."
 - "[-] [Competitor] enables high speed discovery and allows customers to bring their own data (via CMDBs, third-party tools)."
 - "[+] [Your Product] provides a self-serve ROI/TCO calculator across infrastructure, data, and web apps."
 - "The [Region] [Product] GTM motion generated $<X> in new [product] revenue from <N> customers."

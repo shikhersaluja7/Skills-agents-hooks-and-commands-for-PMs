@@ -1,4 +1,4 @@
-# Hypotheses Template - Customer Validation Hypotheses List
+﻿# Hypotheses Template - Customer Validation Hypotheses List
 
 > **Example:** See `reference-examples/one-pagers/HYpothesis list for UR skill.docx` for a real hypothesis list with 14 hypotheses organized by theme (Discovery & Onboarding Barriers, Assessment & Planning Gaps, Migration Execution & Tooling Preferences, Messaging & GTM, Containerization). See `reference-examples/surveys/` for planning call transcripts showing how PM and researcher brainstorm and refine hypotheses together.
 
@@ -148,6 +148,6 @@ The same hypotheses regrouped by journey stage for a connected flow view.
 - **Hypothesis format is strict:** "We believe [persona] will [behavior/preference] because [reason/signal]." Every hypothesis must name a specific persona, a testable behavior, and a grounding reason.
 - **Priority reflects business impact:** High = blocks a decision or launch. Medium = informs strategy. Low = nice to know.
 - **Validation method must be explicit:** Survey (quantitative, at scale), Interview (qualitative, in depth), or Both.
-- **No vague hypotheses.** "We believe customers want better tooling" is not testable. "We believe Linux-heavy migration leads will prefer CLI-based discovery over portal-based workflows because their teams use command-line tools for infrastructure management" is testable.
+- **No vague hypotheses.** "We believe customers want better tooling" is not testable. "We believe enterprise integration leads will prefer CLI-based onboarding over portal-based workflows because their teams use command-line tools for tooling management" is testable.
 - **Ground hypotheses in signals.** Every "because" clause should reference real data, telemetry, prior research, customer feedback, or observable market behavior - not speculation.
 - Follow the **Humanized Writing Standard** from workspace instructions for all prose sections.

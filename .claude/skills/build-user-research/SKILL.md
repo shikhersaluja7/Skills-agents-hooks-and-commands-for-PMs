@@ -109,7 +109,7 @@ Key principles:
 
 **Ground every hypothesis in real signals.** The "because" clause must reference specific data, telemetry, prior research, customer feedback, or observable market behavior. Never speculate without grounding.
 
-**Make hypotheses testable.** Each hypothesis must be something the survey or interview can confirm or reject. "We believe customers want better tooling" is not testable. "We believe Linux-heavy migration leads prefer CLI-based discovery over portal workflows because their teams standardize on command-line infrastructure management" is testable.
+**Make hypotheses testable.** Each hypothesis must be something the survey or interview can confirm or reject. "We believe customers want better tooling" is not testable. "We believe enterprise integration leads prefer CLI-based onboarding over portal workflows because their teams standardize on command-line tooling" is testable.
 
 **Categorize by risk type:**
 - **Value** - Will customers find this valuable enough to adopt?
@@ -197,7 +197,7 @@ Key principles:
 
 **Apply researcher refinement patterns:**
 - Screen for role AND activity, not just title. A "Cloud Architect" title matters less than "responsible for migration planning and tool evaluation" as a daily activity. Include a responsibilities-based screening question.
-- Design a `[Disqualify]` path but also a "collect baseline data" path. Respondents who don't match the primary profile (e.g., Windows-heavy customers in a Linux-focused study) may still provide comparative data points via 2-3 baseline questions before exiting.
+- Design a `[Disqualify]` path but also a "collect baseline data" path. Respondents who don't match the primary profile (e.g., customers outside the primary segment in a focused study) may still provide comparative data points via 2-3 baseline questions before exiting.
 - Branching logic should create distinct paths based on the key segmentation variables identified in the hypotheses (e.g., OS composition, migration stage, tool awareness).
 - For ranking questions, always specify "Pick top N" to force prioritization. Open rankings across all options often produce flat distributions that yield no actionable insight.
 - Note platform constraints: paid research platforms may not support open-ended questions in screeners, and some paid participants may game screener logic. Design around these realities.
@@ -283,17 +283,17 @@ Key principles:
 
 1. **Set the scene** (Warm-up) - Establish who the participant is, what their environment looks like, and what pressures they face. This grounds everything that follows in their reality.
 
-2. **Build the journey chronologically** (Core sections) - Organize questions along the natural workflow the participant follows. For a migration study: Discovery -> Planning/Assessment -> Execution -> Post-migration. For a product study: Awareness -> Evaluation -> Adoption -> Daily use -> Expansion. Each section transitions naturally: "You mentioned you discovered 10,000 servers. What happened next?"
+2. **Build the journey chronologically** (Core sections) - Organize questions along the natural workflow the participant follows. For an adoption study: Discovery -> Planning/Assessment -> Execution -> Post-rollout. For a product study: Awareness -> Evaluation -> Adoption -> Daily use -> Expansion. Each section transitions naturally: "You mentioned you discovered 10,000 records. What happened next?"
 
 3. **Surface tensions and trade-offs** (Mid-interview) - Once the participant has described their journey, probe the friction points. This is where disjointed hypotheses come together: "You said you prefer CLI tools but also mentioned wanting portal-based cost dashboards. How do you reconcile those two needs?" Weaving multiple hypotheses into a single question tests whether the participant experiences them as related or separate problems.
 
-4. **Test the "what if"** (Late-interview) - Present scenarios based on hypothesis themes and ask the participant to react: "Imagine your product offered a Linux-native appliance with SSH-based discovery. Would that change your evaluation?" This converts abstract hypotheses into concrete scenario tests.
+4. **Test the "what if"** (Late-interview) - Present scenarios based on hypothesis themes and ask the participant to react: "Imagine your product offered a CLI-native appliance with SSH-based onboarding. Would that change your evaluation?" This converts abstract hypotheses into concrete scenario tests.
 
 5. **Close the loop** (Wrap-up) - The "magic wand" and "what did we miss" questions let the participant reframe the entire conversation in their own priorities, often surfacing connections between themes you didn't anticipate.
 
 **Break content into logical scenario units for testing.** When multiple hypotheses relate to the same workflow or decision point, combine them into scenario blocks rather than testing each in isolation:
 
-- **Scenario block example:** Instead of asking H1 (discovery credentials), H2 (appliance OS preference), and H3 (multi-distro complexity) as three separate questions, construct one scenario: "Walk me through the last time you set up discovery for a mixed Linux environment. What tools did you use, what access did you need, and where did you get stuck?" Then use probing follow-ups to pull out each hypothesis thread from their narrative.
+- **Scenario block example:** Instead of asking H1 (onboarding credentials), H2 (appliance preference), and H3 (multi-environment complexity) as three separate questions, construct one scenario: "Walk me through the last time you set up onboarding for a mixed enterprise environment. What tools did you use, what access did you need, and where did you get stuck?" Then use probing follow-ups to pull out each hypothesis thread from their narrative.
 
 - **Map scenario blocks to hypothesis clusters.** In the traceability table, group related hypotheses under named scenario blocks (e.g., "Discovery Setup Scenario" covers H1, H2, H3). This shows the PM that all hypotheses are covered while keeping the interview conversational rather than interrogative.
 
