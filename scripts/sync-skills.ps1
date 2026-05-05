@@ -107,7 +107,12 @@ function Sync-File {
             $srcContent
         }
         $dstContent = [System.IO.File]::ReadAllText($Destination)
-        if ($expectedContent -ne $dstContent) {
+        # Normalize line endings before comparing. Otherwise CRLF-vs-LF noise
+        # (introduced by git autocrlf or different write paths) causes spurious
+        # drift reports on every run. Compare semantic content, not byte-for-byte.
+        $expectedNormalized = ($expectedContent -replace "`r`n", "`n") -replace "`r", "`n"
+        $dstNormalized = ($dstContent -replace "`r`n", "`n") -replace "`r", "`n"
+        if ($expectedNormalized -ne $dstNormalized) {
             $srcTime = (Get-Item $Source).LastWriteTimeUtc
             $dstTime = (Get-Item $Destination).LastWriteTimeUtc
             if ($srcTime -gt $dstTime) {
@@ -245,11 +250,12 @@ foreach ($entry in $agentSkillMap.GetEnumerator()) {
         $agentBody = if ($agentParts.Count -ge 3) { $agentParts[2].TrimStart() } else { $agentContent }
         $skillBody = if ($skillParts.Count -ge 3) { $skillParts[2].TrimStart() } else { $skillContent }
 
-        # Normalize bodies through the ecosystem suffix transform before comparing.
-        # Agent body has -ghcp; skill body has -claude. Without normalization the
-        # bodies always look different and the sync re-stages on every commit.
+        # Normalize bodies through the ecosystem suffix transform AND line endings
+        # before comparing. Agent body has -ghcp; skill body has -claude. CRLF/LF
+        # differences from autocrlf would otherwise cause spurious drift reports.
         $agentBodyNormalized = $agentBody -replace '-ghcp(?=[^a-z]|$)', '-claude'
-        $skillBodyNormalized = $skillBody
+        $agentBodyNormalized = ($agentBodyNormalized -replace "`r`n", "`n") -replace "`r", "`n"
+        $skillBodyNormalized = ($skillBody -replace "`r`n", "`n") -replace "`r", "`n"
 
         if ($agentBodyNormalized -ne $skillBodyNormalized) {
             $agentTime = (Get-Item $agentFile).LastWriteTimeUtc
