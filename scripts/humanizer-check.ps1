@@ -1,4 +1,4 @@
-<#
+﻿<#
     humanizer-check.ps1 - Validate markdown files against the Humanized Writing Standard
     
     Scans staged or specified .md files for:
@@ -20,6 +20,12 @@ param(
 )
 
 $root = Split-Path $PSScriptRoot -Parent
+
+# Support both array invocation (-Files @('a','b')) and a single comma-separated string
+# (which is what `pwsh -File ... -Files "a,b,c"` produces from a shell script).
+if ($Files) {
+    $Files = $Files | ForEach-Object { $_ -split ',' } | Where-Object { $_.Trim() } | ForEach-Object { $_.Trim() }
+}
 
 # If no files specified, check all staged .md files
 if (-not $Files) {
@@ -67,6 +73,10 @@ foreach ($filePath in $Files) {
             continue
         }
     }
+
+    # Hard guard: only process .md files. Auto-fixing dashes in scripts, configs, or
+    # bash hooks corrupts syntax (e.g. `git diff -- '*.md'` becomes `git diff - '*.md'`).
+    if ($file -notmatch '\.md$') { continue }
 
     $relPath = $file.Replace("$root\", "").Replace("$root/", "")
 

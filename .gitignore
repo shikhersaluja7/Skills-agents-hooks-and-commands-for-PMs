@@ -31,3 +31,6 @@ desktop.ini
 # Port staging (temporary)
 port-staging/
 /port-staging/
+
+# Claude Code local settings (per-machine, not shared)
+.claude/settings.local.json

@@ -245,7 +245,7 @@ Report any humanizer violations found in the reviewed document as additional inl
 
 ### Optional: Deep Research
 
-Before reviewing, you can invoke the `@ideation-claude` agent to research best practices, competitor approaches, or industry standards relevant to the document being reviewed. Ask the PM: `Want me to research how others approach this topic before reviewing?` Only invoke if the PM says yes.
+Before reviewing, you can invoke the `@ideation-ghcp` agent to research best practices, competitor approaches, or industry standards relevant to the document being reviewed. Ask the PM: `Want me to research how others approach this topic before reviewing?` Only invoke if the PM says yes.
 
 ## Critical Blockers
 

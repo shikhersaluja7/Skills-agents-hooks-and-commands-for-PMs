@@ -68,6 +68,17 @@ $agentSkillMap = @{
     }
 }
 
+function Get-EcosystemTransform {
+    param([string]$Source, [string]$Destination)
+    if ($Destination -match '\.claude[\\/]' -and $Source -match '\.github[\\/]') {
+        return @{ From = '-ghcp(?=[^a-z]|$)'; To = '-claude' }
+    }
+    if ($Destination -match '\.github[\\/]' -and $Source -match '\.claude[\\/]') {
+        return @{ From = '-claude(?=[^a-z]|$)'; To = '-ghcp' }
+    }
+    return $null
+}
+
 function Sync-File {
     param(
         [string]$Source,
@@ -80,14 +91,23 @@ function Sync-File {
     $destDir = Split-Path $Destination -Parent
     $needsCopy = $false
     $reason = ""
+    $transform = Get-EcosystemTransform -Source $Source -Destination $Destination
 
     if (-not (Test-Path $Destination)) {
         $needsCopy = $true
         $reason = "missing"
     } else {
-        $srcHash = (Get-FileHash $Source -Algorithm SHA256).Hash
-        $dstHash = (Get-FileHash $Destination -Algorithm SHA256).Hash
-        if ($srcHash -ne $dstHash) {
+        # Compare against the EXPECTED destination content (after ecosystem transform),
+        # not the raw source. Otherwise the suffix transform makes the sync look
+        # perpetually out of date and re-stages files on every commit.
+        $srcContent = [System.IO.File]::ReadAllText($Source)
+        $expectedContent = if ($transform) {
+            $srcContent -replace $transform.From, $transform.To
+        } else {
+            $srcContent
+        }
+        $dstContent = [System.IO.File]::ReadAllText($Destination)
+        if ($expectedContent -ne $dstContent) {
             $srcTime = (Get-Item $Source).LastWriteTimeUtc
             $dstTime = (Get-Item $Destination).LastWriteTimeUtc
             if ($srcTime -gt $dstTime) {
@@ -107,20 +127,13 @@ function Sync-File {
                 New-Item -ItemType Directory -Path $destDir -Force | Out-Null
             }
             Copy-Item $Source $Destination -Force
-            
-            # Transform agent references when syncing between ecosystems
-            if ($Destination -match '\.claude[\\/]' -and $Source -match '\.github[\\/]') {
-                # GHCP -> Claude: replace -ghcp suffix with -claude
-                $content = Get-Content $Destination -Raw
-                $content = $content -replace '-ghcp(?=[^a-z]|$)', '-claude'
-                Set-Content $Destination -Value $content -NoNewline -Encoding UTF8
-            } elseif ($Destination -match '\.github[\\/]' -and $Source -match '\.claude[\\/]') {
-                # Claude -> GHCP: replace -claude suffix with -ghcp
-                $content = Get-Content $Destination -Raw
-                $content = $content -replace '-claude(?=[^a-z]|$)', '-ghcp'
-                Set-Content $Destination -Value $content -NoNewline -Encoding UTF8
+
+            if ($transform) {
+                $content = [System.IO.File]::ReadAllText($Destination)
+                $content = $content -replace $transform.From, $transform.To
+                [System.IO.File]::WriteAllText($Destination, $content, (New-Object System.Text.UTF8Encoding $true))
             }
-            
+
             if ($Staged) {
                 git add $Destination 2>$null
             }
@@ -225,14 +238,20 @@ foreach ($entry in $agentSkillMap.GetEnumerator()) {
         $agentContent = Get-Content $agentFile -Raw
         $skillContent = Get-Content $skillFile -Raw
 
-        # Extract body (after second ---) 
+        # Extract body (after second ---)
         $agentParts = $agentContent -split "(?m)^---\s*$", 3
         $skillParts = $skillContent -split "(?m)^---\s*$", 3
 
         $agentBody = if ($agentParts.Count -ge 3) { $agentParts[2].TrimStart() } else { $agentContent }
         $skillBody = if ($skillParts.Count -ge 3) { $skillParts[2].TrimStart() } else { $skillContent }
 
-        if ($agentBody -ne $skillBody) {
+        # Normalize bodies through the ecosystem suffix transform before comparing.
+        # Agent body has -ghcp; skill body has -claude. Without normalization the
+        # bodies always look different and the sync re-stages on every commit.
+        $agentBodyNormalized = $agentBody -replace '-ghcp(?=[^a-z]|$)', '-claude'
+        $skillBodyNormalized = $skillBody
+
+        if ($agentBodyNormalized -ne $skillBodyNormalized) {
             $agentTime = (Get-Item $agentFile).LastWriteTimeUtc
             $skillTime = (Get-Item $skillFile).LastWriteTimeUtc
 
@@ -396,6 +415,31 @@ foreach ($name in $allSkillNames) {
     Sync-SkillDirectory -SourceDir $ghDir -DestDir $clDir -Direction "github→claude"
     # Claude → GitHub (reverse, for files only in Claude or newer in Claude)
     Sync-SkillDirectory -SourceDir $clDir -DestDir $ghDir -Direction "claude→github"
+}
+
+# 3. Sync slash commands: .github/prompts/<name>.prompt.md ↔ .claude/commands/<name>.md
+#    Filename convention differs between ecosystems (GHCP appends .prompt.md).
+$githubPrompts = Join-Path (Join-Path $root ".github") "prompts"
+$claudeCommands = Join-Path (Join-Path $root ".claude") "commands"
+
+$commandNames = @()
+if (Test-Path $githubPrompts) {
+    Get-ChildItem $githubPrompts -File -Filter "*.prompt.md" | ForEach-Object {
+        $bn = $_.BaseName -replace '\.prompt$', ''
+        if ($commandNames -notcontains $bn) { $commandNames += $bn }
+    }
+}
+if (Test-Path $claudeCommands) {
+    Get-ChildItem $claudeCommands -File -Filter "*.md" | ForEach-Object {
+        if ($commandNames -notcontains $_.BaseName) { $commandNames += $_.BaseName }
+    }
+}
+
+foreach ($name in $commandNames) {
+    $ghFile = Join-Path $githubPrompts "$name.prompt.md"
+    $clFile = Join-Path $claudeCommands "$name.md"
+    Sync-File -Source $ghFile -Destination $clFile -Label "COMMAND github→claude"
+    Sync-File -Source $clFile -Destination $ghFile -Label "COMMAND claude→github"
 }
 
 # --- Report ---
