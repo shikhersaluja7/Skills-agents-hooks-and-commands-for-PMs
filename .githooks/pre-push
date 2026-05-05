@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/sh
 # pre-push hook: Final safety net before pushing to remote.
 #   1. Verify .github/ and .claude/ are still in sync (catches bypassed commits)
 #   2. Verify README/user-guide skill tables are up to date
