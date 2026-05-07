@@ -91,7 +91,8 @@ $promptsDir = Join-Path (Join-Path $root ".github") "prompts"
 $prompts = @()
 if (Test-Path $promptsDir) {
     Get-ChildItem $promptsDir -File -Filter "*.prompt.md" | ForEach-Object {
-        $name = $_.BaseName
+        # BaseName strips only the last extension (.md), leaving ".prompt".
+        $name = $_.BaseName -replace '\.prompt$', ''
         $prompts += $name
     }
 }
@@ -129,6 +130,11 @@ foreach ($name in ($allNames | Sort-Object)) {
 }
 
 # Build table for Copilot guides (simpler)
+# Explicit map of agents that also have a slash-command alias. Add new aliases
+# here when an agent gets a matching prompt - avoids fuzzy "-match" matching that
+# previously appended /improve-skill to every agent row.
+$agentPromptAlias = @{ "skill-improver" = "improve-skill" }
+
 $copilotTable = "| Command | What it does |`n"
 $copilotTable += "|---------|-------------|`n"
 foreach ($name in ($allNames | Sort-Object)) {
@@ -136,7 +142,17 @@ foreach ($name in ($allNames | Sort-Object)) {
     $agMatch = $agents | Where-Object { $_.Name -eq $name }
     if (-not $ghMatch -and -not $agMatch) { continue }
     $desc = if ($ghMatch) { $ghMatch.Description } elseif ($agMatch) { $agMatch.Description } else { "" }
-    $cmd = if ($agMatch -and -not $ghMatch) { "``@$name-ghcp`` or ``/improve-skill``" } else { "``/$name``" }
+    if ($agMatch -and -not $ghMatch) {
+        $cmd = "``@$name-ghcp``"
+        if ($agentPromptAlias.ContainsKey($name)) {
+            $alias = $agentPromptAlias[$name]
+            if ($prompts -contains $alias) {
+                $cmd += " or ``/$alias``"
+            }
+        }
+    } else {
+        $cmd = "``/$name``"
+    }
     $copilotTable += "| $cmd | $desc |`n"
 }
 
@@ -193,7 +209,9 @@ function Update-DocSection {
             $relPath = $FilePath.Replace("$root\", "").Replace("$root/", "")
             $script:changes += "DOC-UPDATE: $relPath"
             if ($Apply) {
-                Set-Content $FilePath $newContent -NoNewline -Encoding UTF8
+                # Write UTF-8 without BOM. PowerShell 5.1's Set-Content -Encoding UTF8 emits a BOM.
+                $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+                [System.IO.File]::WriteAllText($FilePath, $newContent, $utf8NoBom)
                 if ($Staged) { git add $FilePath 2>$null }
             }
         }
@@ -217,6 +235,155 @@ foreach ($doc in $docsWithTables) {
         -EndMarker "<!-- $($doc.Tag)-END -->" `
         -NewContent $doc.Table.TrimEnd()
 }
+
+# --- Auto-seed per-artifact mini-sections in user guides ---
+# Whenever a new skill/agent/prompt is added, the user guides should grow a
+# matching mini-section so PMs see what it does. This function appends an
+# editable stub (between SKILL-SECTION markers) for any artifact that lacks
+# one. It never modifies content between an existing pair of markers, so
+# PM-written prose is preserved across runs.
+
+# Artifacts whose coverage already lives in shared/multi-skill sections of the
+# user guides (sections 3 through 9). These do not get individual stubs because
+# their user-facing walkthrough is grouped with peers.
+$artifactsCoveredWithoutMarkers = @(
+    "build-spec",                # GHCP/Claude guide sections 3-4
+    "build-blog",                # section 5
+    "build-user-guide",          # section 6
+    "build-user-research",       # section 7
+    "frontend-developer",        # section 8 (GHCP agent name)
+    "frontend-developer-claude", # section 8 (Claude skill name)
+    "backend-developer",         # section 8
+    "backend-developer-claude",  # section 8
+    "tester",                    # section 8
+    "tester-claude",             # section 8
+    "ideation",                  # section 8 (GHCP agent name)
+    "ideation-claude",           # section 8 (Claude skill name)
+    "skill-improver",            # section 9
+    "skill-improver-claude"      # section 9
+)
+
+function Get-SkillOutputPath {
+    param([string]$SkillFile)
+    if (-not (Test-Path $SkillFile)) { return $null }
+    $content = Get-Content $SkillFile -Raw
+    if ($content -match 'output/([a-z0-9-]+)/') {
+        return "output/$($Matches[1])/"
+    }
+    return $null
+}
+
+function Build-StubSection {
+    param(
+        [hashtable]$Item,
+        [string]$Platform
+    )
+    $name = $Item.Name
+    $desc = $Item.Description
+    if (-not $desc) { $desc = "Auto-generated entry. Add a description in the skill or agent file." }
+    $outputPath = $Item.OutputPath
+    if (-not $outputPath) { $outputPath = "output/$name/" }
+
+    if ($Platform -eq "ghcp" -and $Item.IsAgent) {
+        $cmd = "@$name-ghcp"
+    } else {
+        $cmd = "/$name"
+    }
+
+    $stub = @"
+<!-- SKILL-SECTION-START: $name -->
+## Using $name
+
+``````
+$cmd <example argument>
+``````
+
+$desc
+
+Saves to ``$outputPath``.
+
+> *Auto-generated stub. Replace with a walkthrough following the style of section 5 (build-blog) or section 6 (build-user-guide).*
+<!-- SKILL-SECTION-END: $name -->
+
+---
+
+"@
+    return $stub
+}
+
+function Ensure-SkillSections {
+    param(
+        [string]$DocPath,
+        [array]$Inventory,
+        [string]$Platform
+    )
+    if (-not (Test-Path $DocPath)) { return }
+    $content = Get-Content $DocPath -Raw
+
+    if ($content -notmatch '## \d+\. Frequently Asked Questions') {
+        return
+    }
+
+    $additions = @()
+    foreach ($item in $Inventory) {
+        $marker = "<!-- SKILL-SECTION-START: $($item.Name) -->"
+        if ($content -match [regex]::Escape($marker)) { continue }
+        $stub = Build-StubSection -Item $item -Platform $Platform
+        $additions += $stub
+        $relPath = $DocPath.Replace("$root\", "").Replace("$root/", "")
+        $script:changes += "DOC-STUB: $relPath - added section for $($item.Name)"
+    }
+
+    if ($additions.Count -eq 0) { return }
+
+    $allStubs = ($additions -join "")
+    $newContent = $content -replace '(?=## \d+\. Frequently Asked Questions)', $allStubs
+
+    if ($Apply) {
+        # Write UTF-8 without BOM. PowerShell 5.1's Set-Content -Encoding UTF8 emits a BOM.
+        $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+        [System.IO.File]::WriteAllText($DocPath, $newContent, $utf8NoBom)
+        if ($Staged) { git add $DocPath 2>$null }
+    }
+}
+
+# Build the GHCP inventory: skills + agents (excluding shared-section coverage)
+$ghcpStubInventory = @()
+foreach ($s in $ghSkills) {
+    if ($artifactsCoveredWithoutMarkers -contains $s.Name) { continue }
+    $skillFile = Join-Path (Join-Path $ghSkillsDir $s.Name) "SKILL.md"
+    $ghcpStubInventory += @{
+        Name = $s.Name
+        Description = $s.Description
+        OutputPath = (Get-SkillOutputPath $skillFile)
+        IsAgent = $false
+    }
+}
+foreach ($a in $agents) {
+    if ($artifactsCoveredWithoutMarkers -contains $a.Name) { continue }
+    $ghcpStubInventory += @{
+        Name = $a.Name
+        Description = $a.Description
+        OutputPath = $null
+        IsAgent = $true
+    }
+}
+
+# Build the Claude inventory: skills only (Claude exposes everything as skills)
+$claudeStubInventory = @()
+foreach ($s in $clSkills) {
+    if ($artifactsCoveredWithoutMarkers -contains $s.Name) { continue }
+    $skillFile = Join-Path (Join-Path $clSkillsDir $s.Name) "SKILL.md"
+    $claudeStubInventory += @{
+        Name = $s.Name
+        Description = $s.Description
+        OutputPath = (Get-SkillOutputPath $skillFile)
+        IsAgent = $false
+    }
+}
+
+Ensure-SkillSections -DocPath (Join-Path (Join-Path $root "docs") "ghcp-user-guide.md") -Inventory $ghcpStubInventory -Platform "ghcp"
+Ensure-SkillSections -DocPath (Join-Path (Join-Path $root "docs") "claude-user-guide.md") -Inventory $claudeStubInventory -Platform "claude"
 
 # --- Update review-doc document type table ---
 # Scan all output-producing skills and build the review focus table.

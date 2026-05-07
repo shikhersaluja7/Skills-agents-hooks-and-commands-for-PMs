@@ -15,10 +15,22 @@ This guide walks PMs on the your product team through using PM Skills in GitHub 
 7. [Building a User Research Kit](#7-building-a-user-research-kit)
 8. [Using Development Agents](#8-using-development-agents)
 9. [Improving a Skill](#9-improving-a-skill)
-10. [Updating or Adding Skills](#10-updating-or-adding-skills)
-11. [How the Sync Automation Works](#11-how-the-sync-automation-works)
-12. [Tips & Tricks](#12-tips--tricks)
-13. [Frequently Asked Questions](#13-frequently-asked-questions)
+10. [Building an Agentic Experience](#10-building-an-agentic-experience)
+11. [Drafting an Announcement Email](#11-drafting-an-announcement-email)
+12. [Building an Architecture Doc](#12-building-an-architecture-doc)
+13. [Generating Competitive Analysis](#13-generating-competitive-analysis)
+14. [Writing a Customer Story](#14-writing-a-customer-story)
+15. [Building a Demo Script](#15-building-a-demo-script)
+16. [Writing Documentation Articles](#16-writing-documentation-articles)
+17. [Generating a Golden Dataset](#17-generating-a-golden-dataset)
+18. [Writing a Monthly Business Review](#18-writing-a-monthly-business-review)
+19. [Drafting a One-Pager](#19-drafting-a-one-pager)
+20. [Writing a Strategy Doc](#20-writing-a-strategy-doc)
+21. [Reviewing Any Document](#21-reviewing-any-document)
+22. [Updating or Adding Skills](#22-updating-or-adding-skills)
+23. [How the Sync Automation Works](#23-how-the-sync-automation-works)
+24. [Tips & Tricks](#24-tips--tricks)
+25. [Frequently Asked Questions](#25-frequently-asked-questions)
 
 ---
 
@@ -79,7 +91,7 @@ Type `/` in Copilot Chat to see available skills:
 <!-- SKILL-TABLE-START -->
 | Command | What it does |
 |---------|-------------|
-| `@backend-developer-ghcp` or `/improve-skill` | Senior backend engineer and systems architect (GHCP) |
+| `@backend-developer-ghcp` | Senior backend engineer and systems architect (GHCP) |
 | `/build-agentic-experience` | Build agentic workflow artifacts for conversational AI: scenario catalogs, journey scripts, or evaluation datasets |
 | `/build-announcement-email` | Draft an announcement email for product launches, previews, breaking changes, product updates, or stakeholder enablement |
 | `/build-architecture` | Create an architecture document (HLD or LLD) from strategy docs, one-pagers, specs, or meeting transcripts |
@@ -95,11 +107,11 @@ Type `/` in Copilot Chat to see available skills:
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
-| `@frontend-developer-ghcp` or `/improve-skill` | Senior frontend engineer and UI architect (GHCP) |
-| `@ideation-ghcp` or `/improve-skill` | Deep research and ideation partner for PMs (GHCP) |
+| `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) |
+| `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |
 | `@skill-improver-ghcp` or `/improve-skill` | Analyze and improve Copilot skills using web research and best practices (GHCP) |
-| `@tester-ghcp` or `/improve-skill` | Senior QA engineer and test architect (GHCP) |
+| `@tester-ghcp` | Senior QA engineer and test architect (GHCP) |
 <!-- SKILL-TABLE-END -->
 
 You can also just describe what you want in plain language. Copilot matches your request to the right skill based on keywords. Typing "write a spec for the new migration agent feature" triggers the build-spec skill without needing the slash command.
@@ -343,7 +355,223 @@ Both approaches produce the same result: the agent reads the SKILL.md and refere
 
 ---
 
-## 10. Updating or Adding Skills
+<!-- SKILL-SECTION-START: build-agentic-experience -->
+## 10. Building an Agentic Experience
+
+```
+/build-agentic-experience scenario catalog for the readiness assessment chat
+```
+
+Use this skill when you need to define how an AI assistant should handle conversations for a feature. It runs in three modes: **Scenario Catalog** (exhaustive prompt-response pairs across edge cases), **Journey Script** (a linear happy-path walkthrough for demos or testing), and **Eval Dataset** (12-column structured test cases for accuracy measurement). Tell the skill which mode you need, or it'll infer from your phrasing.
+
+### What you get
+
+Mode-specific output. The scenario catalog returns numbered sections of `Prompt | Response | Suggested Prompts` tables, with three suggested follow-ups after every response. Journey scripts arrive as persona-driven walkthroughs in a User/AI/Prompts table. Eval datasets ship with task taxonomy, variant coverage, and an optional JSONL companion file for direct ingestion into evaluation tooling.
+
+Saves to `output/eval-datasets/`, `output/scenario-catalogs/`, or `output/journey-scripts/` depending on the mode.
+<!-- SKILL-SECTION-END: build-agentic-experience -->
+
+---
+
+<!-- SKILL-SECTION-START: build-announcement-email -->
+## 11. Drafting an Announcement Email
+
+```
+/build-announcement-email GA launch for wave planning to field sellers
+```
+
+Drop in your topic (or a path to a spec, one-pager, blog draft, or release notes) and tell the skill who the email is for. The audience drives everything: tone, structure, what to lead with, what to skip. Customers, field sellers, partners, internal leadership, and engineering teams each get a different shape.
+
+### What you get
+
+A custom-structured email built for this specific announcement. The skill proposes a section outline first (subject line, opening, capability blocks, CTAs, links), waits for your approval on the structure, then drafts each section. Source material gets pulled in for accurate specifics. If a fact is missing, you get a targeted question instead of placeholder text.
+
+Saves to `output/emails/<title>.md`.
+<!-- SKILL-SECTION-END: build-announcement-email -->
+
+---
+
+<!-- SKILL-SECTION-START: build-architecture -->
+## 12. Building an Architecture Doc
+
+```
+/build-architecture HLD for the migration agent platform
+```
+
+Hand it a strategy doc, one-pager, spec, or meeting transcript and the skill drafts a matching architecture document. The source type drives the depth: strategy docs produce ground-up HLDs, one-pagers produce extension architectures, specs produce LLDs. You can combine multiple sources for a mixed scope.
+
+### What you get
+
+A complete architecture document covering system boundaries, component responsibilities, data architecture, communication patterns, security, and execution phasing. HLDs lean into system context and layering. LLDs go deep on data models, API contracts, state machines, error handling, and testing. The skill calls out every alternative considered and why the chosen path won.
+
+Saves to `output/architecture-docs/<name>.md`.
+<!-- SKILL-SECTION-END: build-architecture -->
+
+---
+
+<!-- SKILL-SECTION-START: build-compete -->
+## 13. Generating Competitive Analysis
+
+```
+/build-compete your-product vs competitor-1 across migration planning
+```
+
+Use this for either a narrative competitive analysis (qualitative, multi-section) or a scorecard (quantified comparison matrix). The skill ingests competitor docs, sales feedback, customer interviews, analyst reports, blog posts, and URLs to fetch. You can also kick off optional deep research through the ideation agent before drafting starts.
+
+### What you get
+
+Narrative analyses come back with an Executive Summary, pillar-by-pillar comparison, positioning markers, and evidence-backed claims that cite specific source URLs. Scorecards are structured tables with pillars, categories, parameters, and ratings. Either format can be exported to .docx if you provide a reference template.
+
+Saves to `output/compete-analysis/<topic>-compete-analysis.md` or `output/compete-analysis/<topic>-compete-scorecard.md`.
+<!-- SKILL-SECTION-END: build-compete -->
+
+---
+
+<!-- SKILL-SECTION-START: build-customer-story -->
+## 14. Writing a Customer Story
+
+```
+/build-customer-story acme-corp
+```
+
+This skill builds customer stories from meeting transcripts and your direct inputs only. Drop transcript files into `input/customer-stories/<customer-name>/` (any format - .docx, .txt, .md), or paste them into chat. If you offer other source types like one-pagers or blogs, the skill redirects you to the right tool.
+
+### What you get
+
+Two formats to pick from. **Internal customer learnings** captures issues, learnings, and action items with named owners and ETAs - the format leadership reviews use. **Public case study** structures as challenge, solution, results with attributed quotes for company blogs or partner channels.
+
+Saves to `output/customer-stories/<customer>.md`.
+<!-- SKILL-SECTION-END: build-customer-story -->
+
+---
+
+<!-- SKILL-SECTION-START: build-demo-script -->
+## 15. Building a Demo Script
+
+```
+/build-demo-script wave planning for the conference keynote
+```
+
+Use this for product walkthroughs, conference talks, leadership reviews, or feature deep dives. Source material can be specs, one-pagers, transcripts, docs, or existing demo scripts you want to extend or adapt for a different audience.
+
+### What you get
+
+A beat-by-beat script with timing per section, transition markers, talk track, and `[Screenshot: ...]` placeholders for each visual moment. The structure adapts to demo type: keynotes get more narrative arc, deep dives get more technical depth, leadership reviews lead with business impact.
+
+Saves to `output/demo-scripts/<name>.md`.
+<!-- SKILL-SECTION-END: build-demo-script -->
+
+---
+
+<!-- SKILL-SECTION-START: build-documentation -->
+## 16. Writing Documentation Articles
+
+```
+/build-documentation sql assessment overview
+```
+
+Drafts your-docs-site-style public documentation from specs, one-pagers, blogs, transcripts, or existing docs you want to update. The skill translates internal language into customer-facing documentation voice and matches your-docs-site's article conventions.
+
+### What you get
+
+A documentation article with the right frontmatter for its type. The skill picks from four article types based on the content: **Overview** (concept doc), **Quickstart** (5-15 min walkthrough), **How-to** (task-focused), or **Tutorial** (end-to-end). Output includes prerequisites, step tables, settings tables, screenshot placeholders, and Next Steps links.
+
+Saves to `output/documentation/<name>.md`.
+<!-- SKILL-SECTION-END: build-documentation -->
+
+---
+
+<!-- SKILL-SECTION-START: build-golden-dataset -->
+## 17. Generating a Golden Dataset
+
+```
+/build-golden-dataset your-product readiness assessment API
+```
+
+Generates persona-driven evaluation datasets for any AI system, API, or product. You give the skill source data (API responses, CSV exports, info exports, conversation logs) plus user personas, and it produces the questions those personas would ask along with exact expected responses derived from the source data.
+
+### What you get
+
+A markdown table with question and expected-response columns, plus an evaluation formula showing how each answer was derived from the source. Every row is traceable back to a specific data point. The format is ready to plug into accuracy measurement workflows.
+
+Saves to `output/golden-datasets/<product-name>-golden-dataset.md`.
+<!-- SKILL-SECTION-END: build-golden-dataset -->
+
+---
+
+<!-- SKILL-SECTION-START: build-mbr -->
+## 18. Writing a Monthly Business Review
+
+```
+/build-mbr april-2026
+```
+
+Builds a leadership-facing monthly business review around hypothesis-driven analysis. The skill expects you to drive the analytical narrative. It helps structure, write, and polish, but never auto-generates insights from data without your direction. Drop telemetry exports, compete intel, customer stories, and the prior month's MBR into `input/mbr/<period>/`.
+
+### What you get
+
+A structured MBR with KPI/OKR scorecards, hypothesis-driven highlights and lowlights, customer spotlights, compete signals, and action items with owners and ETAs. Continuity from the prior month carries forward: open follow-ups, trend deltas, and recurring themes appear in the right sections.
+
+Saves to `output/mbr/<period>.md`.
+<!-- SKILL-SECTION-END: build-mbr -->
+
+---
+
+<!-- SKILL-SECTION-START: build-one-pager -->
+## 19. Drafting a One-Pager
+
+```
+/build-one-pager network assessment problem space
+```
+
+Pitches a problem, solution approach, and execution plan to leadership and partner teams. The skill helps you **ideate** first - it presents options, tradeoffs, and angles before drafting. If you provide a strategy doc that covers multiple investment areas, the skill can decompose it and propose which one-pagers to extract.
+
+### What you get
+
+A document covering the problem with data points, customer evidence, the proposed solution and alternatives considered, scope boundaries, phasing across H1/H2/Future, success metrics, and stakeholder map. Tone matches strategic PM-to-leadership.
+
+Saves to `output/one-pagers/<name>.md`.
+<!-- SKILL-SECTION-END: build-one-pager -->
+
+---
+
+<!-- SKILL-SECTION-START: build-strategy-doc -->
+## 20. Writing a Strategy Doc
+
+```
+/build-strategy-doc your-product H1 fy26 strategy
+```
+
+Builds an executive-ready strategy document for VP, CVP, or your-executive-reviewer-tier reviews. The skill stitches together telemetry, customer stories, competitive analysis, product investments, and business context into a single strategic narrative, not a feature list.
+
+### What you get
+
+A pillar-driven document with an executive summary that compresses the entire story into one page, customer evidence blocks after every strategic claim, compete insight blocks after every investment, "Why this approach?" inline rationale, data-backed claims (every percentage and number cited), and explicit scope boundaries answering "what about X?" questions before reviewers ask.
+
+Saves to `output/strategy-docs/<name>.md`.
+<!-- SKILL-SECTION-END: build-strategy-doc -->
+
+---
+
+<!-- SKILL-SECTION-START: review-doc -->
+## 21. Reviewing Any Document
+
+```
+/review-doc output/specs/wave-planning-spec.md
+```
+
+Reviews any document type - strategy docs, one-pagers, specs, architecture docs, compete analyses, scorecards, user guides, customer stories, blogs - against a 16-type review framework. Optionally pass the source document the review subject was built from for alignment checking.
+
+### What you get
+
+Two deliverables in chat. **Critical Evaluation** is a structured analysis covering completeness, gaps, alternative approaches, and external context from web research. **Inline Comments** are located, line-by-line feedback the author can act on directly.
+
+The review stays in chat. Files are not saved unless you explicitly ask.
+<!-- SKILL-SECTION-END: review-doc -->
+
+---
+
+## 22. Updating or Adding Skills
 
 ### Editing an existing skill
 
@@ -378,7 +606,7 @@ The Humanized Writing Standard and PM-in-the-Loop rules live in `.github/copilot
 
 ---
 
-## 11. How the Sync Automation Works
+## 23. How the Sync Automation Works
 
 The repo uses three sync mechanisms to keep Copilot and Claude artifacts aligned. You don't need to manage this manually, but understanding it helps when troubleshooting.
 
@@ -411,7 +639,7 @@ On the Copilot side, skill-improver is an agent (`.github/agents/skill-improver.
 
 ---
 
-## 12. Tips & Tricks
+## 24. Tips & Tricks
 
 **Skip the slash command.** Describe what you want in plain English. "Help me write a spec for the new discovery feature" works just as well as `/build-spec`. Copilot matches based on keywords.
 
@@ -427,7 +655,7 @@ On the Copilot side, skill-improver is an agent (`.github/agents/skill-improver.
 
 ---
 
-## 13. Frequently Asked Questions
+## 25. Frequently Asked Questions
 
 **Q: Where do generated files go?**
 All outputs save to `output/<type>/` folders: `output/specs/`, `output/blogs/`, `output/user-guides/`. These are gitignored because they're project-specific artifacts, not shared assets.

@@ -1,4 +1,4 @@
-﻿# Onboarding PM Skills to M365 Copilot (Cowork)
+# Onboarding PM Skills to M365 Copilot (Cowork)
 
 This guide covers how to set up and use PM Skills with M365 Copilot in VS Code. If you're using M365 Copilot as your coding agent (instead of or alongside GitHub Copilot), the skills in this repo work out of the box. This guide explains the setup, what to expect, and how to maintain skill parity with Claude users on your team.
 
@@ -85,7 +85,7 @@ Type `/` in the chat input to see all available skills:
 <!-- SKILL-TABLE-START -->
 | Command | What it does |
 |---------|-------------|
-| `@backend-developer-ghcp` or `/improve-skill` | Senior backend engineer and systems architect (GHCP) |
+| `@backend-developer-ghcp` | Senior backend engineer and systems architect (GHCP) |
 | `/build-agentic-experience` | Build agentic workflow artifacts for conversational AI: scenario catalogs, journey scripts, or evaluation datasets |
 | `/build-announcement-email` | Draft an announcement email for product launches, previews, breaking changes, product updates, or stakeholder enablement |
 | `/build-architecture` | Create an architecture document (HLD or LLD) from strategy docs, one-pagers, specs, or meeting transcripts |
@@ -101,11 +101,11 @@ Type `/` in the chat input to see all available skills:
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
-| `@frontend-developer-ghcp` or `/improve-skill` | Senior frontend engineer and UI architect (GHCP) |
-| `@ideation-ghcp` or `/improve-skill` | Deep research and ideation partner for PMs (GHCP) |
+| `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) |
+| `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |
 | `@skill-improver-ghcp` or `/improve-skill` | Analyze and improve Copilot skills using web research and best practices (GHCP) |
-| `@tester-ghcp` or `/improve-skill` | Senior QA engineer and test architect (GHCP) |
+| `@tester-ghcp` | Senior QA engineer and test architect (GHCP) |
 <!-- SKILL-TABLE-END -->
 
 You can also select `@skill-improver-ghcp` from the agent picker to invoke the skill improvement agent directly.
