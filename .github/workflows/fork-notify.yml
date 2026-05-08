@@ -1,19 +1,20 @@
 name: Notify on Fork
-   on:
-     fork:
-   jobs:
-     notify:
-       runs-on: ubuntu-latest
-       permissions:
-         issues: write
-       steps:
-         - name: Create issue on fork
-           uses: actions/github-script@v7
-           with:
-             script: |
-               github.rest.issues.create({
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 title: `Repo forked by @${context.payload.forkee.owner.login}`,
-                 body: `New fork created: ${context.payload.forkee.html_url}\n\nForked at: ${context.payload.forkee.created_at}`
-               })
+
+on: fork
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create issue on fork
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Repo forked by @${context.payload.forkee.owner.login}`,
+              body: `New fork created: ${context.payload.forkee.html_url}\n\nForked at: ${context.payload.forkee.created_at}`
+            })
