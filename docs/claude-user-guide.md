@@ -1,4 +1,4 @@
-﻿# PM Skills for Claude Code: A Guide for your product PMs
+# PM Skills for Claude Code: A Guide for your product PMs
 
 This guide walks PMs on the your product team through using PM Skills in Claude Code and Cowork. You'll learn how to generate specs, blogs, and user guides, how to update skills, and what automations run behind the scenes to keep everything in sync.
 
@@ -114,6 +114,7 @@ Type `/` to see all available skills:
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
+| `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
 | `/frontend-developer-claude` | Senior frontend engineer and UI architect |
 | `/ideation-claude` | Deep research and ideation partner for PMs |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |
@@ -630,6 +631,33 @@ The sync keeps their body content (the actual instructions, workflow, and constr
 
 ---
 
+<!-- SKILL-SECTION-START: export-docx -->
+## 25. Exporting Drafts as .docx
+
+```
+/export-docx output/one-pagers/living-expense-tracker.md
+```
+
+Converts a saved markdown file (or several combined into one) to a `.docx` so you can circulate it, get track-changes feedback, or print it. Wraps Pandoc behind a PM-friendly slash command.
+
+The skill runs in two modes. **Single-file** mode takes one `.md` under `output/` and writes the `.docx` alongside it. **Bundle** mode takes a comma-separated list of `.md` files (which can come from `input/` or `output/`), concatenates them with `---` separators, saves the combined `.md` under `output/source-docs/<name>.md`, and converts that. Bundle mode is the right pick when you want one Word doc that captures all the source material a reviewer needs.
+
+If you don't pass an argument, the skill auto-detects the most-recently-modified `.md` under `output/` and asks before converting.
+
+### Auto-prompt
+
+After any skill saves an `.md` under `output/`, a Stop hook (`scripts/docx-prompt.ps1`) emits a system-reminder so the next Claude turn offers you the conversion. Mute it with `CLAUDE_SKILLS_DOCX_PROMPT=off` if it gets noisy.
+
+### Reviewer comments back
+
+When a `.docx` returns from review with comments and tracked changes, the `office-word` MCP server (registered via `claude mcp add`) reads them. Hand the file to `/review-doc` along with a note that you want comment ingestion.
+
+### What you get
+
+The `.docx` next to the source `.md`, plus a chat report with the output path and file size. Generated `.docx` files live under `output/` and are gitignored by default. Pandoc must be installed (`winget install JohnMacFarlane.Pandoc`).
+<!-- SKILL-SECTION-END: export-docx -->
+
+---
 ## 25. Frequently Asked Questions
 
 **Q: Where do generated files go?**

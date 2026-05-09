@@ -13,6 +13,11 @@
             "type": "command",
             "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-docs.ps1 -Apply",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/docx-prompt.ps1",
+            "timeout": 10
           }
         ]
       }

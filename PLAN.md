@@ -1,4 +1,4 @@
-﻿# PM Skills - Plan and Inventory
+# PM Skills - Plan and Inventory
 
 This document tracks every skill, agent, command, hook, and script in the repo, along with its current status. It's auto-updated by `scripts/update-docs.ps1` on every commit.
 
@@ -26,6 +26,7 @@ Skills are the core PM workflows. Each skill lives in `.github/skills/<name>/SKI
 | **build-strategy-doc** | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews | Ready to use |
 | **build-user-guide** | `/build-user-guide` | Write a customer-facing user guide or product walkthrough | Ready to use |
 | **build-user-research** | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide | Ready to use |
+| **export-docx** | `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback | Ready to use |
 | **frontend-developer** | `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) | Ready to use |
 | **frontend-developer-claude** | `/frontend-developer-claude` | Senior frontend engineer and UI architect | Ready to use |
 | **ideation** | `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) | Ready to use |

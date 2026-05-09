@@ -1,4 +1,4 @@
-﻿# Onboarding PM Skills to Claude Cowork (VS Code Extension)
+# Onboarding PM Skills to Claude Cowork (VS Code Extension)
 
 This guide covers how to set up and use PM Skills with the Claude Cowork extension in VS Code. Claude Cowork brings Claude Code into VS Code as an integrated chat panel. If your team uses Claude Cowork, this guide shows you how the skills work, what loads automatically, and how to keep Copilot users in sync.
 
@@ -100,6 +100,7 @@ Type `/` in the Cowork chat to see available skills:
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
+| `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
 | `/frontend-developer-claude` | Senior frontend engineer and UI architect |
 | `/ideation-claude` | Deep research and ideation partner for PMs |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |

@@ -1,4 +1,4 @@
-﻿---
+---
 name: review-doc
 description: "Review any document for completeness, critical gaps, and alternative approaches. Use when: review doc, review document, review strategy, review one-pager, review architecture, review user guide, review customer story, review compete analysis, review scorecard, critique doc, document feedback, review comments, doc review."
 argument-hint: "Path to the document to review, and optionally the source document it was built from"
@@ -67,6 +67,7 @@ Detect the document type from its structure and content. Map it to the appropria
 | **Agentic Experience** | Structural coherence, clarity, completeness, audience fit |
 | **Compete** | Structural coherence, clarity, completeness, audience fit |
 | **Golden Dataset** | Structural coherence, clarity, completeness, audience fit |
+| **Export Docx** | Structural coherence, clarity, completeness, audience fit |
 | **Other** | Structural coherence, clarity, completeness, audience fit |
 <!-- REVIEW-DOC-TYPES-END -->
 

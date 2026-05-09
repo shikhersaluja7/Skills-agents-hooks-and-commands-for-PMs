@@ -42,6 +42,7 @@ code .
 | **build-strategy-doc** | `/build-strategy-doc` | yes | yes | Write an exec-ready strategy document for leadership and cross-org reviews |
 | **build-user-guide** | `/build-user-guide` | yes | yes | Write a customer-facing user guide or product walkthrough |
 | **build-user-research** | `/build-user-research` | yes | yes | Build a customer validation research kit: hypotheses, survey, and interview guide |
+| **export-docx** | `/export-docx` | yes | yes | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
 | **frontend-developer** | `@frontend-developer-ghcp` | yes | no | Senior frontend engineer and UI architect (GHCP) |
 | **frontend-developer-claude** | `/frontend-developer-claude` | no | yes | Senior frontend engineer and UI architect |
 | **ideation** | `@ideation-ghcp` | yes | no | Deep research and ideation partner for PMs (GHCP) |
@@ -109,7 +110,21 @@ You need at least one of: GitHub Copilot or Claude Code/Cowork. Both work.
 |------|---------|---------|
 | Python 3.9+ | `winget install Python.Python.3.11` | Runs translate-inputs.py |
 | Python packages | `pip install openpyxl beautifulsoup4 requests markdownify mammoth python-docx` | Converts .xlsx, .html, .docx to markdown and exports .docx |
-| Pandoc | `winget install JohnMacFarlane.Pandoc` | Converts .docx to markdown (alternative to mammoth) |
+| Pandoc | `winget install JohnMacFarlane.Pandoc` | Converts both directions: .docx -> markdown (input) and markdown -> .docx (output via `/export-docx`) |
+
+### Optional (for `.docx` export and Word reviewer feedback)
+
+The repo ships a `/export-docx` slash command and a Stop hook that prompts you after any `.md` is saved under `output/`. It can also ingest reviewer comments and tracked changes from a returned `.docx` via an MCP server.
+
+| Tool | Install | Purpose |
+|------|---------|---------|
+| Pandoc | `winget install JohnMacFarlane.Pandoc` | Same install as above; `/export-docx` runs `pandoc input.md -o input.docx` |
+| office-word-mcp-server | `pip install office-word-mcp-server` | MCP server that reads `.docx` files (comments, tracked changes) for `/review-doc` and similar workflows |
+| MCP registration | `claude mcp add office-word --scope user -- "<full path to word_mcp_server.exe>"` | One-time registration with Claude Code; verify with `claude mcp list` (health-check should show `Connected`) |
+
+The MCP entry point is the `word_mcp_server.exe` console script that pip drops into your Python `Scripts` directory (e.g. `C:\Users\<you>\AppData\Roaming\Python\Python<ver>\Scripts\word_mcp_server.exe`). Pass the full path to `claude mcp add` because the Scripts directory may not be on the PATH that Claude Code uses when launching the server.
+
+To mute the auto-prompt after every save, set the environment variable `CLAUDE_SKILLS_DOCX_PROMPT=off`.
 
 ### One-time setup after cloning
 
@@ -122,6 +137,11 @@ python -m venv .venv
 .venv\Scripts\activate        # Windows
 # source .venv/bin/activate   # macOS/Linux
 pip install openpyxl beautifulsoup4 requests markdownify mammoth python-docx
+
+# Optional: enable .docx export and Word feedback ingestion
+winget install JohnMacFarlane.Pandoc
+pip install office-word-mcp-server
+claude mcp add office-word --scope user -- "<full path to word_mcp_server.exe>"
 ```
 
 ### Environment paths

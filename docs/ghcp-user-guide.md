@@ -1,4 +1,4 @@
-﻿# PM Skills for GitHub Copilot: A Guide for your product PMs
+# PM Skills for GitHub Copilot: A Guide for your product PMs
 
 This guide walks PMs on the your product team through using PM Skills in GitHub Copilot. You'll learn how to generate specs, blogs, and user guides from your source material, and how to update and extend the skills yourself.
 
@@ -107,6 +107,7 @@ Type `/` in Copilot Chat to see available skills:
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
+| `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
 | `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) |
 | `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |
@@ -655,6 +656,33 @@ On the Copilot side, skill-improver is an agent (`.github/agents/skill-improver.
 
 ---
 
+<!-- SKILL-SECTION-START: export-docx -->
+## 25. Exporting Drafts as .docx
+
+```
+/export-docx output/one-pagers/living-expense-tracker.md
+```
+
+Converts a saved markdown file (or several combined into one) to a `.docx` so you can circulate it, get track-changes feedback, or print it. Wraps Pandoc behind a PM-friendly slash command.
+
+The skill runs in two modes. **Single-file** mode takes one `.md` under `output/` and writes the `.docx` alongside it. **Bundle** mode takes a comma-separated list of `.md` files (which can come from `input/` or `output/`), concatenates them with `---` separators, saves the combined `.md` under `output/source-docs/<name>.md`, and converts that. Bundle mode is the right pick when you want one Word doc that captures all the source material a reviewer needs.
+
+If you don't pass an argument, the skill auto-detects the most-recently-modified `.md` under `output/` and asks before converting.
+
+### Auto-prompt (Claude side)
+
+When you run skills inside Claude Code, a Stop hook (`scripts/docx-prompt.ps1`) detects fresh `.md` saves under `output/` and emits a system-reminder that prompts about the conversion. Mute it with `CLAUDE_SKILLS_DOCX_PROMPT=off` if it gets noisy. The Copilot side does not have an equivalent auto-prompt; invoke `/export-docx` explicitly when working in GHCP Chat.
+
+### Reviewer comments back
+
+When a `.docx` returns from review with comments and tracked changes, the `office-word` MCP server (registered via `claude mcp add` on the Claude side) reads them. Hand the file to `/review-doc` along with a note that you want comment ingestion. GHCP users can use the same MCP server if Copilot Chat is configured with MCP tooling, or read comments out of band and paste them into chat.
+
+### What you get
+
+The `.docx` next to the source `.md`, plus a chat report with the output path and file size. Generated `.docx` files live under `output/` and are gitignored by default. Pandoc must be installed (`winget install JohnMacFarlane.Pandoc`).
+<!-- SKILL-SECTION-END: export-docx -->
+
+---
 ## 25. Frequently Asked Questions
 
 **Q: Where do generated files go?**
