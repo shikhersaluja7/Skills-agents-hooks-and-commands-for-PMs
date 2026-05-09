@@ -24,13 +24,14 @@ The repo maintains two parallel skill ecosystems and keeps them in sync:
 
 ### The hook pipeline
 
-`.githooks/pre-commit` runs three steps in order. If any fails, the commit aborts:
+`.githooks/pre-commit` runs four steps in order. If any fails, the commit aborts:
 
 1. `scripts/sync-skills.ps1 -Apply -Staged` - Mirror any drift between `.github/` and `.claude/`. Stages updated files into the commit.
 2. `scripts/update-docs.ps1 -Apply -Staged` - Regenerate the `<!-- SKILL-TABLE-START -->` tables in README, both user guides, and both onboarding docs. Regenerate the `<!-- REVIEW-DOC-TYPES-START -->` table in `review-doc/SKILL.md`. Auto-seed missing per-skill mini-sections in user guides via `Ensure-SkillSections` (see below).
 3. `scripts/humanizer-check.ps1` on staged `.md` files - block banned words, banned phrases, banned starters, em dashes.
+4. `scripts/secrets-check.ps1` on every staged file (any extension) - block credentials, MCP/SSO/login tokens, and user-specific paths from leaking into tracked content. Patterns include token prefixes (`sk-`, `ghp_`, `xoxb-`, `AKIA`, JWT, PEM private keys), concrete user home paths (`C:\Users\<actual>`, `/Users/<actual>`, `/home/<actual>`), and secret-shaped assignments (`api_key="..."`, `client_secret: "..."`). Allowlist covers placeholders (`<you>`, `your-...`, `example-...`), generic accounts (`Public`, `Default`, `runner`), `LICENSE`, lockfiles, and the script itself. Run audit-mode with `scripts/secrets-check.ps1 -All`.
 
-`.githooks/pre-push` runs verify-only versions of the same three steps against `$UPSTREAM..HEAD` markdown files. It blocks the push if any are out of sync rather than auto-fixing.
+`.githooks/pre-push` runs verify-only versions of the same four steps against `$UPSTREAM..HEAD` files. It blocks the push if any drift, doc-staleness, humanizer, or secrets violation is found rather than auto-fixing.
 
 Required one-time setup after cloning: `git config core.hooksPath .githooks`.
 
@@ -48,11 +49,14 @@ Required one-time setup after cloning: `git config core.hooksPath .githooks`.
 # Humanizer check on specific files
 scripts/humanizer-check.ps1 -Files "path/to/file.md","path/to/other.md"
 
+# Secrets check (audit every tracked file)
+scripts/secrets-check.ps1 -All
+
 # Convert non-markdown inputs (.docx, .xlsx, .csv, .html, .json) to .md
 python scripts/translate-inputs.py input/<type>/<project>/
 ```
 
-There are no automated tests in this repo. The "test" for any change is: run the three scripts dry, then again with `-Apply`, and confirm `-Apply` is idempotent (a second run reports zero changes).
+There are no automated tests in this repo. The "test" for any change is: run the four scripts dry, then the apply-able ones with `-Apply`, and confirm a second run reports zero changes (idempotent). The secrets check has no `-Apply` mode by design - violations require human review.
 
 ### Adding a skill, agent, or prompt
 

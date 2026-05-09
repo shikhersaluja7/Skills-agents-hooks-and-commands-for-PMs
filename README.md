@@ -102,7 +102,7 @@ You need at least one of: GitHub Copilot or Claude Code/Cowork. Both work.
 | Tool | Install | Purpose |
 |------|---------|---------|
 | Git | `winget install Git.Git` | Version control + sync hooks |
-| PowerShell 5.1+ | Pre-installed on Windows. `brew install powershell` on macOS. | Runs sync, update-docs, and humanizer scripts |
+| PowerShell 5.1+ | Pre-installed on Windows. `brew install powershell` on macOS. | Runs sync, update-docs, humanizer, and secrets-check scripts |
 
 ### Optional (for input file conversion)
 
@@ -181,7 +181,7 @@ Skills/
 |   +-- settings.json                   # Claude Stop hook
 |
 |-- CLAUDE.md                           # Claude workspace instructions (synced)
-|-- .githooks/pre-commit                # 3-step pipeline: sync, update-docs, humanizer
+|-- .githooks/pre-commit                # 4-step pipeline: sync, update-docs, humanizer, secrets-check
 |
 |-- docs/                               # User guides and onboarding docs
 |   |-- ghcp-user-guide.md
