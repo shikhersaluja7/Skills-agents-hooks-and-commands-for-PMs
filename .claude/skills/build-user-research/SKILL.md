@@ -40,7 +40,7 @@ When generating each artifact, scan the `reference-examples/` folder for real-wo
 
 ## Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a project name (e.g., "linux-migration-tooling"), check for `input/user-research/linux-migration-tooling/`. If the folder exists, automatically scan all `.md` files in it for source material. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/user-research/<project-name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a project name (e.g., "linux-migration-tooling"), check for `input/user-research/linux-migration-tooling/`. If the folder exists, automatically scan all `.md` files in it for source material. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/user-research/<project-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 

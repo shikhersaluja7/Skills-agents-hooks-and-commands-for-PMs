@@ -108,6 +108,7 @@ Type `/` in Copilot Chat to see available skills:
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
 | `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
+| `/export-xlsx` | Convert a saved CSV file to an Excel .xlsx workbook for sharing or analysis in Excel |
 | `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) |
 | `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |
@@ -681,6 +682,21 @@ When a `.docx` returns from review with comments and tracked changes, the `offic
 
 The `.docx` next to the source `.md`, plus a chat report with the output path and file size. Generated `.docx` files live under `output/` and are gitignored by default. Pandoc must be installed (`winget install JohnMacFarlane.Pandoc`).
 <!-- SKILL-SECTION-END: export-docx -->
+
+---
+<!-- SKILL-SECTION-START: export-xlsx -->
+## Using export-xlsx
+
+```
+/export-xlsx <example argument>
+```
+
+Convert a saved CSV file to an Excel .xlsx workbook for sharing or analysis in Excel
+
+Saves to `output/reports/`.
+
+> *Auto-generated stub. Replace with a walkthrough following the style of section 5 (build-blog) or section 6 (build-user-guide).*
+<!-- SKILL-SECTION-END: export-xlsx -->
 
 ---
 ## 25. Frequently Asked Questions

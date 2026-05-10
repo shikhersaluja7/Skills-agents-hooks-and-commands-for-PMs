@@ -25,7 +25,7 @@ Multiple sources can be combined. The skill extracts the customer-facing capabil
 
 ## Step 1: Gather Inputs
 
-Check if an input folder exists. If the PM provides a name (e.g., "sql-assessment"), check for `input/documentation/sql-assessment/`. If the folder exists, scan all files. If non-markdown files exist, run `scripts/translate-inputs.py input/documentation/<name>/` to convert them first.
+Check if an input folder exists. If the PM provides a name (e.g., "sql-assessment"), check for `input/documentation/sql-assessment/`. If the folder exists, scan all files. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/documentation/<name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 

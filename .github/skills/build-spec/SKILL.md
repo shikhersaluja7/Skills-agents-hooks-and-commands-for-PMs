@@ -107,7 +107,7 @@ Follow these steps when the user asks to create a new spec.
 
 ### Step 1: Gather Inputs
 
-First, check if an input folder exists for this spec. If the PM provides a project name (e.g., "wave-planning"), check for `input/specs/wave-planning/`. If the folder exists, automatically scan all `.md` files in it for source material. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/specs/<project-name>/` to convert them first.
+First, check if an input folder exists for this spec. If the PM provides a project name (e.g., "wave-planning"), check for `input/specs/wave-planning/`. If the folder exists, automatically scan all `.md` files in it for source material. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/specs/<project-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 

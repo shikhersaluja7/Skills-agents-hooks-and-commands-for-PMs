@@ -14,7 +14,7 @@ Before drafting, read the **User Guides** section of [.github/style-guide.md](..
 
 ## Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a product or feature name (e.g., "application-assessment"), check for `input/user-guides/application-assessment/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/user-guides/<name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a product or feature name (e.g., "application-assessment"), check for `input/user-guides/application-assessment/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/user-guides/<name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 
@@ -152,7 +152,7 @@ These rules apply on top of the workspace Humanized Writing Standard:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 
@@ -174,7 +174,7 @@ Before presenting the draft, verify:
 
 ### Optional: Deep Research
 
-Before drafting, you can invoke the `@ideation-claude` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
+Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market context, competitive intelligence, or trend analysis. It searches across Substack, Reddit, YouTube, competitor blogs, and analyst reports to surface insights relevant to this artifact. Ask the PM: `Want me to run deep research before drafting? I can explore the competitive landscape, market trends, or user pain points related to this topic.` Only invoke if the PM says yes.
 
 ## Checklist
 

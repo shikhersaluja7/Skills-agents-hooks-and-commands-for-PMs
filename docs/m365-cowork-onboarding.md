@@ -102,6 +102,7 @@ Type `/` in the chat input to see all available skills:
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
 | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide |
 | `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
+| `/export-xlsx` | Convert a saved CSV file to an Excel .xlsx workbook for sharing or analysis in Excel |
 | `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) |
 | `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) |
 | `/review-doc` | Review any document for completeness, critical gaps, and alternative approaches |

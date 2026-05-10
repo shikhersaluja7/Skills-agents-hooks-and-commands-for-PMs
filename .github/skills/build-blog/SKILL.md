@@ -14,7 +14,7 @@ Before drafting, read the **Blog Posts** section of [.github/style-guide.md](../
 
 ## Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a topic name (e.g., "migration-agent-announcement"), check for `input/blogs/migration-agent-announcement/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/blogs/<topic-name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a topic name (e.g., "migration-agent-announcement"), check for `input/blogs/migration-agent-announcement/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/blogs/<topic-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 
@@ -135,7 +135,7 @@ Before drafting, you can invoke the `@ideation-ghcp` agent for deeper market con
 
 Before presenting the draft, verify:
 
-- [ ] Opening hook is specific to the topic (no "In this blog post..." or "In today's world...")
+- [ ] Opening hook is specific to the topic (no "In this blog post..." or generic trend-evoking landscape openers)
 - [ ] Every claim backed by specific numbers, dates, or customer references
 - [ ] Call-to-action present with link placeholder
 - [ ] Reading time under 8 minutes (word count / 250 WPM)

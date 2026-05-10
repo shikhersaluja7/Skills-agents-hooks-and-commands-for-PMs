@@ -25,7 +25,7 @@ If the PM offers other source types (one-pagers, blogs, specs, web research, com
 
 Check if an input folder exists. If the PM provides a customer name (e.g., "acme-corp"), check for `input/customer-stories/acme-corp/`. If the folder exists, scan all files.
 
-If non-markdown files exist (.docx, .xlsx, .csv, .html, .txt), run `scripts/translate-inputs.py input/customer-stories/<customer-name>/` to convert them first. Then read all `.md` and `.txt` files.
+If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/customer-stories/<customer-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs. Then read all `.md` and `.txt` files.
 
 If no input folder exists, create one and tell the PM:
 

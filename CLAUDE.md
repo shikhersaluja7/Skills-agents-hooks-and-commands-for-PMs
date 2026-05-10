@@ -148,17 +148,59 @@ If the script reports violations (banned words, banned phrases, banned starters)
 
 ---
 
-## Sharing Drafts as .docx
+## File Format Policy
 
-Many PM artifacts get circulated to reviewers who prefer Word documents (track changes, inline comments, formal review). The repo supports this with three components:
+**This rule applies globally to every skill, command, agent, and workflow in this workspace.**
 
-- **Stop hook (`scripts/docx-prompt.ps1`)** - fires when Claude finishes a turn and detects any `.md` saved under `output/` within the last 90 seconds. The hook emits a system-reminder so Claude offers the PM an optional `.docx` export. Mute with environment variable `CLAUDE_SKILLS_DOCX_PROMPT=off`.
+The repo separates *native, code-friendly* formats (`.md`, `.csv`, `.json`, `.txt`) from *Office sharing* formats (`.docx`, `.xlsx`, `.pptx`). Native is always the source of truth. Office formats are optional, secondary, and explicit. The policy has two sub-rules: one for inputs the PM hands a skill, one for outputs a skill produces.
 
-- **Slash command `/export-docx`** - explicit invocation when the PM doesn't want to wait for the hook or wants to bundle multiple source files into one combined Word doc. Wraps `scripts/export-docx.ps1`, which calls Pandoc.
+### Input ingestion (B.1)
 
-- **`office-word` MCP server** - registered with Claude Code via `claude mcp add`. Lets `/review-doc` (and any other skill) read reviewer comments and tracked changes back from a returned `.docx`. Use it when feedback comes in.
+When a skill needs to ingest a non-markdown file (`.docx`, `.pptx`, `.xlsx`, `.pdf`, `.csv`, `.html`, `.json`, etc.), follow check-decide-dispatch. Do not ask the PM redundant questions when only one path is possible.
 
-Generated `.docx` files live next to their source `.md` under `output/` (gitignored by default). Pandoc must be installed for export to work (`winget install JohnMacFarlane.Pandoc`). The MCP server is `office-word-mcp-server` from PyPI (`pip install office-word-mcp-server`).
+1. **Detect** the file format.
+2. **Check what is available** this session:
+   - Is an MCP for that format registered AND callable? (`office-word` for `.docx`, `office-powerpoint` for `.pptx`, `office-excel` for `.xlsx`.)
+   - Is `scripts/translate-inputs.py` able to convert this format? (Handles `.docx`, `.xlsx`, `.csv`, `.html`, `.json`. Does NOT handle `.pptx`.)
+3. **Decide and dispatch:**
+   - **Both paths available** (MCP installed AND converter handles this format): **ask the PM** which to use. Save the answer for the duration of the skill invocation so a multi-file batch does not re-ask.
+   - **Only MCP available** (e.g. `.pptx`): proceed with the MCP automatically. No question. Surface a single FYI line: "Read [file] directly via the `office-<format>` MCP - no converter fallback exists for this format."
+   - **Only converter available** (MCP not installed for this format): **proceed with conversion automatically.** No question. After the conversion, surface a single FYI line: "Converted [file] via translate-inputs.py. Installing the `office-<format>` MCP gives a richer ingestion (slide layouts, formulas, comments, etc.). See README's Optional Office MCPs if you want it." One mention per skill invocation, not per file.
+   - **Neither path available** (legacy `.ppt`, `.xls`, or unsupported format): tell the PM, list the options (install an MCP, convert externally with Office or LibreOffice, paste the content), and wait for direction.
+
+**Autonomous mode** (PM is AFK, skill running with PM-stand-in): when both options exist, default to the converter path because `translate-inputs.py` is the always-works baseline. Surface the deferred choice in the handoff summary so the PM can re-run with their preferred mode if they wanted MCP-direct.
+
+**Do not** silently auto-convert when an MCP is available - that is the case where the PM gets to choose. The legacy "non-md input always auto-triggers translate-inputs.py" behavior is retired by this policy. Auto-convert remains correct *only* when the MCP path is unavailable, and even then the FYI nudge keeps the PM informed of the upgrade path.
+
+### Output generation (B.2)
+
+Skills save artifacts in native, code-friendly formats by default: `.md` for prose, `.csv` for tabular data, `.json` for structured data, `.txt` for plain notes. The native file is the source of truth. It flows into version control, downstream skills, and code that consumes the artifact.
+
+Conversion to Office formats (`.docx`, `.xlsx`) is **optional, secondary, and explicit**. It happens **only after the PM has approved the native artifact** and either explicitly asks for the conversion or accepts the offer surfaced by the Stop hook. Skills do not auto-produce Office-format outputs alongside the native file at save time.
+
+Conversion paths:
+- `.md` or `.txt` -> `.docx` via `scripts/export-docx.ps1` or the `/export-docx` slash command (Pandoc).
+- `.csv` -> `.xlsx` via `scripts/export-xlsx.ps1` or the `/export-xlsx` slash command (openpyxl, or the `office-excel` MCP if installed).
+
+The Stop hook (`scripts/docx-prompt.ps1`) detects fresh `.md`, `.txt`, and `.csv` saves under `output/` and emits a system-reminder offering the relevant Office export. Mute via the existing `CLAUDE_SKILLS_DOCX_PROMPT=off` environment variable (covers all formats this hook scans).
+
+**Why native-first:** the artifacts in `output/` feed code workflows, version control diffs, and downstream skill ingestion. Native formats (`.md`, `.csv`, `.txt`, `.json`) are diffable, scriptable, and parseable without Office. Office formats are for circulation to human reviewers; they should follow approval, not lead it.
+
+---
+
+## Sharing Output as Office Formats
+
+The discoverability hook for the File Format Policy's output side. Components in the repo:
+
+- **Stop hook (`scripts/docx-prompt.ps1`)** - fires when Claude finishes a turn and detects any `.md`, `.txt`, or `.csv` saved under `output/` within the last 90 seconds. The hook emits a system-reminder so Claude offers the PM the right Office export per format. Mute with environment variable `CLAUDE_SKILLS_DOCX_PROMPT=off`.
+
+- **Slash command `/export-docx`** - explicit invocation for `.md` or `.txt` -> `.docx`. Bundle mode supports combining several source files into one Word doc. Wraps `scripts/export-docx.ps1`, which calls Pandoc.
+
+- **Slash command `/export-xlsx`** - explicit invocation for `.csv` -> `.xlsx`. Wraps `scripts/export-xlsx.ps1`, which uses Python + openpyxl.
+
+- **Office MCP servers (optional)** - `office-word`, `office-powerpoint`, `office-excel`, all registered via `claude mcp add`. Let skills like `/review-doc` ingest reviewer comments and tracked changes back from returned Office files. Pure Python (python-docx, python-pptx, openpyxl); no M365 subscription or MS Office install required. See README's Optional section for install commands.
+
+Generated Office files live next to their native source under `output/` (gitignored). Pandoc must be installed for `.docx` export (`winget install JohnMacFarlane.Pandoc`). The Office MCPs are `office-word-mcp-server`, `office-powerpoint-mcp-server`, and `excel-mcp-server` from PyPI.
 
 ---
 

@@ -38,7 +38,7 @@ Follow the **PM-in-the-Loop Contract** and **Humanized Writing Standard** define
 
 ## Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a topic name (e.g., "your-product-vs-competitor-1"), check for `input/compete-analysis/your-product-vs-competitor-1/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a topic name (e.g., "your-product-vs-competitor-1"), check for `input/compete-analysis/your-product-vs-competitor-1/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 
@@ -768,7 +768,7 @@ If the PM has source material to provide as files, create the input folder:
 input/compete-analysis/<topic-name>/
 ```
 
-Scan all `.md` files automatically. For non-markdown files (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` to convert them first.
+Scan all `.md` files automatically. For non-markdown files, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/compete-analysis/<topic-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 Source material shared only for format reference must not be treated as a data source. Only use it to understand the expected output structure.
 

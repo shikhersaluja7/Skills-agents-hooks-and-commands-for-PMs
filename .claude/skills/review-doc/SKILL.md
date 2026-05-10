@@ -68,6 +68,7 @@ Detect the document type from its structure and content. Map it to the appropria
 | **Compete** | Structural coherence, clarity, completeness, audience fit |
 | **Golden Dataset** | Structural coherence, clarity, completeness, audience fit |
 | **Export Docx** | Structural coherence, clarity, completeness, audience fit |
+| **Export Xlsx** | Structural coherence, clarity, completeness, audience fit |
 | **Other** | Structural coherence, clarity, completeness, audience fit |
 <!-- REVIEW-DOC-TYPES-END -->
 

@@ -1,21 +1,25 @@
 <#
 .SYNOPSIS
-  Convert a markdown file under output/ to .docx using Pandoc.
+  Convert a markdown or plain-text file under output/ to .docx using Pandoc.
 
 .DESCRIPTION
-  Wraps `pandoc <input>.md -o <output>.docx`. Used standalone or invoked by the /export-docx skill.
+  Wraps `pandoc <input>.md -o <output>.docx`. Accepts `.md` and `.txt` source files
+  (Pandoc handles both). Used standalone or invoked by the /export-docx skill.
 
 .PARAMETER File
-  Path to a .md file. Required unless -Auto is used.
+  Path to a .md or .txt file. Required unless -Auto is used.
 
 .PARAMETER Auto
-  Auto-detect the most-recently-modified .md under output/.
+  Auto-detect the most-recently-modified .md or .txt under output/.
 
 .PARAMETER Output
-  Optional explicit output path. Default: same path with .md replaced by .docx.
+  Optional explicit output path. Default: same path with the source extension replaced by .docx.
 
 .EXAMPLE
   scripts\export-docx.ps1 -File output\one-pagers\living-expense-tracker.md
+
+.EXAMPLE
+  scripts\export-docx.ps1 -File output\notes\meeting.txt
 
 .EXAMPLE
   scripts\export-docx.ps1 -Auto
@@ -43,9 +47,10 @@ if (-not $pandocCmd) {
 
 # Resolve input
 if ($Auto) {
-  $candidates = Get-ChildItem -Path 'output' -Recurse -Filter '*.md' -File -ErrorAction SilentlyContinue
+  $candidates = Get-ChildItem -Path 'output' -Recurse -File -ErrorAction SilentlyContinue |
+                Where-Object { $_.Extension -in '.md','.txt' }
   if (-not $candidates) {
-    Write-Error "No .md files found under output/."
+    Write-Error "No .md or .txt files found under output/."
     exit 1
   }
   $InputFile = ($candidates | Sort-Object LastWriteTime -Descending | Select-Object -First 1).FullName
@@ -58,8 +63,9 @@ if ($Auto) {
   $InputFile = (Resolve-Path -LiteralPath $File).Path
 }
 
-if (-not $InputFile.ToLower().EndsWith('.md')) {
-  Write-Error "Expected a .md file, got: $InputFile"
+$inputLower = $InputFile.ToLower()
+if (-not ($inputLower.EndsWith('.md') -or $inputLower.EndsWith('.txt'))) {
+  Write-Error "Expected a .md or .txt file, got: $InputFile"
   exit 1
 }
 

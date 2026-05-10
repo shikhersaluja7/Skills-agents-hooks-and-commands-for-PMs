@@ -54,7 +54,7 @@ Before building structure, ask if the PM has source material that can provide co
 **Note on authenticated URLs:** SharePoint and other authenticated URLs cannot be fetched directly. If the PM shares these, ask them to download the files and drop them in `input/emails/<topic-name>/`, or paste the content into chat.
 
 If the PM provides material:
-- Check `input/emails/<topic-name>/` for files. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json), run `scripts/translate-inputs.py input/emails/<topic-name>/` to convert them.
+- Check `input/emails/<topic-name>/` for files. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/emails/<topic-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 - Read all provided documents, files, or URLs.
 - Extract: key capabilities, timelines, audience signals, customer impact, required actions, links, metrics, team contributors.
 

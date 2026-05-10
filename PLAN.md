@@ -27,6 +27,7 @@ Skills are the core PM workflows. Each skill lives in `.github/skills/<name>/SKI
 | **build-user-guide** | `/build-user-guide` | Write a customer-facing user guide or product walkthrough | Ready to use |
 | **build-user-research** | `/build-user-research` | Build a customer validation research kit: hypotheses, survey, and interview guide | Ready to use |
 | **export-docx** | `/export-docx` | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback | Ready to use |
+| **export-xlsx** | `/export-xlsx` | Convert a saved CSV file to an Excel .xlsx workbook for sharing or analysis in Excel | Ready to use |
 | **frontend-developer** | `@frontend-developer-ghcp` | Senior frontend engineer and UI architect (GHCP) | Ready to use |
 | **frontend-developer-claude** | `/frontend-developer-claude` | Senior frontend engineer and UI architect | Ready to use |
 | **ideation** | `@ideation-ghcp` | Deep research and ideation partner for PMs (GHCP) | Ready to use |

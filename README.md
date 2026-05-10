@@ -43,6 +43,7 @@ code .
 | **build-user-guide** | `/build-user-guide` | yes | yes | Write a customer-facing user guide or product walkthrough |
 | **build-user-research** | `/build-user-research` | yes | yes | Build a customer validation research kit: hypotheses, survey, and interview guide |
 | **export-docx** | `/export-docx` | yes | yes | Convert a saved markdown file (or a combined bundle of several) to a .docx for circulation, reviewer comments, or Word-based feedback |
+| **export-xlsx** | `/export-xlsx` | yes | yes | Convert a saved CSV file to an Excel .xlsx workbook for sharing or analysis in Excel |
 | **frontend-developer** | `@frontend-developer-ghcp` | yes | no | Senior frontend engineer and UI architect (GHCP) |
 | **frontend-developer-claude** | `/frontend-developer-claude` | no | yes | Senior frontend engineer and UI architect |
 | **ideation** | `@ideation-ghcp` | yes | no | Deep research and ideation partner for PMs (GHCP) |
@@ -82,7 +83,7 @@ Skills accept source material in three ways:
 
 The `input/` and `output/` directories are gitignored. You create them locally and populate them with your own data - nothing in those folders is committed to the repo.
 
-Non-markdown files are converted automatically using `scripts/translate-inputs.py`.
+Non-markdown inputs are handled per the **File Format Policy** in [CLAUDE.md](CLAUDE.md): if an Office MCP server is registered for the format, the skill asks whether to read it directly or convert; if no MCP is registered, the skill auto-converts via `scripts/translate-inputs.py` and surfaces a one-line FYI about the optional MCP upgrade. Outputs save in native formats (`.md`, `.csv`, `.txt`, `.json`) first; `.docx` and `.xlsx` exports are explicit and follow PM approval.
 
 ## Prerequisites
 
@@ -112,19 +113,34 @@ You need at least one of: GitHub Copilot or Claude Code/Cowork. Both work.
 | Python packages | `pip install openpyxl beautifulsoup4 requests markdownify mammoth python-docx` | Converts .xlsx, .html, .docx to markdown and exports .docx |
 | Pandoc | `winget install JohnMacFarlane.Pandoc` | Converts both directions: .docx -> markdown (input) and markdown -> .docx (output via `/export-docx`) |
 
-### Optional (for `.docx` export and Word reviewer feedback)
+### Optional Office MCPs and exports
 
-The repo ships a `/export-docx` slash command and a Stop hook that prompts you after any `.md` is saved under `output/`. It can also ingest reviewer comments and tracked changes from a returned `.docx` via an MCP server.
+The repo ships two slash commands for native -> Office conversion plus optional MCP servers that let Claude read Office files directly. Everything here is **optional**. None of the MCPs require an M365 subscription or an MS Office install: they are pure-Python (`python-docx`, `python-pptx`, `openpyxl`).
+
+The runtime contract for *when* each path is used lives in the **File Format Policy** section of [CLAUDE.md](CLAUDE.md). Short version: on input, the skill prefers a registered MCP for direct reading and falls back to `scripts/translate-inputs.py` when no MCP is installed; on output, skills save native formats first and offer Office exports only after PM approval.
+
+#### Output exports (slash commands)
 
 | Tool | Install | Purpose |
 |------|---------|---------|
-| Pandoc | `winget install JohnMacFarlane.Pandoc` | Same install as above; `/export-docx` runs `pandoc input.md -o input.docx` |
-| office-word-mcp-server | `pip install office-word-mcp-server` | MCP server that reads `.docx` files (comments, tracked changes) for `/review-doc` and similar workflows |
-| MCP registration | `claude mcp add office-word --scope user -- "<full path to word_mcp_server.exe>"` | One-time registration with Claude Code; verify with `claude mcp list` (health-check should show `Connected`) |
+| Pandoc | `winget install JohnMacFarlane.Pandoc` | `/export-docx` runs `pandoc input.md -o input.docx` (also accepts `.txt`) |
+| openpyxl | `pip install openpyxl` (already a `translate-inputs.py` dep) | `/export-xlsx` reads a `.csv` under `output/` and writes a single-sheet `.xlsx` next to it |
 
-The MCP entry point is the `word_mcp_server.exe` console script that pip drops into your Python `Scripts` directory (e.g. `C:\Users\<you>\AppData\Roaming\Python\Python<ver>\Scripts\word_mcp_server.exe`). Pass the full path to `claude mcp add` because the Scripts directory may not be on the PATH that Claude Code uses when launching the server.
+A Stop hook (`scripts/docx-prompt.ps1`) detects fresh `.md`, `.txt`, and `.csv` saves under `output/` and prompts the next turn to offer the right export skill. Mute with `CLAUDE_SKILLS_DOCX_PROMPT=off`.
 
-To mute the auto-prompt after every save, set the environment variable `CLAUDE_SKILLS_DOCX_PROMPT=off`.
+#### Office MCP servers (read/write Office files directly)
+
+| Format | Package | Registration |
+|--------|---------|--------------|
+| `.docx` | `pip install office-word-mcp-server` | `claude mcp add office-word --scope user -- "<full path to word_mcp_server.exe>"` |
+| `.pptx` | `pip install office-powerpoint-mcp-server` | `claude mcp add office-powerpoint --scope user -- "<full path to ppt_mcp_server.exe>"` |
+| `.xlsx` | `pip install excel-mcp-server` | `claude mcp add office-excel --scope user -- "<full path to excel-mcp-server.exe>" stdio` |
+
+Verify with `claude mcp list` (each row should report `Connected`). The Excel server requires the trailing `stdio` transport subcommand.
+
+The MCP entry points are the console scripts that pip drops into your Python `Scripts` directory (e.g. `C:\Users\<you>\AppData\Roaming\Python\Python<ver>\Scripts\<name>.exe`). Pass the full path to `claude mcp add` because the Scripts directory may not be on the PATH that Claude Code uses when launching the server.
+
+After registering a new MCP, restart your Claude Code session for the new tools to surface.
 
 ### One-time setup after cloning
 
@@ -138,10 +154,12 @@ python -m venv .venv
 # source .venv/bin/activate   # macOS/Linux
 pip install openpyxl beautifulsoup4 requests markdownify mammoth python-docx
 
-# Optional: enable .docx export and Word feedback ingestion
+# Optional: enable .docx and .xlsx export + direct Office reading via MCPs
 winget install JohnMacFarlane.Pandoc
-pip install office-word-mcp-server
+pip install office-word-mcp-server office-powerpoint-mcp-server excel-mcp-server openpyxl
 claude mcp add office-word --scope user -- "<full path to word_mcp_server.exe>"
+claude mcp add office-powerpoint --scope user -- "<full path to ppt_mcp_server.exe>"
+claude mcp add office-excel --scope user -- "<full path to excel-mcp-server.exe>" stdio
 ```
 
 ### Environment paths

@@ -27,7 +27,7 @@ Multiple sources can be combined. The more context the PM provides, the stronger
 
 ## Step 1: Gather Inputs
 
-Check if an input folder exists. If the PM provides a period (e.g., "april-2026"), check for `input/mbr/april-2026/`. If the folder exists, scan all files. If non-markdown files exist, run `scripts/translate-inputs.py input/mbr/<period>/` to convert them first.
+Check if an input folder exists. If the PM provides a period (e.g., "april-2026"), check for `input/mbr/april-2026/`. If the folder exists, scan all files. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/mbr/<period>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 

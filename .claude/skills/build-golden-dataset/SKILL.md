@@ -33,10 +33,7 @@ If an `input/golden-datasets/<project-name>/` folder exists, auto-scan it. Other
 - **Existing test cases** - Acceptance criteria, QA test plans, regression suites
 - **URLs** - Links to live endpoints, documentation pages, or dashboards
 
-For non-markdown files, offer conversion:
-```
-scripts/translate-inputs.py input/golden-datasets/<project-name>/
-```
+For non-markdown files, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/golden-datasets/<project-name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 Read and parse every input file. Build a mental model of the data: what columns exist, what values are present, what calculations are possible, what relationships exist between data points.
 

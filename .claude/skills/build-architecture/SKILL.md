@@ -23,7 +23,7 @@ The PM may combine sources (e.g., a one-pager plus transcripts from the design r
 
 ## Step 1: Gather Inputs
 
-Check if an input folder exists. If the PM provides a name (e.g., "migration-agent"), check for `input/architecture-docs/migration-agent/`. If the folder exists, scan all files. If non-markdown files exist (.docx, .xlsx, .csv, .html, .txt), run `scripts/translate-inputs.py input/architecture-docs/<name>/` to convert them first.
+Check if an input folder exists. If the PM provides a name (e.g., "migration-agent"), check for `input/architecture-docs/migration-agent/`. If the folder exists, scan all files. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/architecture-docs/<name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 

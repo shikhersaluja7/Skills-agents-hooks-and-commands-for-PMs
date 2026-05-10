@@ -75,7 +75,7 @@ Follow these steps when the user asks to create a strategy document.
 
 ### Step 1: Gather Inputs
 
-First, check if an input folder exists. If the PM provides a project name (e.g., "migrate-strategy-fy26"), check for `input/strategy-docs/migrate-strategy-fy26/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist (.docx, .xlsx, .csv, .html, .json, .pptx), run `scripts/translate-inputs.py input/strategy-docs/<name>/` to convert them first.
+First, check if an input folder exists. If the PM provides a project name (e.g., "migrate-strategy-fy26"), check for `input/strategy-docs/migrate-strategy-fy26/`. If the folder exists, scan all `.md` files automatically. If non-markdown files exist, follow the **File Format Policy** in `CLAUDE.md`. The policy handles MCP-direct ingestion when an Office MCP is registered, auto-conversion via `scripts/translate-inputs.py input/strategy-docs/<name>/` as the fallback, and the FYI nudge that points unaware users at the optional MCPs.
 
 If no input folder exists, create one and tell the PM:
 
