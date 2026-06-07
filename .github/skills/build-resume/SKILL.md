@@ -37,26 +37,56 @@ These rules apply to every resume produced by this skill. Violations are defects
 
 ### Grounded, Non-Fabricated Bullets
 
-- Every claim, metric, award name, customer name, and embedded link must trace to (a) an input file the PM provided, (b) a web-search result the PM approved during the public-footprint pass, or (c) an explicit `> **PM Decision Required:**` flag asking the PM to supply or confirm.
-- Never invent metrics. If a bullet needs a number the inputs do not supply, write the qualitative version and flag for PM input.
+- Every claim, metric, award name, customer name, and embedded link must trace to one of four sources:
+  1. **Feedback-derived** - the achievement and metric appear in an input file the PM provided
+  2. **Web-verified** - a web-search result the PM approved during the public-footprint pass (Step 3)
+  3. **PM-elicited** - the PM supplied the value during the outstanding-impact elicitation (Step 3.5). This is a first-class source, not a fallback - many candidates have internal awards, NPS scores, customer counts, and leadership acknowledgments that live in their head, not in periodic feedback. Step 3.5 captures these proactively.
+  4. **PM Decision Required** - used rarely, only when (a) Step 3.5 surfaced the gap and the PM said they didn't have the value, or (b) two sources conflict and the PM needs to arbitrate. Surface as `> **PM Decision Required:** <what + why>`.
+- Never invent metrics, award names, or links. If Step 3.5 didn't capture a value and no source supplies it, write the qualitative version (no number) - don't fabricate.
 - Never invent links. If a peer-typical channel (Substack, YouTube, Reddit, conference talk) is not found, write a `> **Gap:**` note instead of fabricating a URL.
+
+### Portray as Outstanding
+
+The skill's job is to portray the candidate as outstanding in their role and domain - not neutral, not understated. Grounded evidence is the guardrail; presentation is the lever.
+
+- **Lead with impact and outcome**, not effort or activity. "Drove SQL discovery to 7M+ servers" beats "Worked on SQL Server discovery scenarios."
+- **Prefer high-agency action verbs** over participation verbs:
+  - **Prefer:** Drove, Built, Conceptualized, Pioneered, Scaled, Delivered, Owned, Influenced, Established, Launched, Architected, Defined, Spearheaded
+  - **Avoid (when ownership exists):** Helped, Contributed to, Worked on, Supported, Assisted with, Participated in
+- **Verb-upgrade rule:** when the feedback uses a softer verb (e.g., "Helped close X", "Contributed to Y", "Supported Z") AND the candidate's role context shows ownership of that thread (GC / lead / SME / owner designation, manager-acknowledged ownership, or peer feedback explicitly crediting the candidate as driver), upgrade to the stronger verb. Ownership must be visible in the role context - this is not a license to inflate. When in doubt, keep the softer verb and surface as a Step 3.5 follow-up.
+- **Surface leadership-level acknowledgments verbatim** when the feedback contains them. Examples worth keeping: "manager-acknowledged $2B revenue impact", "CEO demo at Microsoft", "presented to Azure EVP and CPO", "received the Culture award for innovation". If a senior leader praised or recognized the candidate, the resume should show it.
+- **Summary line is signature-worthy.** Name the candidate's distinctive contribution to the domain, not a generic role title. "Principal PM driving Azure's migration and modernization platform from siloed workload tools to application-centric end-to-end experiences" beats "Principal Product Manager with cloud migration experience."
+- **Anti-fabrication still applies.** Outstanding does not mean invented; it means foreground the strongest grounded evidence and use the verbs that match the candidate's actual ownership level.
 
 ### Bullet Style
 
 - Action-verb-first. Present tense for the current role, past tense for prior roles.
 - Metric-anchored where evidence exists: numbers, percentages, customer counts, revenue, scope of impact.
-- Embed hyperlinks for externally verifiable proof points (product launch posts, marketplace listings, analyst mentions, conference talks).
-- Wrap load-bearing keywords (metrics, product names, awards, customer names) in `**bold**` in the markdown, which the `.tex` generator converts to `\textbf{...}`.
+- Embed hyperlinks for externally verifiable proof points. In the markdown use `[anchor text](url)`; the `.tex` generator wraps as `\href{url}{\textcolor{blue}{anchor text}}` (blue inline link, no underline arrow). Embed at the natural proof point inside the bullet, not as a trailing parenthetical.
+- Wrap load-bearing keywords in `**bold**`. The do / don't list:
+  - **Do bold:** metrics ("5K+ customers", "20%"), flagship product or service names ("Azure Migrate", "VM Insights"), award names ("Circle of Excellence", "Delphi Excellence"), strategic concepts the bullet pivots on ("application-centric approach", "Rehost, Replatform, Refactor").
+  - **Don't bold:** incremental feature names ("alert tuning feature", "CSV import"), generic skills ("market research"), customer names unless the customer is the proof point ("Geico" in a bullet about customer count is fine; "discussed migration with Geico" is not).
 
 ### Recency Weighting
 
 - Anchor more bullet real estate on the current role and the last 36 months of work.
 - Older items survive only if they remain role-defining: a published paper still relevant for the target role family, a prior employer that carries credibility weight, an award still cited in current narrative.
+- Within the 36-month window, prefer the most recent feedback's snapshot for **cumulative metrics** (discoveries, customers, revenue, adoption counts). When the same achievement appears across multiple feedback periods with different metric values, use the latest unless an earlier value is a milestone worth calling out separately ("first delivery", "peaked at X"). Earlier feedback within the window stays relevant for early-stage narrative ("Conceptualized", "Delivered preview") and for context the latest may have dropped.
 
 ### Length
 
 - Target 1 page. Accept 2 pages only if the candidate's role-defining material genuinely needs the room.
 - Each role gets the bullet count needed to fit the page budget. Use the page-fit heuristic in `references/resume-template-guide.md` before showing the draft.
+- Per-tier bullet count targets (heuristic, not hard):
+
+| Role age | Target bullet count |
+|---|---|
+| Current role (or last 36 months) | 8 - 12 top-level + nested bullets combined |
+| Last role within 5 years | 4 - 6 |
+| Roles 5 - 10 years ago | 2 - 3 |
+| Roles 10+ years ago | 2 plus a 1-sentence intro line that compresses scope |
+
+Roles outside their tier's band need a `> **PM Decision Required:**` flag asking whether to expand or compress.
 
 ### Assumption and Decision Markers
 
@@ -72,13 +102,14 @@ For items needing PM judgment, mark them clearly:
 > **PM Decision Required:** <what needs deciding and why>
 ```
 
-PM-decision items include but are not limited to:
+With Step 3.5 (Outstanding-Impact Elicitation) doing the proactive ask up front, `PM Decision Required:` flags should be rare in the final draft. Use them only for:
 
-- Metrics that no input file or web source confirms
-- Award names not in feedback (e.g., culture awards, recognition badges)
-- Internal-only metrics (e.g., NPS scores, win rates) the candidate may have access to but the skill cannot verify
 - Which web-search findings get embedded as links
 - Whether to keep an older role that the recency rule would otherwise compress
+- Two sources that conflict (e.g., feedback says 5.29M, PM-elicited says 7M+ - which to use?) where the PM needs to arbitrate
+- Bullets where Step 3.5 surfaced the gap and the PM explicitly said they didn't have a value to supply
+
+Internal awards, NPS / win rate / customer-count metrics, leadership acknowledgments, and scope-defining role status are **not** in this list anymore - Step 3.5 captures them upstream.
 
 ---
 
@@ -137,25 +168,134 @@ Ask the PM:
 If yes:
 
 - If `links.md` lists a LinkedIn URL or other anchor profiles, fetch each via `WebFetch` first. Cross-reference role titles and date ranges against the baseline and feedback. Any drift gets a `> **PM Decision Required:**` flag asking which source to trust, not a silent override.
-- Run `WebSearch` queries scoped to candidate name + employer + product names extracted in Step 2.
+- Build a **role-family channel set** before running searches. Ask the PM which family they're in (or infer from the current employer + role title) and use the matching pattern. Examples:
+
+| Role family | Channel patterns |
+|---|---|
+| Microsoft / Azure PM | `techcommunity.microsoft.com/blog/<area>/...`, `aka.ms/<feature>`, `azuremarketplace.microsoft.com/.../<partner>`, `azure.microsoft.com/en-us/blog/...`, Forrester / Gartner / IDC analyst blogs, Ignite / Build session pages on YouTube, `careers.microsoft.com/...` |
+| AWS PM | `aws.amazon.com/blogs/...`, `aws.amazon.com/marketplace/...`, re:Invent session pages on YouTube, Gartner / Forrester blogs, `aws.amazon.com/careers/...` |
+| Google Cloud PM | `cloud.google.com/blog/...`, Google Cloud Next session pages, Gartner / Forrester blogs, `careers.google.com/...` |
+| Consumer / SaaS PM | Product blog, Twitter / X, Reddit (relevant subreddit), YouTube, customer story pages, Product Hunt |
+| Open-source PM | GitHub org, CNCF / Apache project pages, KubeCon / similar conference YouTube, mailing-list archives |
+
+If the family isn't on the list, ask the PM for the 5 - 7 channel patterns their peers typically have, then use those.
+
+- Run `WebSearch` queries scoped to candidate name + employer + product names extracted in Step 2, biased toward the role-family channel patterns.
 - Present each finding as `> **Found:** <link> - <what it corroborates>`. The PM picks which to embed.
 - Flag absences as `> **Gap:** <expected channel> not found. Peers in this role typically have one; consider creating one before the next refresh.` Never invent a URL.
+- When a target URL pattern is known (e.g. PM mentions "I have an aka.ms link for feature X") but the exact slug can't be confirmed, surface as `> **PM Decision Required:** <pattern> needs the exact slug - paste the live URL or accept removal.` Don't guess slug values.
+
+### Step 3.5: Outstanding-Impact Elicitation
+
+Periodic feedback files (Connect, OKR docs, performance reviews) capture activity but consistently under-capture the items that make a candidate look outstanding on a resume: internal awards, NPS scores, customer counts from telemetry, leadership praise, scope-defining role designations, level history. The skill must proactively elicit these from the PM **before** drafting, not flag them as `> PM Decision Required:` after.
+
+Ask the PM in one batched prompt (skip the prompt only if the PM has explicitly opted out for this run):
+
+```
+Before I draft, the feedback files don't capture everything that makes you outstanding in your
+role. Please share anything you have in the following six categories. Skip any that don't apply.
+
+1. **Internal awards / recognition** - formal awards (Circle of Excellence, Culture awards,
+   Excellence awards, peer-nominated recognitions) or named recognitions not visible in the
+   feedback text.
+
+2. **Internal-only metrics** - NPS, win rates, customer counts, adoption numbers, revenue
+   projections, scope numbers you know from telemetry but aren't in the feedback. Format as
+   `<metric name>: <value>` (e.g., "NPS: > 70", "customer adoption: 5K+", "revenue projection:
+   $7.2M/year").
+
+3. **Leadership acknowledgments** - direct quotes or praise from CEO, EVP, CPO, VP, or your
+   manager that should surface as proof points. Format as `<leader title>: <what they said /
+   acknowledged>` (e.g., "CEO: demo at Microsoft", "manager: $2B revenue impact over 3 years").
+
+4. **Industry / external recognition** - analyst quotes, speaker invitations, customer story
+   features, conference keynote credits, podcast appearances, published articles.
+
+5. **Scope-defining role status** - GC / lead / SME / owner designations not in the feedback
+   text, key role transitions, level history (e.g., "L65 -> L66 in 2021", "promoted to Principal
+   PM in 2020"), team / org size you lead.
+
+6. **Anything else** - signature wins, peer-typical brag points, milestones you'd want a future
+   manager or recruiter to know about. Free-form.
+```
+
+After the PM responds, capture each item into the achievement ledger from Step 2 with confidence = `pm-elicited`. Reflect the captured items back in a compact list, one line per item, with proposed bullet placement:
+
+```
+Got it. Captured:
+- "Circle of Excellence" award -> Azure Migrate top-level thread, application-aware bullet
+- "Azure Core Compute Culture" award -> same bullet as above
+- NPS > 70 -> Azure Migrate app-aware UX refresh bullet
+- 5K+ customers adoption -> Azure Migrate app-aware top-level outcome
+- 20% migration time reduction -> app-aware bullet
+- 40% planning time reduction, 15% churn reduction -> assessment capabilities bullet
+- 7M+ SQL Server DB discoveries, 100%+ funnel improvement -> SQL Server thread
+- 150K Azure VMs, $7.2M/year potential revenue -> VM Insights (Azure Monitor sub-role)
+- $2B revenue estimate (manager-acknowledged) -> product leader thread
+
+Anything I should re-assign or add before I draft?
+```
+
+The PM can confirm, re-assign, or add more. Loop until the PM is satisfied, then proceed to Step 4.
+
+**PM opts out / nothing to add.** If the PM says "just use what's in the feedback" or "I don't have anything to add", record that decision in the ledger and proceed to Step 4. Bullets that would otherwise carry a metric stay qualitative; surface `> **PM Decision Required:**` only for bullets where a metric is structurally expected (e.g., a quantified achievement claim with no number).
 
 ### Step 4: Section Synthesis
 
-Build the resume markdown in this section order:
+Build the resume markdown in this exact section order. Each section's role is defined; do not let sections drift into each other's territory.
 
-1. **Header** - name, location, email, phone, approved inline links (LinkedIn, portfolio, etc.)
-2. **Professional Summary** - 3 to 4 sentences naming role title, domain expertise, signature outcomes
-3. **Skills** - three grouped lines:
-   - Domain (e.g., Cloud and Infrastructure, Migration, Modernization)
-   - Craft (e.g., Product strategy, Feature specification, UX design)
-   - Leadership (e.g., Thought leadership, Acquisition integration, Cross-functional collaboration)
-4. **Professional Experience** - current role first, then past roles in reverse chronological order. When one role spans multiple distinct scope changes, use nested sub-roles (see the experience block skeleton in `references/resume-template-guide.md`). Each bullet metric-anchored where evidence exists, with embedded `[anchor text](url)` proof-point links.
-5. **Extra-curricular activities** - bolded activity name, then prose
-6. **Education** - reverse chronological; CGPA + honors + flagship project per institution
+| # | Section | Owns | Must NOT contain |
+|---|---|---|---|
+| 1 | Header | Name, location, email, phone | Inline links other than what the PM explicitly approves (see Header rule below) |
+| 2 | Professional Summary | 3 to 4 sentences naming role title, domain expertise, signature outcomes | Bullet lists, specific metrics |
+| 3 | Skills | Three grouped lines (Domain / Craft / Leadership) | Bullet lists, prose |
+| 4 | Professional Experience | Primary product / role responsibilities and scope-defining feature ownership | Volunteer / side initiatives, mentorship programs, CSR work |
+| 5 | Extra-curricular activities | Non-primary-duty initiatives, voluntary or additional work | Primary job duties |
+| 6 | Education | CGPA, honors, flagship project (with embedded link when publicly cited) | Job-equivalent prose |
 
-Use `**bold**` around load-bearing keywords (metrics, product names, awards, customer names). The `.tex` generator converts these to `\textbf{...}`.
+#### Header rule (G9)
+
+Always include: candidate name, location, email, phone.
+
+Other channels from `links.md` (LinkedIn, portfolio, Substack, GitHub) are **PM-opt-in per refresh**, not auto-included. After listing the always-include fields, ask:
+
+> Include any of these in the header? `links.md` has: [LinkedIn], [portfolio], etc. Default is to leave them out of the header and surface them inline in bullets where the proof point lives.
+
+#### Skills grouping (G10)
+
+Default labels: **Domain** (e.g., "Cloud and Infrastructure"), **Craft** (e.g., "Product Development"), **Leadership**. For non-PM roles override with role-family labels (e.g., Engineer: "Languages" / "Systems" / "Leadership"; Designer: "Tools" / "Craft" / "Leadership"). Keep three lines.
+
+#### Experience sub-role nesting (G1)
+
+**Nest** sub-roles under one top-level role when ALL three hold:
+- (a) Same employer
+- (b) Same title or same title family (IC track promotions like Senior → Principal count as same family; IC → manager does not)
+- (c) Scope-change boundary is well-defined (different product area, different team, different geography)
+
+**Separate** into distinct top-level roles when (a) employer changes, OR (b) title changes materially (e.g., IC → manager, IC → director).
+
+Worked example: a Principal PM who joined Company X in 2016, worked on Product A from 2016-2019, and Product B from 2019-present nests as one Microsoft role with two sub-roles (Product A and Product B), not two separate Microsoft roles.
+
+See the experience block skeleton in `references/resume-template-guide.md` for the LaTeX shape.
+
+#### Extra-curricular vs. Experience boundary (G3)
+
+Put items in **Extra-curricular** when:
+- (a) Not the candidate's primary job duty
+- (b) Voluntary, additional, or side initiative (internal community building, mentorship programs, CSR, position-of-responsibility roles, brand-building drives)
+- (c) Would distract from the candidate's main professional narrative if listed under Experience
+
+Examples that go in **Extra-curricular**: hiring brand-building drives, internal skilling v-team leadership, CSR initiatives, career-coordinator roles during education, conference v-team leads.
+
+Examples that stay in **Experience**: primary product ownership, scope-defining feature work, multi-team programs the candidate is GC / lead of.
+
+Extra-curricular entries stay **terse**: 1 - 2 sentences per entry, bold the activity name, prose follows. Avoid mining feedback for metrics in this section unless externally iconic (e.g., a ranking that's verifiable via a public URL).
+
+#### Education (G6 update)
+
+Reverse chronological. Each institution: CGPA + honors + flagship project. Flagship projects can carry an embedded `[project name](url)` link when the project is publicly cited (conference paper, GitHub repo, news article, marketplace listing).
+
+Use `**bold**` around load-bearing keywords per the Bold do / don't list in Bullet Style above. The `.tex` generator converts to `\textbf{...}`.
 
 ### Step 5: Self-Check
 
@@ -183,7 +323,28 @@ Wait for PM approval. Do not save before approval.
 
 Once the PM approves:
 
-1. Write the markdown to `output/resumes/<name>/<name>-neutral.md`.
+1. Write the markdown to `output/resumes/<name>/<name>-neutral.md`. Append a **provenance comment block** at the very bottom of the markdown (HTML comment so it doesn't render in the PDF) that lists each metric / award / claim and tags its source as one of `feedback-derived`, `web-verified`, or `pm-elicited`. This lets future audits trace where each number came from. Example:
+
+```
+<!--
+PROVENANCE LOG (do not render)
+- 5K+ customer adoption: pm-elicited (Step 3.5, internal-only metrics)
+- 20% migration time reduction: pm-elicited
+- Circle of Excellence award: pm-elicited (internal awards)
+- Azure Core Compute Culture award: pm-elicited
+- NPS > 70: pm-elicited
+- 7M+ SQL discoveries, 100%+ funnel: pm-elicited (Nov 2024 Connect shows 5.29M / 3.05M)
+- 150K Azure VMs, $7.2M/year revenue: pm-elicited
+- $2B revenue estimate over 3 years: feedback-derived (Nov 2022 manager comment)
+- techcommunity blog 4297206: web-verified (Step 3 public-footprint pass)
+- Movere acquisition blog: web-verified
+- Forrester Wave 2022 blog: web-verified
+- PM Engage careers URL: web-verified
+- unstop PM Challenge 6563: web-verified
+- SAE paper 2013-01-1340: web-verified (or PM Decision Required if URL not confirmed)
+-->
+```
+
 2. Read `references/resume.tex`. Substitute each `{{PLACEHOLDER}}` with the corresponding section from the approved markdown, following the per-role LaTeX skeleton in `references/resume-template-guide.md`. Write the result to `output/resumes/<name>/<name>-neutral.tex`.
 3. Run the mandatory humanizer check on the markdown only:
 

@@ -137,16 +137,27 @@ foreach ($filePath in $Files) {
             $fileFixes += "  Line $lineNum [double dash -> single dash]: $($line.Trim())"
         }
 
+        # Strip URL content before scanning banned words/phrases. URLs are external
+        # references whose slugs are not the author's prose; flagging "seamless" inside
+        # a real blog URL like /microsoft-acquires-...-seamless-migration-tools/ is a
+        # false positive. Covers: markdown links [t](url), reference defs [r]: url,
+        # autolinks <url>, and bare http(s) URLs.
+        $scanLine = $line
+        $scanLine = $scanLine -replace '\]\([^)]*\)', ']()'                # [text](url) -> [text]()
+        $scanLine = $scanLine -replace '(?im)^\s*\[[^\]]+\]:\s*\S+.*$', '' # [ref]: url
+        $scanLine = $scanLine -replace '<https?://[^>]+>', ''              # <url>
+        $scanLine = $scanLine -replace 'https?://\S+', ''                  # bare http(s)://...
+
         # Banned words
         foreach ($word in $bannedWords) {
-            if ($line -match "\b$([regex]::Escape($word))\b") {
+            if ($scanLine -match "\b$([regex]::Escape($word))\b") {
                 $fileViolations += "  Line $lineNum [banned word '$word']: $($line.Trim())"
             }
         }
 
         # Banned phrases
         foreach ($phrase in $bannedPhrases) {
-            if ($line -match [regex]::Escape($phrase)) {
+            if ($scanLine -match [regex]::Escape($phrase)) {
                 $fileViolations += "  Line $lineNum [banned phrase]: $($line.Trim())"
             }
         }
