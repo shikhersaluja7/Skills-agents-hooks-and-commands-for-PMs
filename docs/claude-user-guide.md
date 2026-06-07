@@ -110,6 +110,7 @@ Type `/` to see all available skills:
 | `/build-golden-dataset` | Generate a golden evaluation dataset from product inputs and user personas |
 | `/build-mbr` | Write a monthly business review document with hypothesis-driven analysis |
 | `/build-one-pager` | Write a one-pager document for leadership and partner teams |
+| `/build-resume` | Build a neutral, ATS-parsable resume or tune one for a specific job. Assembles a markdown source plus a LaTeX file from periodic feedback, a baseline resume, and the candidate's public footprint, then tunes that resume to a job description without changing the timeline or fabricating content |
 | `/build-spec` | Build, refine, or review product specifications |
 | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews |
 | `/build-user-guide` | Write a customer-facing user guide or product walkthrough |
@@ -672,6 +673,21 @@ Saves to `output/reports/`.
 
 > *Auto-generated stub. Replace with a walkthrough following the style of section 5 (build-blog) or section 6 (build-user-guide).*
 <!-- SKILL-SECTION-END: export-xlsx -->
+
+---
+<!-- SKILL-SECTION-START: build-resume -->
+## Using build-resume
+
+```
+/build-resume <example argument>
+```
+
+Build a neutral, ATS-parsable resume or tune one for a specific job. Assembles a markdown source plus a LaTeX file from periodic feedback, a baseline resume, and the candidate's public footprint, then tunes that resume to a job description without changing the timeline or fabricating content
+
+Saves to `output/resumes/`.
+
+> *Auto-generated stub. Replace with a walkthrough following the style of section 5 (build-blog) or section 6 (build-user-guide).*
+<!-- SKILL-SECTION-END: build-resume -->
 
 ---
 ## 25. Frequently Asked Questions

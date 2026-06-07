@@ -1,11 +1,16 @@
 """translate-inputs.py - Convert various input file formats to markdown or text for skill consumption.
 
-Handles: .docx, .doc (via COM on Windows), .xlsx, .csv, .html, .htm, .txt, .json, URLs
+Handles: .docx, .doc (via COM on Windows), .xlsx, .csv, .html, .htm, .txt, .json, .eml, .msg, URLs
 
 Smart .docx handling:
     - If the document contains images: converts to .md with images extracted to a media/ subfolder
     - If the document is text-only: converts to .txt
     - Use --format md or --format txt to override the auto-detection
+
+Email handling:
+    - .eml: parsed with the stdlib email package; headers (From, To, Cc, Subject, Date)
+      plus the text/plain body (or markdownified html body if no plain part) written to .txt
+    - .msg: requires the extract_msg PyPI package (`pip install extract_msg`); same .txt layout
 
 Usage:
     python scripts/translate-inputs.py <input-folder-or-file> [--output <output-folder>] [--format md|txt|auto]
@@ -256,6 +261,77 @@ def convert_txt_to_md(filepath):
         return None
 
 
+def _format_email_text(sender, to, cc, subject, date, body):
+    """Compose a uniform .txt layout for both .eml and .msg conversions."""
+    header_lines = []
+    if sender:
+        header_lines.append(f"From: {sender}")
+    if to:
+        header_lines.append(f"To: {to}")
+    if cc:
+        header_lines.append(f"Cc: {cc}")
+    if subject:
+        header_lines.append(f"Subject: {subject}")
+    if date:
+        header_lines.append(f"Date: {date}")
+    header_block = "\n".join(header_lines)
+    body_text = (body or "").strip()
+    if header_block and body_text:
+        return f"{header_block}\n\n{body_text}\n"
+    return header_block or body_text or ""
+
+
+def convert_eml_to_txt(filepath):
+    """Convert .eml to plain text via stdlib email parser.
+    Extracts From / To / Cc / Subject / Date headers plus text/plain body.
+    Falls back to markdownified text/html body if no plain part exists."""
+    try:
+        from email import policy
+        from email.parser import BytesParser
+        with open(filepath, "rb") as f:
+            msg = BytesParser(policy=policy.default).parse(f)
+        sender = msg.get("From", "")
+        to = msg.get("To", "")
+        cc = msg.get("Cc", "")
+        subject = msg.get("Subject", "")
+        date = msg.get("Date", "")
+        body = None
+        plain_part = msg.get_body(preferencelist=("plain",))
+        if plain_part is not None:
+            body = plain_part.get_content()
+        else:
+            html_part = msg.get_body(preferencelist=("html",))
+            if html_part is not None:
+                html = html_part.get_content()
+                md = convert_html_to_md(html, is_content=True)
+                body = md if md else html
+        return _format_email_text(sender, to, cc, subject, date, body)
+    except Exception:
+        return None
+
+
+def convert_msg_to_txt(filepath):
+    """Convert Outlook .msg to plain text via the extract_msg PyPI package.
+    Returns None and prints an install hint when the package is not installed."""
+    try:
+        import extract_msg
+    except ImportError:
+        print(f"  HINT: install extract_msg to handle .msg files (pip install extract_msg); skipping {filepath.name}")
+        return None
+    try:
+        msg = extract_msg.Message(str(filepath))
+        sender = msg.sender or ""
+        to = msg.to or ""
+        cc = msg.cc or ""
+        subject = msg.subject or ""
+        date = msg.date or ""
+        body = msg.body or ""
+        msg.close()
+        return _format_email_text(sender, to, cc, subject, date, body)
+    except Exception:
+        return None
+
+
 def fetch_url_to_md(url):
     """Fetch a URL and convert to markdown."""
     try:
@@ -331,6 +407,16 @@ def convert_file(filepath, format_override="auto", output_dir=None):
         return convert_json_to_md(filepath), "json", ".md"
     elif ext == ".txt":
         return convert_txt_to_md(filepath), "text", ".txt"
+    elif ext == ".eml":
+        content = convert_eml_to_txt(filepath)
+        if content:
+            return content, "eml-stdlib", ".txt"
+        return None, "failed (.eml)", ".txt"
+    elif ext == ".msg":
+        content = convert_msg_to_txt(filepath)
+        if content:
+            return content, "extract_msg", ".txt"
+        return None, "failed (.msg, install extract_msg?)", ".txt"
     else:
         return None, f"unsupported format ({ext})", ".md"
 

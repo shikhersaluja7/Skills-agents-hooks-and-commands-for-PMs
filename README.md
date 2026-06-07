@@ -38,6 +38,7 @@ code .
 | **build-golden-dataset** | `/build-golden-dataset` | yes | yes | Generate a golden evaluation dataset from product inputs and user personas |
 | **build-mbr** | `/build-mbr` | yes | yes | Write a monthly business review document with hypothesis-driven analysis |
 | **build-one-pager** | `/build-one-pager` | yes | yes | Write a one-pager document for leadership and partner teams |
+| **build-resume** | `/build-resume` | yes | yes | Build a neutral, ATS-parsable resume or tune one for a specific job. Assembles a markdown source plus a LaTeX file from periodic feedback, a baseline resume, and the candidate's public footprint, then tunes that resume to a job description without changing the timeline or fabricating content |
 | **build-spec** | `/build-spec` | yes | yes | Build, refine, or review product specifications |
 | **build-strategy-doc** | `/build-strategy-doc` | yes | yes | Write an exec-ready strategy document for leadership and cross-org reviews |
 | **build-user-guide** | `/build-user-guide` | yes | yes | Write a customer-facing user guide or product walkthrough |

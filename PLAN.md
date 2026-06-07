@@ -22,6 +22,7 @@ Skills are the core PM workflows. Each skill lives in `.github/skills/<name>/SKI
 | **build-golden-dataset** | `/build-golden-dataset` | Generate a golden evaluation dataset from product inputs and user personas | Ready to use |
 | **build-mbr** | `/build-mbr` | Write a monthly business review document with hypothesis-driven analysis | Ready to use |
 | **build-one-pager** | `/build-one-pager` | Write a one-pager document for leadership and partner teams | Ready to use |
+| **build-resume** | `/build-resume` | Build a neutral, ATS-parsable resume or tune one for a specific job. Assembles a markdown source plus a LaTeX file from periodic feedback, a baseline resume, and the candidate's public footprint, then tunes that resume to a job description without changing the timeline or fabricating content | Ready to use |
 | **build-spec** | `/build-spec` | Build, refine, or review product specifications | Ready to use |
 | **build-strategy-doc** | `/build-strategy-doc` | Write an exec-ready strategy document for leadership and cross-org reviews | Ready to use |
 | **build-user-guide** | `/build-user-guide` | Write a customer-facing user guide or product walkthrough | Ready to use |
