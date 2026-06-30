@@ -27,7 +27,7 @@ The repo maintains two parallel skill ecosystems and keeps them in sync:
 `.githooks/pre-commit` runs four steps in order. If any fails, the commit aborts:
 
 1. `scripts/sync-skills.ps1 -Apply -Staged` - Mirror any drift between `.github/` and `.claude/`. Stages updated files into the commit.
-2. `scripts/update-docs.ps1 -Apply -Staged` - Regenerate the `<!-- SKILL-TABLE-START -->` tables in README, both user guides, and both onboarding docs. Regenerate the `<!-- REVIEW-DOC-TYPES-START -->` table in `review-doc/SKILL.md`. Auto-seed missing per-skill mini-sections in user guides via `Ensure-SkillSections` (see below).
+2. `scripts/update-docs.ps1 -Apply -Staged` - Regenerate the `<!-- SKILL-TABLE-START -->` tables in README, both user guides, and both onboarding docs, plus the `<!-- PLAN-SKILLS-START -->` inventory table in `PLAN.md`. Regenerate the `<!-- REVIEW-DOC-TYPES-START -->` table in `review-doc/SKILL.md`. Auto-seed missing per-skill mini-sections in user guides via `Ensure-SkillSections` (see below).
 3. `scripts/humanizer-check.ps1` on staged `.md` files - block banned words, banned phrases, banned starters, em dashes.
 4. `scripts/secrets-check.ps1` on every staged file (any extension) - block credentials, MCP/SSO/login tokens, and user-specific paths from leaking into tracked content. Patterns include token prefixes (`sk-`, `ghp_`, `xoxb-`, `AKIA`, JWT, PEM private keys), concrete user home paths (`C:\Users\<actual>`, `/Users/<actual>`, `/home/<actual>`), and secret-shaped assignments (`api_key="..."`, `client_secret: "..."`). Allowlist covers placeholders (`<you>`, `your-...`, `example-...`), generic accounts (`Public`, `Default`, `runner`), `LICENSE`, lockfiles, and the script itself. Run audit-mode with `scripts/secrets-check.ps1 -All`.
 
@@ -79,12 +79,13 @@ If a new artifact's user-facing coverage is grouped with peers in a shared secti
 
 ### Where things live
 
-- `scripts/` - all automation. `sync-skills.ps1`, `update-docs.ps1`, `humanizer-check.ps1`, `translate-inputs.py`.
+- `scripts/` - all automation. Pipeline scripts: `sync-skills.ps1`, `update-docs.ps1`, `humanizer-check.ps1`, `secrets-check.ps1`. Input conversion: `translate-inputs.py`, plus the `convert-*.ps1`, `extract-doc-text.ps1`, and `*-encoding.*` helpers for legacy/OLE/mojibake cases. Output conversion: `export-docx.ps1`, `export-xlsx.ps1`, `md-to-pdf.py`, and the `docx-prompt.ps1` Stop hook.
 - `.githooks/` - git hooks (pre-commit, pre-push). Activated via `git config core.hooksPath .githooks`.
 - `.github/hooks/sync-skills.json` - Copilot PostToolUse hook (re-runs sync after Copilot edits).
 - `.claude/settings.json` - Claude Stop hook (re-runs sync after a Claude session ends).
 - `docs/` - user-facing docs. `ghcp-user-guide.md` and `claude-user-guide.md` are the primary entry points; the two `*-cowork-onboarding.md` files mirror their tables for cowork-specific onboarding.
 - `input/` and `output/` - PM workspace. Both gitignored; created locally per project.
+- `CONTRIBUTING.md` - contributor entry point (the four contribution categories and manual-run commands). `PLAN.md` - auto-generated skill/agent/script inventory with status; do not hand-edit its `<!-- PLAN-SKILLS -->` table.
 
 ---
 
