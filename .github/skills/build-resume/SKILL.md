@@ -10,7 +10,7 @@ You are a resume expert helping PMs assemble a neutral resume from periodic feed
 
 Follow the **PM-in-the-Loop Contract** and **Humanized Writing Standard** defined in the workspace instructions. Every draft must be shown in chat for PM approval before saving.
 
-The output is two files per run: a markdown source (the source of truth) and a LaTeX file generated from the template at `references/resume.tex`. The `.tex` compiles to a 1-page (target) or 2-page (max) PDF via Overleaf, `pdflatex`, or `tectonic`. Read `references/resume-template-guide.md` for the placeholders and the per-role LaTeX skeleton before generating the `.tex`.
+The output is two files per run: a markdown source (the source of truth) and a LaTeX file generated from the template at `references/resume.tex`. The `.tex` compiles via Overleaf, `pdflatex`, or `tectonic` to a PDF with a **hard limit of 2 pages** - it never runs longer. Experienced candidates fill up to two pages; only early-career or thin-material candidates land on one. Read `references/resume-template-guide.md` for the placeholders and the per-role LaTeX skeleton before generating the `.tex`.
 
 ## Mode Selection
 
@@ -35,6 +35,16 @@ If the PM provides a JD but no neutral resume exists yet at `output/resumes/<nam
 
 These rules apply to every resume produced by this skill. Violations are defects.
 
+### Accessible to Any Reader (Problem, Action, Impact)
+
+The resume must be understandable to a reviewer outside the candidate's domain - a recruiter, a hiring manager in another field, an ATS parser. Write for that reader.
+
+- **Every experience bullet carries three things: the problem or context, what the candidate did, and the impact.** A reader who has never heard of the product should still grasp why the work mattered. Example from a shipped resume: "Conceptualized an **application-centric approach to migration** that replaced the prevalent siloed, workload-specific model (Infra, Databases, or Web apps handled separately) with migrating an **application - custom or packaged such as SAP ERP - as a single entity**; thereby driving a **~500%+ uplift** in modernization and **~100% increase in plans delivered (150K -> 300K)**." The problem (siloed model), the action (single-entity migration), and the impact (the uplift numbers) are all present and plain.
+- **Gloss every product and sub-role in plain language.** Add a short "what it does" clause next to each product or sub-role name so the reader is never left guessing. Shipped examples: "Azure Migrate: move applications from on-premises / public clouds to Azure" and "Azure Monitor: monitor applications running on Azure (observability)". The `.tex` sub-role line carries this gloss (see `references/resume-template-guide.md`).
+- **Prefer widely-understood job titles** over internal ladder labels. "Group Product Manager" reads to everyone; "Principal PM Manager (L66)" reads only to insiders. Keep the internal title in parentheses only when it adds credibility the standard title lacks.
+- **Explain acronyms and insider terms on first use**, or replace them with plain words. When a term is load-bearing and has no plain substitute, add a two- or three-word gloss.
+- **Be succinct, but never at the cost of the three load-bearing parts.** Cut hedge words, filler, and throat-clearing. Do not cut the problem, the action, or the impact - those are what earn a bullet its space.
+
 ### Grounded, Non-Fabricated Bullets
 
 - Every claim, metric, award name, customer name, and embedded link must trace to one of four sources:
@@ -44,6 +54,16 @@ These rules apply to every resume produced by this skill. Violations are defects
   4. **PM Decision Required** - used rarely, only when (a) Step 3.5 surfaced the gap and the PM said they didn't have the value, or (b) two sources conflict and the PM needs to arbitrate. Surface as `> **PM Decision Required:** <what + why>`.
 - Never invent metrics, award names, or links. If Step 3.5 didn't capture a value and no source supplies it, write the qualitative version (no number) - don't fabricate.
 - Never invent links. If a peer-typical channel (Substack, YouTube, Reddit, conference talk) is not found, write a `> **Gap:**` note instead of fabricating a URL.
+
+**Source routing - where each fact comes from, in order.** Exhaust the PM-free sources before asking the PM anything:
+
+| Order | Source | What it supplies | How captured |
+|---|---|---|---|
+| 1 | **Feedback + baseline files** | Metrics, awards named in the text, scope, timeline, customer counts, role transitions already written down | Step 2 ledger (confidence: feedback-derived) |
+| 2 | **Web / public footprint** | Externally verifiable proof links: product blogs, Ignite / Build sessions, analyst mentions, GitHub, careers and marketplace pages | Step 3 pass (confidence: web-verified) |
+| 3 | **Ask the PM** | Only what neither files nor web can supply: internal-only telemetry, awards never written down, level history, leadership praise absent from the text | Step 3.5 elicitation (confidence: pm-elicited) |
+
+Run the sources in this order. Do not ask the PM for something a feedback file or a web search already answers - Step 3.5 asks only for the residual gaps.
 
 ### Portray as Outstanding
 
@@ -57,6 +77,7 @@ The skill's job is to portray the candidate as outstanding in their role and dom
 - **Surface leadership-level acknowledgments verbatim** when the feedback contains them. Examples worth keeping: "manager-acknowledged $2B revenue impact", "CEO demo at Microsoft", "presented to Azure EVP and CPO", "received the Culture award for innovation". If a senior leader praised or recognized the candidate, the resume should show it.
 - **Summary line is signature-worthy.** Name the candidate's distinctive contribution to the domain, not a generic role title. "Principal PM driving Azure's migration and modernization platform from siloed workload tools to application-centric end-to-end experiences" beats "Principal Product Manager with cloud migration experience."
 - **Anti-fabrication still applies.** Outstanding does not mean invented; it means foreground the strongest grounded evidence and use the verbs that match the candidate's actual ownership level.
+- **Outstanding stays honest and neutral.** Frame every number so it survives scrutiny in an interview. Use the defensible qualifier the evidence supports: "**$720M yearly influenced revenue**" (influenced, not owned), "adopted by **around 600 customers**" when the count is approximate, "reducing time to migrate by **100%**" when that is the measured figure. A resume any reviewer trusts and understands is itself proof of PM communication craft - that is the bar, not louder adjectives.
 
 ### Bullet Style
 
@@ -75,9 +96,10 @@ The skill's job is to portray the candidate as outstanding in their role and dom
 
 ### Length
 
-- Target 1 page. Accept 2 pages only if the candidate's role-defining material genuinely needs the room.
-- Each role gets the bullet count needed to fit the page budget. Use the page-fit heuristic in `references/resume-template-guide.md` before showing the draft.
-- Per-tier bullet count targets (heuristic, not hard):
+- **Hard limit: 2 pages. The resume never exceeds two pages.** This is a cap, not a target to approach loosely - if the draft runs over, trim before showing it (see Step 5).
+- For an experienced candidate, a full two pages is the norm; use the space well. Land on a single page only when the candidate is early-career or the material is genuinely thin.
+- Each role gets the bullet count needed to fit within the 2-page cap. Use the page-fit heuristic in `references/resume-template-guide.md` before showing the draft, and trim the lowest-value bullets first.
+- Per-tier bullet count targets (heuristic for fitting the cap, not a hard rule):
 
 | Role age | Target bullet count |
 |---|---|
@@ -86,7 +108,7 @@ The skill's job is to portray the candidate as outstanding in their role and dom
 | Roles 5 - 10 years ago | 2 - 3 |
 | Roles 10+ years ago | 2 plus a 1-sentence intro line that compresses scope |
 
-Roles outside their tier's band need a `> **PM Decision Required:**` flag asking whether to expand or compress.
+Roles outside their tier's band need a `> **PM Decision Required:**` flag asking whether to expand or compress. When trimming to hit the cap, cut whole low-value bullets rather than shortening every bullet into a fragment - keep the problem, action, and impact intact on the bullets that survive.
 
 ### Assumption and Decision Markers
 
@@ -185,15 +207,19 @@ If the family isn't on the list, ask the PM for the 5 - 7 channel patterns their
 - Flag absences as `> **Gap:** <expected channel> not found. Peers in this role typically have one; consider creating one before the next refresh.` Never invent a URL.
 - When a target URL pattern is known (e.g. PM mentions "I have an aka.ms link for feature X") but the exact slug can't be confirmed, surface as `> **PM Decision Required:** <pattern> needs the exact slug - paste the live URL or accept removal.` Don't guess slug values.
 
-### Step 3.5: Outstanding-Impact Elicitation
+### Step 3.5: Outstanding-Impact Elicitation (residual gaps only)
 
-Periodic feedback files (Connect, OKR docs, performance reviews) capture activity but consistently under-capture the items that make a candidate look outstanding on a resume: internal awards, NPS scores, customer counts from telemetry, leadership praise, scope-defining role designations, level history. The skill must proactively elicit these from the PM **before** drafting, not flag them as `> PM Decision Required:` after.
+This step runs **after** the Step 2 ledger and the Step 3 web pass, so the feedback files and the public footprint have already supplied everything they can (per the source-routing order above). Periodic feedback files (Connect, OKR docs, performance reviews) still consistently under-capture the items that make a candidate look outstanding: internal awards, NPS scores, customer counts from telemetry, leadership praise, scope-defining role designations, level history. Elicit **only what Steps 2 and 3 did not already surface** - never re-ask for anything a file or a web result already answered.
 
-Ask the PM in one batched prompt (skip the prompt only if the PM has explicitly opted out for this run):
+First show the PM what you already have, then ask for the gaps in one batched prompt (skip the prompt only if the PM has explicitly opted out for this run):
 
 ```
-Before I draft, the feedback files don't capture everything that makes you outstanding in your
-role. Please share anything you have in the following six categories. Skip any that don't apply.
+Here is what I already pulled from your files and public footprint:
+- <one line per item the ledger and web pass captured, so the PM sees it is covered>
+
+The feedback rarely captures a few things that make you outstanding. Please fill only the gaps
+below - skip anything already listed above. Share what you have in these six categories; skip
+any that don't apply.
 
 1. **Internal awards / recognition** - formal awards (Circle of Excellence, Culture awards,
    Excellence awards, peer-nominated recognitions) or named recognitions not visible in the
@@ -299,12 +325,14 @@ Use `**bold**` around load-bearing keywords per the Bold do / don't list in Bull
 
 ### Step 5: Self-Check
 
-Before showing the draft, run these four checks and report any failures in chat:
+Before showing the draft, run these checks and report any failures in chat:
 
-1. **Page-fit estimate**. Apply the heuristic in `references/resume-template-guide.md`. Report the estimated page count (1 or 2). If above 2 pages, ask the PM which bullets to trim before drafting further.
+1. **Page-fit (hard gate)**. Apply the heuristic in `references/resume-template-guide.md` and report the estimated page count. The 2-page cap is absolute: if the estimate exceeds two pages, do not present the draft - propose specific bullets to cut, trim to fit, and re-estimate first.
 2. **Recency anchor**. The current role has the most bullet real estate. If a prior role outweighs the current one, ask the PM whether to rebalance or whether the prior role's weight is intentional.
 3. **Groundedness**. Every quantitative claim cites a source-file, a PM-approved web URL, or a `> **PM Decision Required:**` flag.
 4. **Link validity**. Run `WebFetch` once on each embedded URL. Drop any that 404 and flag with `> **Note:** removed dead link to <url>; replace with an alternative or remove the bullet's link.`
+5. **Accessibility**. Every experience bullet states the problem, the action, and the impact in plain language, and every product or sub-role carries a plain-language gloss. Flag any bullet a non-domain reader could not follow.
+6. **Honesty**. Every superlative and number is defensible in an interview and neutrally framed (approximate counts qualified, "influenced" versus "owned" revenue kept accurate).
 
 ### Step 6: Show the Draft
 
@@ -371,6 +399,8 @@ These rules apply to every tuning pass. Violations are defects.
 
 - **Timeline is locked**. Reordering within a role is fine. Reordering across roles is not.
 - **Non-fabrication audit applies**. Every reworded bullet must trace to evidence in the inputs or in a PM-approved web URL. Bullets that lose their evidence roll back to the neutral wording.
+- **The tuned resume still reads as neutral, honest, and accessible**. Tuning means reordering within roles, mirroring JD keywords the candidate genuinely owns, and surfacing true evidence the neutral version de-prioritized. Tuning is not title inflation, jargon injection, or over-claiming. A well-built neutral resume is already relevant to a matched job; the tuned version sharpens emphasis without giving up the broad credibility a neutral resume carries. The shipped `<name>-for-<company-or-role>` file should read as convincingly to a general reviewer as to the target team.
+- **The hard 2-page cap applies to tuned output too**. Reordering and JD-keyword mirroring must not push the resume past two pages.
 - **Format anchoring is conservative**. When the PM opts in to format research, anchor on professional and conservative templates. Skip flashy or loud designs.
 
 ## Procedure
@@ -456,7 +486,7 @@ The PM approves each augmentation individually.
 
 ### Step 6: Self-Check
 
-Run the four Neutral-mode checks (page-fit, recency anchor, groundedness, link validity), plus the non-fabrication audit:
+Run the six Neutral-mode checks (page-fit hard gate, recency anchor, groundedness, link validity, accessibility, honesty), plus the non-fabrication audit:
 
 - Every reworded bullet traces to evidence in `input/resumes/<name>/` or a PM-approved web URL.
 - Any bullet without traceable evidence rolls back to the neutral wording.
@@ -486,7 +516,9 @@ After generating any draft and before presenting it to the PM, run this short se
 - Does the draft cover every input the PM provided?
 - Are there sections that feel thin or could use more depth?
 - Were any PM decisions or assumptions left unresolved?
-- Is the page-fit estimate within target?
+- Is the resume within the hard 2-page cap?
+- Does every experience bullet read plainly to a non-domain reviewer (problem, action, impact), with a gloss on each product?
+- Is every number honest, neutrally framed, and defensible?
 - Is every link valid?
 
 This is a transparency step, not a gate. The PM still reviews and approves.

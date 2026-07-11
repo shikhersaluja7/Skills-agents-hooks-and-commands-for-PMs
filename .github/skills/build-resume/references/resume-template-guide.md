@@ -78,7 +78,7 @@ For each top-level role (e.g., one employer, one title span), open a `twocolentr
 \end{twocolentry}
 \begin{onecolentry}
     \begin{twocolentry}{<sub-role start> – Present}
-      Cloud Service -- \textbf{<Sub-role product or scope>}
+      Cloud Service -- \textbf{<Sub-role product>}: <plain-language gloss of what it does, e.g. "move applications from on-premises / public clouds to Azure">
     \end{twocolentry}
     \begin{highlights}
         \item \textbf{Built} \href{https://...}{\textcolor{blue}{<feature>}} ground up
@@ -93,7 +93,7 @@ For each top-level role (e.g., one employer, one title span), open a `twocolentr
     \end{highlights}
 
     \begin{twocolentry}{<earlier sub-role start> – <end>}
-      Cloud Service -- \textbf{<earlier sub-role product>}
+      Cloud Service -- \textbf{<earlier sub-role product>}: <plain-language gloss of what it does>
     \end{twocolentry}
     \begin{highlights}
         \item ...
@@ -106,6 +106,8 @@ For each top-level role (e.g., one employer, one title span), open a `twocolentr
 ### Per-role bullet rules
 
 - Action-verb-first; present tense for the current role, past tense for prior roles.
+- State the problem, the action, and the impact in every bullet, in plain language a non-domain reader follows. A reviewer who has never used the product should still understand why the work mattered.
+- Gloss each product and sub-role on its title line with a short "what it does" clause (see the sub-role skeleton above). Prefer a widely-understood job title on the role line (e.g. "Group Product Manager"); keep an internal ladder label in parentheses only when it adds credibility.
 - Wrap load-bearing keywords (metrics, product names, awards, customer names) in `\textbf{...}`.
 - Embed proof links using `\href{<url>}{\textcolor{blue}{<anchor text>}}` so they appear blue.
 - Escape `%`, `&`, `$`, `#`, `_`, `{`, `}` in plain prose. Common cases: `20\%`, `\$1Bn`, `R\&D`.
@@ -151,7 +153,7 @@ The skill estimates page fit before showing the draft. Constants tuned against `
 | Per-bullet vertical overhead in lines | 0.5 |
 | Per-section vertical overhead in lines | 2.5 |
 
-To estimate lines used: sum of (each bullet's character count / 110, ceiling) plus 0.5 per bullet plus 2.5 per section. Targets: under 55 lines means 1 page; under 110 lines means 2 pages. Above 110, ask the PM which bullets to trim.
+To estimate lines used: sum of (each bullet's character count / 110, ceiling) plus 0.5 per bullet plus 2.5 per section. Under 55 lines means 1 page; 55 to 110 lines means 2 pages. **The 2-page cap is a hard limit:** an estimate above 110 lines must be trimmed down before the draft is shown - cut the lowest-value whole bullets and re-estimate, never present a 3-page draft.
 
 These are rough estimates only. The skill surfaces the estimated page count alongside the draft so the PM can verify against Overleaf if a tighter fit matters.
 
